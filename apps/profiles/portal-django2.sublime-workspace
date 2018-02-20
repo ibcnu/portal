@@ -1,0 +1,474 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"bh",
+				"bh-top-nav"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"navbar",
+				"navbar-fixed-top"
+			],
+			[
+				"get",
+				"get_user_model\tmodule"
+			],
+			[
+				"ap",
+				"apps"
+			],
+			[
+				"in",
+				"index"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "from django.db import models\n\n\nclass Company(models.Model):\n\n    def __init__(self, arg):\n        super(Company, self).__init__()\n        self.arg = arg\n",
+			"file": "/home/barry/Documents/django/portal/apps/organizations/models.py",
+			"file_size": 185,
+			"file_write_time": 131633491615730342,
+			"settings":
+			{
+				"buffer_size": 153,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 354.0,
+		"last_filter": "ins",
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"DIS",
+				"Package Control: Disable Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 585.0
+	},
+	"console":
+	{
+		"height": 130.0,
+		"history":
+		[
+			"ls"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/barry/Documents/django/portal/portal/views.py",
+		"/home/barry/Documents/django/portal/templates/base.html",
+		"/home/barry/Documents/django/portal/templates/index.html",
+		"/home/barry/Documents/django/portal/portal/settings.py",
+		"/home/barry/Documents/django/portal/portal/urls.py",
+		"/home/barry/Documents/django/portal/templates/base-dashboard.html",
+		"/home/barry/Documents/django/portal/apps/organizations/models.py",
+		"/home/barry/Documents/django/portal/apps/profiles/views.py",
+		"/home/barry/Documents/django/portal/apps/profiles/urls.py",
+		"/home/barry/Documents/django/portal/apps/profiles/tests.py",
+		"/home/barry/Documents/django/portal/apps/profiles/models.py",
+		"/home/barry/Documents/django/portal/apps/profiles/apps.py",
+		"/home/barry/Documents/django/portal/apps/profiles/admin.py",
+		"/home/barry/Documents/django/portal/apps/accounts/models.py",
+		"/home/barry/Documents/django/portal/apps/accounts/forms.py",
+		"/home/barry/Documents/django/portal/apps/accounts/apps.py",
+		"/home/barry/Documents/django/portal/apps/accounts/admin.py",
+		"/home/barry/Documents/django/portal/apps/admin.py",
+		"/home/barry/Documents/django/portal/apps/apps.py",
+		"/home/barry/Documents/django/portal/templates/bs-dashboard/login.html",
+		"/home/barry/Documents/django/portal/templates/bs-dashboard/index.html",
+		"/home/barry/Documents/django/portal/templates/bs-dashboard/base.html",
+		"/home/barry/Documents/django/portal/templates/bs-dashboard/base-dash.html",
+		"/home/barry/Documents/django/portal/tests/functional_tests.py",
+		"/home/barry/Documents/django/portal/templates/admin_theme/base.html",
+		"/home/barry/Documents/django/portal/templates/admin_theme/index.html",
+		"/home/barry/Documents/django/portal/templates/admin_theme/base-dashboard.html",
+		"/home/barry/Documents/django/portal/static/admin_theme/css/style.css",
+		"/home/barry/Documents/django/portal/static/sb-admin/css/bootstrap.css",
+		"/home/barry/Documents/django/portal/static/admin_theme/css/bootstrap.min.css",
+		"/home/barry/Documents/django/portal/templates/admin_theme_/index.html",
+		"/home/barry/Documents/django/portal/apps/profiles/templates/admin_theme/index.html",
+		"/home/barry/Documents/django/portal/apps/profiles/templates/admin_theme/base.html",
+		"/home/barry/Documents/django/portal/templates/admin_theme_/base.html",
+		"/home/barry/Documents/django/portal/apps/profiles/templates/admin_theme_/base.html",
+		"/home/barry/Documents/django/portal/apps/profiles/templates/admin_theme_/index.html",
+		"/home/barry/Documents/Clients/cmssi/portal/accounts/models.py",
+		"/home/barry/Documents/Clients/cmssi/portal/accounts/admin.py",
+		"/home/barry/Documents/Clients/cmssi/portal/accounts/apps.py",
+		"/home/barry/Documents/Clients/cmssi/portal/accounts/tests.py",
+		"/home/barry/Documents/Clients/cmssi/portal/accounts/views.py",
+		"/home/barry/Documents/Clients/cmssi/portal/portal/settings.py",
+		"/home/barry/Documents/Clients/cmssi/portal/manage.py",
+		"/home/barry/Documents/django/old/portal/src/apps/cms/models.py",
+		"/home/barry/USB/arma-styles.css",
+		"/home/barry/Downloads/USB/arma-styles.css",
+		"/home/barry/Downloads/USB/START_HERE.html",
+		"/home/barry/USB/START_HERE.html",
+		"/home/barry/Desktop/usb/START_HERE.html",
+		"/home/barry/Desktop/usb/arma-styles.css",
+		"/run/media/barry/ARMA GATE/START_HERE.html",
+		"/run/media/barry/ARMA GATE/arma-styles.css",
+		"/home/barry/Documents/Clients/cmssi/Portal/productportal/productportal/LICENSE",
+		"/home/barry/Documents/Clients/jmNorthShoreRoofing/jmroofing/settings.py",
+		"/home/barry/Documents/Clients/cmssi/Portal/portal/requirements.txt",
+		"/home/barry/Documents/Clients/cmssi/Portal/portal/.gitignore",
+		"/home/barry/Documents/Clients/cmssi/Portal/portal/LICENSE",
+		"/home/barry/Documents/Clients/cms/bhcms/templates/base.html",
+		"/home/barry/Documents/Clients/cms/bhcms/templates/fullwidth.html",
+		"/home/barry/Documents/Clients/cms/bhcms/templates/sidebar_left.html",
+		"/home/barry/.config/sublime-text-3/Packages/PyRefactor/Default (Linux).sublime-keymap",
+		"/home/barry/Documents/Clients/cms/requirements.txt",
+		"/home/barry/Documents/Clients/cmssi/Portal/portal/portal/urls.py",
+		"/home/barry/Documents/Clients/Suburban/www/public/wp-content/themes/suburban/js/ui.js",
+		"/home/barry/Documents/Clients/Suburban/www/public/wp-content/themes/suburban/.functions.php.swp",
+		"/home/barry/Documents/Clients/Suburban/www/public/wp-content/themes/suburban/.sidebar-footer.php.swp",
+		"/home/barry/Documents/Clients/Suburban/www/public/wp-content/themes/suburban/inc/theme-options.php",
+		"/home/barry/Documents/Clients/Suburban/www/public/wp-content/themes/index.php",
+		"/home/barry/Documents/Clients/Suburban/www/public/index.php",
+		"/home/barry/Documents/Clients/Suburban/www/public/wp-content/themes/twentyfifteen/page.php",
+		"/home/barry/Documents/django/cmssi-portal/portal/portal/settings.py",
+		"/home/barry/Documents/django/cmssi-portal/portal/portal/urls.py",
+		"/home/barry/Documents/django/cmssi/cmssienv/lib/python3.6/site-packages/django/contrib/admin/templatetags/admin_urls.py",
+		"/home/barry/Documents/django/cmssi/CmssiPortal",
+		"/home/barry/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/barry/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+		"/home/barry/Documents/django/cmssi/portal/portal/urls.py",
+		"/home/barry/Documents/Clients/cmssi/Portal/ntoll_IssueTracker.py"
+	],
+	"find":
+	{
+		"height": 70.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			" {",
+			"template"
+		],
+		"highlight": true,
+		"in_selection": true,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"theme"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/barry/Documents/django/portal/apps/organizations/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 153,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								59,
+								59
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 67.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "portal-django2.sublime-project",
+	"replace":
+	{
+		"height": 114.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 334.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
