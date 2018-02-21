@@ -174,8 +174,11 @@ section header {
 * ==========================================================
 */
 nav.navbar {
-  background: #393836;
-  padding: .8rem 0;
+  /*background: #393836;*/
+  background: #fff;
+  /*border-bottom: ;*/
+  /*padding: .8rem 0;*/
+  padding: .3rem 0;
   /* Navbar Brand --------- */
   /*  Dropdowns ------------ */
   /* Toggle Button ---------- */
@@ -196,7 +199,7 @@ nav.navbar .navbar-holder {
 
 nav.navbar a {
   font-size: 0.8em;
-  color: #fff;
+  color: #333;
   position: relative;
 }
 
@@ -220,7 +223,7 @@ nav.navbar a.navbar-brand {
 }
 
 nav.navbar .brand-text {
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 nav.navbar .brand-text strong {
@@ -283,11 +286,11 @@ nav.navbar .notification-content {
 }
 
 nav.navbar a.menu-btn {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   line-height: 40px;
-  background: #292929;
-  color: #fff;
+  background: #fff;
+  color: #222;
   text-align: center;
   padding: 0 !important;
 }
@@ -298,7 +301,7 @@ nav.navbar a.menu-btn i[class*='icon-'] {
 }
 
 nav.navbar a.menu-btn:hover {
-  background: #33b35a;
+  background: #ddd;
 }
 
 /*  NAVBAR MEDIAQUERIES ---------------------------------- */
@@ -2422,11 +2425,11 @@ mark,
 }
 
 .text-primary {
-  color: #33b35a !important;
+  color: #rgb(228, 28, 36); !important;
 }
 
 a.text-primary:focus, a.text-primary:hover {
-  color: #288b46 !important;
+  color: #rgb(228, 28, 36); !important;
 }
 
 /*
@@ -2642,11 +2645,11 @@ a.bg-dark:focus, a.bg-dark:hover {
 }
 
 .text-primary {
-  color: #33b35a !important;
+  color: #rgb(228, 28, 36) !important;
 }
 
 a.text-primary:focus, a.text-primary:hover {
-  color: #288b46 !important;
+  color: #rgb(228, 28, 36) !important;
 }
 
 .text-secondary {
