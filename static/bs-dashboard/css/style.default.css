@@ -1,6 +1,8 @@
 /*
 ==========================================================
 ==========================================================
+main color #e41b23  ||  228, 27, 35
+
 
 Bootstrapious Dashboard Template 1.2
 
@@ -14,8 +16,6 @@ https://bootstrapious.com/p/bootstrap-4-dashboard
 *     GENERAL
 * ==========================================================
 */
-
-
 .text-bold {
   font-weight: 700;
 }
@@ -178,10 +178,23 @@ nav.navbar {
   background: #fff;
   /*border-bottom: ;*/
   /*padding: .8rem 0;*/
-  padding: .3rem 0;
+  padding: .1rem 0;
   /* Navbar Brand --------- */
   /*  Dropdowns ------------ */
   /* Toggle Button ---------- */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  text-align: left;
+  /* background: #393836; */
+  background: #fff;
+  color: #333;  /* fff */
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  z-index: 1000;
+  overflow-y: auto;
 }
 
 nav.navbar .side-navbar-wrapper {
@@ -199,7 +212,7 @@ nav.navbar .navbar-holder {
 
 nav.navbar a {
   font-size: 0.8em;
-  color: #333;
+  color: #333;  /*fff*/
   position: relative;
 }
 
@@ -289,7 +302,9 @@ nav.navbar a.menu-btn {
   width: 30px;
   height: 30px;
   line-height: 40px;
+  /* background: #292929; */
   background: #fff;
+  /* color: #fff; */
   color: #222;
   text-align: center;
   padding: 0 !important;
@@ -301,6 +316,7 @@ nav.navbar a.menu-btn i[class*='icon-'] {
 }
 
 nav.navbar a.menu-btn:hover {
+  /* background: #33b35a; */
   background: #ddd;
 }
 
@@ -334,14 +350,14 @@ nav.navbar a.menu-btn:hover {
 */
 .side-navbar {
   position: fixed;
-  top: 0;
+  top: 500;
   left: 0;
   width: 200px;
   height: 100%;
-  width: 200px;
   text-align: left;
-  background: #393836;
-  color: #fff;
+  /* background: #393836; */
+  background: #fff;
+  color: #333;  /* fff */
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
   z-index: 999;
@@ -356,6 +372,8 @@ nav.navbar a.menu-btn:hover {
 
 .side-navbar.hide {
   left: -70px;
+  /* background: rbg( 228, 27, 35); */
+  /* background: rbg( 228, 27, 35); */
 }
 
 .side-navbar a.brand-small {
@@ -380,15 +398,18 @@ nav.navbar a.menu-btn:hover {
   position: relative;
   font-size: .9rem;
   font-weight: 300;
-  color: #fff;
+  color: #333;  /* fff */
   text-decoration: none;
   width: 100%;
   padding: 12px;
 }
 
 .side-navbar li a:focus, .side-navbar li a:hover, .side-navbar li a[aria-expanded="true"] {
-  background: #33b35a;
-  color: #fff;
+  background: rbg( 228, 27, 35);
+  /* background: #fff; */
+  color: #333;
+  /* background: #33b35a; */
+  /* color: #fff; */
   text-decoration: none;
 }
 
@@ -417,7 +438,8 @@ nav.navbar a.menu-btn:hover {
 }
 
 .side-navbar li ul {
-  background: #292929;
+  /* background: #292929; */
+  background: #fff;
   position: relative;
   min-width: 100%;
   left: 0;
@@ -434,11 +456,13 @@ nav.navbar a.menu-btn:hover {
 }
 
 .side-navbar li ul.collapse a:hover {
+  /* background: rbg( 228, 27, 35); */
   background: #121212;
 }
 
 .side-navbar .sidenav-header {
-  background: #292929;
+  /* background: #292929; */
+  background: #fff;
   padding: 14px;
   margin-bottom: 10px;
 }
@@ -635,6 +659,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar:hover {
+  /* background: rbg( 228, 27, 35); */
   background-color: #33b35a;
 }
 
@@ -2425,10 +2450,12 @@ mark,
 }
 
 .text-primary {
+  /* color: #33b35a !important; */
   color: #rgb(228, 28, 36); !important;
 }
 
 a.text-primary:focus, a.text-primary:hover {
+  /* color: #288b46 !important; */
   color: #rgb(228, 28, 36); !important;
 }
 

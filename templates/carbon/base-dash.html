@@ -1,0 +1,159 @@
+{% extends "carbon/base.html" %}
+{% load static %}
+
+{% block page_description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+  <div class="page-wrapper">
+      <nav class="navbar page-header">
+          <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
+              <i class="fa fa-bars"></i>
+          </a>
+
+          <a class="navbar-brand" href="/">
+              <img src="{% static 'carbon/imgs/Countermeasures-logo-50.png' %}" alt="logo"  height="40">
+          </a>
+
+          <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
+              <i class="fa fa-bars"></i>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+              <!--
+              <li class="nav-item d-md-down-none">
+                  <a href="#">
+                      <i class="fa fa-bell"></i>
+                      <span class="badge badge-pill badge-danger">5</span>
+                  </a>
+              </li>
+              <li class="nav-item d-md-down-none">
+                  <a href="#">
+                      <i class="fa fa-envelope-open"></i>
+                      <span class="badge badge-pill badge-danger">5</span>
+                  </a>
+              </li> -->
+
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                      <!--img src="{% static 'carbon/imgs/avatar-1.png' %}" class="avatar avatar-sm" alt="logo"-->
+                      <span class="med ml-1 d-md-down-none">{{ username }}</span>
+                  </a>
+
+                  <div class="dropdown-menu dropdown-menu-right">
+                      <div class="dropdown-header">Account</div>
+
+                      <a href="profile" class="dropdown-item">
+                          <i class="fa fa-user"></i> Profile
+                      </a>
+                      <!--
+                      <a href="#" class="dropdown-item">
+                          <i class="fa fa-envelope"></i> Messages
+                      </a> -->
+
+                      <div class="dropdown-header">Settings</div>
+                      <!--
+                      <a href="#" class="dropdown-item">
+                          <i class="fa fa-bell"></i> Notifications
+                      </a> -->
+
+                      <a href="settings" class="dropdown-item">
+                          <i class="icon icon-settings"></i> Settings
+                      </a>
+
+                      <a href="logout" class="dropdown-item">
+                          <i class="fa fa-lock"></i> Logout
+                      </a>
+                  </div>
+              </li>
+          </ul>
+      </nav>
+
+      <div class="main-container">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    <li class="nav-title">Navigation</li>
+
+                    <li class="nav-item">
+                        <a href="/" class="nav-link active">
+                            <i class="icon icon-speedometer"></i> Dashboard
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="companylist" class="nav-link ">
+                            <i class="fa fa-building-o"></i> Companies
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="users" class="nav-link">
+                            <i class="icon icon-people"></i> Users
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="reports" class="nav-link ">
+                            <i class="icon icon-docs"></i> Reports
+                        </a>
+                    </li>
+
+                    <li class="nav-title">Assets</li>
+
+
+                    <li class="nav-item nav-dropdown">
+                        <a href="#" class="nav-link nav-dropdown-toggle">
+                            <i class="icon icon-energy"></i> Assets <i class="fa fa-caret-left"></i>
+                        </a>
+
+                        <ul class="nav-dropdown-items">
+                          <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                  <i class="fa fa-file-text-o"></i> Automanted Gates
+                              </a>
+                          </li>
+
+                          <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                  <i class="fa fa-file-text-o"></i> Overhead Doors
+                              </a>
+                          </li>
+
+                          <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                  <i class="fa fa-file-text-o"></i> Access Control
+                              </a>
+                          </li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </nav>
+        </div>
+
+{% block dash_content %}{% endblock %}
+
+
+
+        <!-- <footer class="main-footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <p>Countermeasures Security Solutions Inc. &copy; 2018</p>
+              </div>
+              <div class="col-sm-6 text-right">
+                <p>Design by <a href="https://barryhuffman.ca" class="external">Barry</a></p>
+              </div>
+            </div>
+          </div>
+        </footer> -->
+
+      </div>
+
+  </div>
+
+{% endblock %}
+
+

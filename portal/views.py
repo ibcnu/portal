@@ -1,34 +1,22 @@
-from django.shortcuts import render
-# from django.http import HttpResponse
-
-# template = 'admin_theme/'
-# template = 'sb-admin/'
-# template = 'bs-dashboard/'
-theme = ''
+from django.conf import settings
+from django.views.generic import TemplateView
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
-def index(request):
-    context = {
-        'title': "Dashboard",
-        'header': "Hello, world. You're at the index.",
-    }
+class IndexView(TemplateView):
+    template_name = settings.CURRENT_TEMPLATE + "/index.html"
 
-    return render(request, 'bs-dashboard/index.html', context)
+    def get_context_data(self, *args, **kwargs):
+        context = super(IndexView, self).get_context_data(*args, **kwargs)
+        user = User()
+        username = user.fullname
+        username = user.email
+        username = 'Barry Huffman'
 
-
-def login(request):
-    context = {
-        'title': "Login",
-        'header': "Hello, world. You're at the login.",
-    }
-
-    return render(request, 'login.html', context)
-
-
-def logout(request):
-    context = {
-        'title': "Logout",
-        'header': "Hello, world. You're at the logout.",
-    }
-
-    return render(request, 'logout.html', context)
+        page_title = 'Dashboard'
+        context = {
+            'page_title': page_title,
+            'username': username
+        }
+        return context

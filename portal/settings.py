@@ -52,6 +52,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'portal.urls'
 
+CURRENT_TEMPLATE = 'carbon'  # ['admin_theme', 'sb-admin', 'bs-dashboard', 'carbon']
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

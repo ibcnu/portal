@@ -1,0 +1,21 @@
+{% extends "carbon/base.html" %}
+{% load static %}
+
+{% block page_title %}{{ page_title }} | {{ site_title|default:_('CMSSI Portal') }}{% endblock %}
+
+{% block page_description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+<div class="page-wrapper flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+{% block login_content %}{% endblock %}
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

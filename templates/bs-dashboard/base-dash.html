@@ -3,7 +3,6 @@
 {% block title %}{{ title }} | {{ site_title|default:_('CMSSI Portal') }}{% endblock %}
 
 {% block content %}
-
 <!-- Side Navbar -->
     <nav class="side-navbar">
       <div class="side-navbar-wrapper">
@@ -16,7 +15,7 @@
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->
           <div class="sidenav-header-logo">
-            <a href="index.html" class="brand-small text-center">
+            <a href="#" class="brand-small text-center">
               <strong>B</strong><strong class="text-primary">H</strong>
             </a>
           </div>
@@ -27,11 +26,11 @@
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
           <ul id="side-main-menu" class="side-menu list-unstyled">
-            <li><a href="index.html"><i class="icon-home"></i>Dashboard</a></li>
+            <li><a href="#"><i class="icon-home"></i>Dashboard</a></li>
 
-            <li><a href="forms.html"><i class="fa fa-building-o"></i>Companys</a></li>
-            <li><a href="charts.html"><i class="fa fa-users"></i>Users</a></li>
-            <li><a href="tables.html"><i class="fa fa-file-text-o"></i>Reports <div class="badge badge-warning">6 New</div></li></a>
+            <li><a href="#"><i class="fa fa-building-o"></i>Companys</a></li>
+            <li><a href="#"><i class="fa fa-users"></i>Users</a></li>
+            <li><a href="#"><i class="fa fa-file-text-o"></i>Reports <div class="badge badge-warning">6 New</div></li></a>
 
             <li><a href="#exampledropdownDropdown" aria-expanded="false"
                 data-toggle="collapse"><i class="fa fa-cubes"></i>Assets</a>
@@ -61,7 +60,6 @@
 
 
 <!-- Top Navbar-->
-    <div class="page">
       <header class="header">
         <nav class="navbar">
           <div class="container-fluid">
@@ -70,7 +68,7 @@
               <div class="navbar-header">
                 <a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"></i></a>
 
-                <a href="index.html" class="navbar-brand">
+                <a href="#" class="navbar-brand">
                     <div class="brand-text d-none d-md-inline-block">
                         <strong>CMSSI </strong><strong class="text-primary"> Portal</strong>
                     </div>
@@ -170,10 +168,41 @@
           </div>
         </nav>
       </header>
+    <div class="page">
+      {% block dashboardContent %}{% endblock %}
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br></p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br></p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br></p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br></p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br></p>
     </div>
 
 
-      {% block dashboardContent %}{% endblock %}
 
 {% endblock %}
 
