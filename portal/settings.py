@@ -32,10 +32,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 'crispy-form-tags',
+    'widget_tweaks',
+
     'portal',
-    'apps.profiles',
     'apps.accounts',
+    'apps.assets',
+    'apps.issues',
     'apps.organizations',
+    'apps.profiles',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -71,7 +76,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'portal.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -127,3 +131,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
+
+
+
+LOGIN_URL = '/account/login/'
+LOGIN_REDIRECT_URL = '/'
+
+
+EMAIL_BACKEND = 'django.core.backends.console.EmailBackend'

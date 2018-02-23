@@ -1,11 +1,16 @@
-from django.conf import settings
 from django.views.generic import TemplateView
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 User = get_user_model()
 
 
+# @login_required(login_url='/account/login/')
+
+# @login_required
+@method_decorator(login_required, name='dispatch')
 class IndexView(TemplateView):
-    template_name = settings.CURRENT_TEMPLATE + "/index.html"
+    template_name = "index.html"
 
     def get_context_data(self, *args, **kwargs):
         context = super(IndexView, self).get_context_data(*args, **kwargs)

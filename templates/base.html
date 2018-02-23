@@ -1,88 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>{{ title }} | CMSSI</title>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block page_title %}{% endblock %}{{ site_title|default:_('CMSSI Portal') }}</title>
+        <meta name="description" content="{% block page_description %}{% endblock %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="all,follow">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+        <link  rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+        <link  rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}">
+        <link  rel="stylesheet" href="{% static 'vendor/font-awesome/css/fontawesome-all.min.css' %}">
 
-<style>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/custom-styles.css' %}">
+        {% block extrastyle %}{% endblock %}
+        {% block extrahead %}{% endblock %}
+    </head>
+    <body>
 
-    .bh-top-nav a{
-        color: #222222;
-    }
+        {% block content %}{% endblock %}
 
-    .bh-top-nav .navbar-brand{
-        color: #000000;
-        font-size: 1.2em;
-    }
-
-    .bh-side-nav {
-        background-color: lightblue ;
-    }
-
-    .bh-main-content{
-        background-color: #ffffff ;
-        border-style: solid;
-        border-width: 1px;
-        border-color: red;
-    }
-
-    .grey{
-        background-color: grey;
-    }
-
-    body{
-        padding-top: 2.5em;
-    }
-</style>
-    <!--[if IE]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-</head>
-
-<body id="index">
-<!-- navbar -->
-     <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light border-bottom bh-top-nav py-md-0">
-      <a class="navbar-brand" href="#">CMSSI Portal</a>
-      <button class="navbar-toggler btn-sm" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="fa fa-bars"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="ml-auto">UserName <a href='#'>logout</a></div>
-      </div>
-    </nav>
-
-
-
-<!-- Main Content -->
-    <div class="container-fluid">
-
-        <div class="row">
-            <div class="col-sm-0 col-md-2 bh-side-nav ">DASHBOARD</div>
-            <div class="col-sm-12 col-md-10 bh-main-content">
-        {% block content %}
-        {% endblock %}
-
-            </div>
-        </div>
-    </div>
-
-<!-- footer -->
-    <footer class="footer mx-auto">
-        <div class="container">
-            <p>&copy; Countermeasures Security Solutions Inc. 2018</p>
-        </div>
-    </footer>
-
-<!-- javascript -->
-
-    <!-- bootstrap -->
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></body>
-
+        <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/popper.js/popper.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'vendor/chart.js/chart.min.js' %}"></script>
+        <script src="{% static 'js/carbon.js' %}"></script>
+        <script src="{% static 'js/demo.js' %}"></script>
+        {% block extrascript %}{% endblock %}
+  </body>
 </html>

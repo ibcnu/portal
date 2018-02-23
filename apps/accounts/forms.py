@@ -1,7 +1,13 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth import (
+    authenticate,
+    get_user_model,
+    login,
+    logout,
+)
 
-from .models import User
+User = get_user_model()
 
 
 class RegisterForm(forms.ModelForm):
@@ -71,3 +77,23 @@ class UserAdminChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
+
+
+class UserLoginForm(forms.Form):
+    """docstring for UserLoginForm"""
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
+    # print(request.user.is_authenticated)
+
+    def clean(self, *args, **kwargs):
+        username = self.cleaned_data.get("username")
+        password = self.cleaned_data.get("password")
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if not user or not user.check_password(password):
+                raise forms.ValidationError("Username or password incorrect.")
+            if not user.is_active:
+                raise forms.ValidationError("This user is no longer active. Please contact administrator.")
+
+        print(username)
+        return super(UserLoginForm, self).clean(*args, **kwargs)

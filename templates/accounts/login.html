@@ -1,0 +1,54 @@
+{% extends "base-login.html" %}
+{% load static widget_tweaks %}
+
+{% block page_title %}Login | {% endblock %}
+
+
+{% block login_content %}
+
+<div class="card p-4">
+    <form method="POST" novalidate>
+        {% csrf_token %}
+
+
+        <div class="card-header text-center h4 font-weight-light">
+            <a class="navbar-brand" href="#">
+              <img src="{% static 'imgs/Countermeasures-logo-50.png' %}" alt="logo"  height="40">
+            </a><br>
+            {{ site_title|default:_('CMSSI Portal') }} Login
+        </div>
+        <div class="card-body py-5">
+
+            {{ form.non_field_errors }}
+            {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field.errors }}
+                {{ hidden_field }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                <div class="form-group">
+                    <label class="form-control-label">{{ field.label }}</label>
+                  <div class="form-control">{{  field }}</div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="card-footer">
+            <div class="custom-control custom-checkbox mt-4">
+                <input type="checkbox" class="custom-control-input" id="login">
+                <label class="custom-control-label" for="login">Remember me</label>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary px-5">Login</button>
+                </div>
+
+                <div class="col-6">
+                    <a href="/account/password_change/" class="btn btn-link">Forgot password?</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

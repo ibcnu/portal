@@ -1,3 +1,22 @@
-from django.shortcuts import render
+# from django.shortcuts import render, redirect
+from django.views.generic import (
+    TemplateView,
+    # ListView,
+    # DetailView,
+    # CreateView,
+    # RedirectView,
+)
 
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+
+@method_decorator(login_required, name='dispatch')
+class UserListView(TemplateView):
+    template_name = "accounts/users.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(UserListView, self).get_context_data(*args, **kwargs)
+        context = {
+        }
+        return context

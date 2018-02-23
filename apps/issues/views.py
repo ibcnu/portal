@@ -1,3 +1,4 @@
+# from django.shortcuts import render
 from django.views.generic import TemplateView
 
 
@@ -6,11 +7,11 @@ from django.utils.decorators import method_decorator
 
 
 @method_decorator(login_required, name='dispatch')
-class CompanyListView(TemplateView):
-    template_name = "organizations/company_list.html"
+class IssueListView(TemplateView):
+    template_name = "issues/issue_list.html"
 
     def get_context_data(self, *args, **kwargs):
-        context = super(CompanyListView, self).get_context_data(*args, **kwargs)
+        context = super(IssueListView, self).get_context_data(*args, **kwargs)
         context = {
         }
         return context
