@@ -7087,10 +7087,10 @@ a.text-dark:focus,a.text-dark:hover{
 }
 
 .sidebar .nav-link.active,.sidebar .nav-link:hover i{
-	color:#fff
+	color:#ddd
 }
 
-.sidebar .nav-link.active i{
+.sidebar .nav-link	 i{
 	color:#42a5f5
 }
 
@@ -7318,7 +7318,7 @@ a.text-dark:focus,a.text-dark:hover{
 }
 
 .nav-tabs .nav-link.active:focus{
-	background:#fff;border-color:#dee2e6;border-bottom-color:#fff
+	background:#ddd;border-color:#dee2e6;border-bottom-color:#fff
 }
 
 .nav-tabs .nav-link.active:hover{

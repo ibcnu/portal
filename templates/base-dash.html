@@ -19,25 +19,69 @@
           </a>
 
           <ul class="navbar-nav ml-auto">
-              <!--
+
               <li class="nav-item d-md-down-none">
-                  <a href="#">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-bell"></i>
-                      <span class="badge badge-pill badge-danger">5</span>
+                      <span class="badge badge-pill badge-danger">2</span>
                   </a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                      <div class="dropdown-header">New Issues</div>
+
+                      <a href="#" class="dropdown-item"><span>Product Name</span><br>
+                          <span class='font-weight-bold text-uppercase'>Mainenance Report<br></span>
+                          Mainenance Report for March 2018
+                      </a>
+
+                      <a href="#" class="dropdown-item"><span>Product Name2</span><br>
+                          <span class='font-weight-bold text-uppercase'>Tech Note<br></span>
+                          Poor Reciever Range
+                      </a>
+
+                  </div>
               </li>
               <li class="nav-item d-md-down-none">
-                  <a href="#">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-envelope-open"></i>
                       <span class="badge badge-pill badge-danger">5</span>
                   </a>
-              </li> -->
+                  <div class="dropdown-menu dropdown-menu-right" >
+                      <div class="dropdown-header">Unread Comments</div>
+
+                      <a href="#" class="dropdown-item" ><span>Product Name</span><br>
+                          I made it to the gate today and was not able to reproduce the problem.
+                          If you are still having an issue on...
+                      </a>
+
+                      <a href="#" class="dropdown-item"><span>Product Name2</span><br>
+                        Sorry, It is now working!
+                      </a>
+
+                      <a href="#" class="dropdown-item"><span>Product Name15</span><br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore...
+                      </a>
+
+                      <a href="#" class="dropdown-item"><span>Product Name2</span><br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore...
+                      </a>
+
+                      <a href="#" class="dropdown-item"><span>Product Name7</span><br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore...
+                      </a>
+
+                  </div>
+              </li>
 
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                       <!--img src="{% static 'imgs/avatar-1.png' %}" class="avatar avatar-sm" alt="logo"-->
-                      <span class="med ml-1 d-md-down-none">{{ username }}</span>
+                      <span class="med ml-1 d-md-down-none">{{ user }}</span>
                   </a>
 
                   <div class="dropdown-menu dropdown-menu-right">
@@ -46,16 +90,15 @@
                       <a href="/profile" class="dropdown-item">
                           <i class="fa fa-user"></i> Profile
                       </a>
-                      <!--
+
                       <a href="#" class="dropdown-item">
                           <i class="fa fa-envelope"></i> Messages
-                      </a> -->
-
-                      <div class="dropdown-header">Settings</div>
-                      <!--
+                      </a>
                       <a href="#" class="dropdown-item">
                           <i class="fa fa-bell"></i> Notifications
-                      </a> -->
+                      </a>
+
+                      <div class="dropdown-header">Settings</div>
 
                       <a href="/profile/settings" class="dropdown-item">
                           <i class="icon icon-settings"></i> Settings
@@ -75,7 +118,7 @@
                 <ul class="nav">
                     <li class="nav-title">Navigation</li>
 
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a href="/" class="nav-link active">
                             <i class="icon icon-speedometer"></i> Dashboard
                         </a>

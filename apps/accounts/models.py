@@ -78,7 +78,7 @@ class User(AbstractBaseUser):
         return self.email
 
     def __str__(self):              # __unicode__ on Python 2
-        return self.email
+        return self.fullname
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
