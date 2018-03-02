@@ -1,27 +1,6 @@
 
 {% load static %}
-<!-- <div class="sidebar">
-    <nav class="sidebar-nav">
-        <ul class="nav">
-            <li class="nav-title">Navigation</li>
-            <li class="nav-item active"><a href="/" class="nav-link active"><i class="icon icon-speedometer"></i> Dashboard</a></li>
-            <li class="nav-item"><a href="/company" class="nav-link "<i class="fa fa-building-o"></i> Companies</a></li>
-            <li class="nav-item"><a href="/account/user" class="nav-link"><i class="icon icon-people"></i> Users</a</li>
-            <li class="nav-item"><a href="/report" class="nav-link "><i class="icon icon-docs"></i> Reports</a></li>
 
-            <li class="nav-title">Assets</li>
-            <li class="nav-item nav-dropdown">
-                <a href="#" class="nav-link nav-dropdown-toggle"><i class="icon icon-energy"></i> Assets <i class="fa fa-caret-left"></i></a>
-
-                <ul class="nav-dropdown-items">
-                  <li class="nav-item"><a href="/asset/gates" class="nav-link"><i class="fa fa-file-text-o"></i> Automanted Gates</a></li>
-                  <li class="nav-item"><a href="/asset/doors" class="nav-link"><i class="fa fa-file-text-o"></i> Overhead Doors</a></li>
-                  <li class="nav-item"><a href="/asset/access" class="nav-link"><i class="fa fa-file-text-o"></i> Access Control</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-</div> -->
 <nav class="sidebar col-xs-12 sidebar-sticky" id='sidebar'>
     <ul class="nav flex-column list-unstyled components">
 
@@ -30,7 +9,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="/company" class="nav-link ">Companies</a>
+            <a href="{% url 'company_list' %}" class="nav-link ">Companies</a>
         </li>
 
         <li class="nav-item">

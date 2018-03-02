@@ -12,14 +12,12 @@ class ProfileView(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(ProfileView, self).get_context_data(*args, **kwargs)
         userprofile = UserProfiles()
-        # username = userprofile.user.fullname
-        # email = userprofile.user.email
 
         page_title = 'User Profiles'
         context = {
             'page_title': page_title,
-            # 'email': email,
-            # 'username': username,
+            'profile_active': 'active',
+            'settings_active': '',
         }
         return context
 
@@ -31,13 +29,11 @@ class SettingsView(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(SettingsView, self).get_context_data(*args, **kwargs)
         usersettings = UserSettings()
-        # username = userprofile.user.fullname
-        # email = userprofile.user.email
 
-        page_title = 'User Settings'
+        page_title = 'Account Settings'
         context = {
             'page_title': page_title,
-            # 'email': email,
-            # 'username': username,
+            'profile_active': '',
+            'settings_active': 'active',
         }
         return context

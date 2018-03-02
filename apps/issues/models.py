@@ -4,7 +4,7 @@ from apps.assets.models import Asset
 
 class IssueType(models.Model):
     """docstring for AssetType"""
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=False, blank=False, primary_key=True)
 
     # def __init__(self, arg):
     #     super(IssueType, self).__init__()
@@ -13,7 +13,7 @@ class IssueType(models.Model):
 
 class IssueStatus(models.Model):
     """docstring for AssetType"""
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=False, blank=False, primary_key=True)
 
     # def __init__(self, arg):
     #     super(IssueStatus, self).__init__()
@@ -22,9 +22,9 @@ class IssueStatus(models.Model):
 
 class Issue(models.Model):
     """docstring for Company"""
-    asset = models.OneToOneField(Asset, on_delete=models.CASCADE)
-    issuetype = models.OneToOneField(IssueType, on_delete=models.CASCADE)
-    status = models.OneToOneField(IssueStatus, on_delete=models.CASCADE)
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
+    issuetype = models.ForeignKey(IssueType, on_delete=models.CASCADE)
+    status = models.ForeignKey(IssueStatus, on_delete=models.CASCADE)
 
     # def __init__(self, arg):
     #     super(Asset, self).__init__()

@@ -5,6 +5,7 @@ body{font-size:.9rem;}
 
 body, page-wrapper { width: 100%;}
 
+a{color: #555;}
 
 .sidebar-col2{
     position: -webkit-sticky;
@@ -13,15 +14,15 @@ body, page-wrapper { width: 100%;}
     padding-top: 40px;
     min-height: calc(100vh - 50px);
 }
-.sidebar-sticky {}
+.sidebar-sticky { position: fixed; }
 
 .main-col{height:2000px}
 
-.bh-top-nav{height: 50px;}
+.bh-top-nav{height: 50px; background-color: white;}
 
-.sidebar a {color: #555;}
+.list-group a.active{ background-color: lightgray; border: grey; }
 
-.bh-top-nav a{color: #555;}
+.main{font-size:.75em ;}
 
 .footer2 {
     position: absolute;
