@@ -1,264 +1,199 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Carbon - Admin Template</title>
-    <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="./css/styles.css">
-</head>
-<body class="sidebar-fixed header-fixed">
-<div class="page-wrapper">
-    <nav class="navbar page-header">
-        <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
-            <i class="fa fa-bars"></i>
-        </a>
+{% extends "base.html" %}
 
-        <a class="navbar-brand" href="#">
-            <img src="./imgs/logo.png" alt="logo">
-        </a>
+{% load static %}
+{% block page_description %}{{ page_description }}{% endblock %}
 
-        <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
-            <i class="fa fa-bars"></i>
-        </a>
+{% block content %}
+<div class="page-wrapper container-fluid">
+    <div class="row " style="height:50px;">
+        <div class="col-12">
 
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item d-md-down-none">
-                <a href="#">
-                    <i class="fa fa-bell"></i>
-                    <span class="badge badge-pill badge-danger">5</span>
-                </a>
-            </li>
+<!-- start top-nav -->
+{% block nav %}{# include 'snippets/nav.html' #}{% endblock %}
+<nav class="navbar navbar-expand-lg fixed-top border-bottom bh-top-nav">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+        <img src="{% static 'imgs/Countermeasures-logo-50.png' %}" alt="logo"  height="40">
+    </a>
 
-            <li class="nav-item d-md-down-none">
-                <a href="#">
-                    <i class="fa fa-envelope-open"></i>
-                    <span class="badge badge-pill badge-danger">5</span>
-                </a>
-            </li>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#sidebar" aria-controls="sidebar" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span>
+    </button>
+    <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
+        <i class="fa fa-bars"></i>
+    </a>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="./imgs/avatar-1.png" class="avatar avatar-sm" alt="logo">
-                    <span class="small ml-1 d-md-down-none">John Smith</span>
-                </a>
+    <div  class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
+                  <i class="fa fa-bell"></i>
+                  <span class="badge badge-pill badge-danger">2</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <div class="dropdown-header">New Issues</div>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item"><span>Product Name</span><br>
+                      <span class='font-weight-bold text-uppercase'>Mainenance Report<br></span>
+                      Mainenance Report for March 2018
+                  </a>
 
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-header">Account</div>
+                  <a href="#" class="dropdown-item"><span>Product Name2</span><br>
+                      <span class='font-weight-bold text-uppercase'>Tech Note<br></span>
+                      Poor Reciever Range
+                  </a>
+              </div>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown2">
+                  <i class="fa fa-envelope-open"></i>
+                  <span class="badge badge-pill badge-danger">5</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
+                  <div class="dropdown-header">Unread Comments</div>
+                  <a href="#" class="dropdown-item" ><span>Product Name</span><br>I made it to the gate today and was not able to reproduce the problem. If you are still having an issue on...</a>
+                  <a href="#" class="dropdown-item"><span>Product Name2</span><br>Sorry, It is now working!</a>
+                  <a href="#" class="dropdown-item"><span>Product Name15</span><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore...</a>
+                  <a href="#" class="dropdown-item"><span>Product Name2</span><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore...</a>
+                  <a href="#" class="dropdown-item"><span>Product Name7</span><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore...</a>
+              </div>
+          </li>
 
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-user"></i> Profile
-                    </a>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-envelope"></i> Messages
-                    </a>
-
-                    <div class="dropdown-header">Settings</div>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-bell"></i> Notifications
-                    </a>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-wrench"></i> Settings
-                    </a>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-lock"></i> Logout
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="main-container">
-        <div class="sidebar">
-            <nav class="sidebar-nav">
-                <ul class="nav">
-                    <li class="nav-title">Navigation</li>
-
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">
-                            <i class="icon icon-speedometer"></i> Dashboard
-                        </a>
-                    </li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a href="#" class="nav-link nav-dropdown-toggle">
-                            <i class="icon icon-target"></i> Layouts <i class="fa fa-caret-left"></i>
-                        </a>
-
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a href="layouts-normal.html" class="nav-link">
-                                    <i class="icon icon-target"></i> Normal
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="layouts-fixed-sidebar.html" class="nav-link">
-                                    <i class="icon icon-target"></i> Fixed Sidebar
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="layouts-fixed-header.html" class="nav-link">
-                                    <i class="icon icon-target"></i> Fixed Header
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="layouts-hidden-sidebar.html" class="nav-link">
-                                    <i class="icon icon-target"></i> Hidden Sidebar
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a href="#" class="nav-link nav-dropdown-toggle">
-                            <i class="icon icon-energy"></i> UI Kits <i class="fa fa-caret-left"></i>
-                        </a>
-
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a href="alerts.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Alerts
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="buttons.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Buttons
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="cards.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Cards
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="modals.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Modals
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="tabs.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Tabs
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="progress-bars.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Progress Bars
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="widgets.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Widgets
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a href="#" class="nav-link nav-dropdown-toggle">
-                            <i class="icon icon-graph"></i> Charts <i class="fa fa-caret-left"></i>
-                        </a>
-
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a href="chartjs.html" class="nav-link">
-                                    <i class="icon icon-graph"></i> Chart.js
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="forms.html" class="nav-link">
-                            <i class="icon icon-puzzle"></i> Forms
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="tables.html" class="nav-link">
-                            <i class="icon icon-grid"></i> Tables
-                        </a>
-                    </li>
-
-                    <li class="nav-title">More</li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a href="#" class="nav-link nav-dropdown-toggle">
-                            <i class="icon icon-umbrella"></i> Pages <i class="fa fa-caret-left"></i>
-                        </a>
-
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a href="blank.html" class="nav-link active">
-                                    <i class="icon icon-umbrella"></i> Blank Page
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="login.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Login
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="register.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Register
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="invoice.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Invoice
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="404.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> 404
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="500.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> 500
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="settings.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Settings
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-        <div class="content">
-
-        </div>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown3">
+                  <span class="med ml-1 d-md-down-none">{{ user }}</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown3">
+                  <div class="dropdown-header">Account</div>
+                  <a href="/profile" class="dropdown-item"><i class="fa fa-user"></i>Profile</a>
+                  <a href="#" class="dropdown-item"><i class="fa fa-envelope"></i>Messages</a>
+                  <a href="#" class="dropdown-item"><i class="fa fa-bell"></i>Notifications</a>
+                  <div class="dropdown-header">Settings</div>
+                  <a href="/profile/settings" class="dropdown-item"><i class="fa fa-cog"></i>Settings</a>
+                  <a href="{% url 'account_logout' %}" class="dropdown-item"><i class="fa fa-lock"></i>Logout</a>
+              </div>
+          </li>
+      </ul>
     </div>
+  </div>
+</nav>
+<!-- end top-nav -->
+
+        </div>
+    </div><!-- end nav-row -->
+
+
+
+    <div class="row page-container wrapper" >
+        <div class="collapse navbar-collapse col-md-2 d-none d-md-block sidebar-col border-right">
+
+<!-- start sidebar-nav -->
+{% block sidebar %}{# include 'snippets/sidebar.html' #}{% endblock %}
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Bootstrap Sidebar</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <p>Dummy Heading</p>
+        <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li><a href="#">Home 1</a></li>
+                <li><a href="#">Home 2</a></li>
+                <li><a href="#">Home 3</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">About</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Portfolio</a>
+        </li>
+        <li>
+            <a href="#">Contact</a>
+        </li>
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
+        <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
+    </ul>
+</nav>
+<!-- end sidebar-nav -->
+
+        </div><!-- end sidebar-nav -->
+        <div class="col-10 main-col">
+
+            <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4 h-100 main">
+{% block dash_content %}{% endblock %}
+<!-- Page Content Holder -->
+<div id="content">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                    <i class="glyphicon glyphicon-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Page</a></li>
+                    <li><a href="#">Page</a></li>
+                    <li><a href="#">Page</a></li>
+                    <li><a href="#">Page</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h2>Collapsible Sidebar Using Bootstrap 3</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <div class="line"></div>
+
+    <h2>Lorem Ipsum Dolor</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <div class="line"></div>
+
+    <h2>Lorem Ipsum Dolor</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <div class="line"></div>
+
+    <h3>Lorem Ipsum Dolor</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>
-<script src="./vendor/jquery/jquery.min.js"></script>
-<script src="./vendor/popper.js/popper.min.js"></script>
-<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="./vendor/chart.js/chart.min.js"></script>
-<script src="./js/carbon.js"></script>
-<script src="./js/demo.js"></script>
-</body>
-</html>
+
+
+            </main>
+
+
+        </div><!-- end main-content -->
+    </div><!-- end content-row -->
+
+</div>
+
+
+{% endblock %}
+
+

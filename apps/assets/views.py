@@ -13,5 +13,6 @@ class AssetListView(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(AssetListView, self).get_context_data(*args, **kwargs)
         context = {
+            'page_title': 'Asset List',
         }
         return context

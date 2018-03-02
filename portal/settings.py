@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.issues',
     'apps.organizations',
     'apps.profiles',
+    'apps.users',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -131,7 +132,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
-
 
 
 LOGIN_URL = '/account/login/'

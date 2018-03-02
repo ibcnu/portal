@@ -10,8 +10,7 @@
     <form method="POST" novalidate>
         {% csrf_token %}
 
-
-        <div class="card-header text-center h4 font-weight-light">
+        <div class=" text-center h4 font-weight-light">
             <a class="navbar-brand" href="#">
               <img src="{% static 'imgs/Countermeasures-logo-50.png' %}" alt="logo"  height="40">
             </a><br>
@@ -28,23 +27,23 @@
             {% for field in form.visible_fields %}
                 <div class="form-group">
                     <label class="form-control-label">{{ field.label }}</label>
-                  <div class="form-control">{{  field }}</div>
+                  <div class="">{{ field | add_class:"form-control" }}</div>
                 </div>
             {% endfor %}
-        </div>
-
-        <div class="card-footer">
             <div class="custom-control custom-checkbox mt-4">
                 <input type="checkbox" class="custom-control-input" id="login">
                 <label class="custom-control-label" for="login">Remember me</label>
             </div>
+        </div>
+
+        <div class="text-center ">
             <div class="row">
                 <div class="col-6">
                     <button type="submit" class="btn btn-primary px-5">Login</button>
                 </div>
 
                 <div class="col-6">
-                    <a href="/account/password_change/" class="btn btn-link">Forgot password?</a>
+                    <a href="{% url 'account_password_reset' %}" class="btn btn-link">Forgot password?</a>
                 </div>
             </div>
         </div>
