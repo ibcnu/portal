@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-md-10">
+    <div class="card">
+        <div class="card-header bg-light">{{ company.name }}</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>Contact: <span class="text-muted small">{{ company.contact.fullname }}</span></div>
+                    <div>Descripton:</div>
+                    <div class="text-muted small">{{ company.description }}</div>
+                </div>
+
+                <div class="col-md-6">
+                    <div>Address:</div>
+                    <div>Street: <span class="text_muted small">{{ company.address.street }}</span></div>
+                    <div>Street: <span class="text_muted small">{{ company.address.street2 }}</span></div>
+                    <div>City: <span class="text_muted small">{{ company.address.city }}</span></div>
+                    <div>Province: <span class="text_muted small">{{ company.address.province }}</span></div>
+                    <div>Postal Code: <span class="text_muted small">{{ company.address.postalcode }}</span></div>
+                    <div>Country: <span class="text_muted small">{{ company.address.country }}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><span class="text-muted small">Last Updated: {{ company.updated }}</span></div>
+        </div>
+
+        <div class="card-footer bg-light text-right">
+            <a href='#' class="btn btn-primary">Edit</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -10,6 +10,16 @@
     </tr>
   </thead>
   <tbody>
+  {% for company in object_list %}
+    <tr class='clickable-row' data-href='/company/{{ company.slug }}'>
+      <th scope="row">{{ company.name }}</th>
+      <td>{{ company.contact.fullname }}</td>
+      <td>{{ company.address.street }}</td>
+      <td>153</td>
+      <td>12</td>
+    </tr>
+
+  {% endfor %}
     <tr class='clickable-row' data-href='/company/city-tbay'>
       <th scope="row">City of Thunder Bay</th>
       <td>Mark Goodname</td>

@@ -9,30 +9,30 @@
         </li>
 
         <li class="nav-item">
-            <a href="{% url 'company_list' %}" class="nav-link ">Companies</a>
+            <a href="{% url 'organizations:company_list' %}" class="nav-link ">Companies</a>
         </li>
 
         <li class="nav-item">
-            <a href="/user" class="nav-link">Users</a>
+            <a href="{% url 'users:user_list' %}" class="nav-link">Users</a>
         </li>
 
         <li class="nav-item">
-            <a href="/report" class="nav-link ">Reports</a>
+            <a href="{% url 'issues:issue_list' %}" class="nav-link ">Reports</a>
         </li>
 
         <li class="nav-title">Assets</li>
 
 
         <li class="nav-item">
-            <a href="/asset" class="nav-link ">Automated Gates</a>
+            <a href="{% url 'assets:asset_list' %}" class="nav-link ">Automated Gates</a>
         </li>
 
         <li class="nav-item">
-            <a href="/asset" class="nav-link ">Overhead Doors</a>
+            <a href="{% url 'assets:asset_list' %}" class="nav-link ">Overhead Doors</a>
         </li>
 
         <li class="nav-item">
-            <a href="/asset" class="nav-link ">Access Control</a>
+            <a href="{% url 'assets:asset_list' %}" class="nav-link ">Access Control</a>
         </li>
     </ul>
 </nav>

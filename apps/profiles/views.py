@@ -11,7 +11,7 @@ class ProfileView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProfileView, self).get_context_data(*args, **kwargs)
-        userprofile = UserProfiles()
+        # userprofile = UserProfiles()
 
         page_title = 'User Profiles'
         context = {
@@ -28,7 +28,7 @@ class SettingsView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(SettingsView, self).get_context_data(*args, **kwargs)
-        usersettings = UserSettings()
+        # usersettings = UserSettings()
 
         page_title = 'Account Settings'
         context = {

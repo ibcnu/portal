@@ -12,7 +12,7 @@ from django.contrib.auth.views import (
 )
 
 
-# app_name = 'accounts'
+app_name = 'accounts'
 urlpatterns = [
     path('user/', UserListView.as_view(), name='account_user'),
 

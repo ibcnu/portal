@@ -1,8 +1,9 @@
 from django.urls import path
 # from django.views.generic import TemplateView
-from apps.profiles.views import ProfileView, SettingsView
+from .views import ProfileView, SettingsView
 
+app_name = 'profiles'
 urlpatterns = [
-    path('', ProfileView.as_view(), name='profiles_profile'),
-    path('settings', SettingsView.as_view(), name='profiles_settings'),
+    path('', ProfileView.as_view(), name='profile'),
+    path('settings/', SettingsView.as_view(), name='settings'),
 ]

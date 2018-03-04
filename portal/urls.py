@@ -9,11 +9,11 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='index'),
     path('', IndexView.as_view(), name='index'),
 
-    path('account/', include('apps.accounts.urls')),  # , namespace='accounts'
-    path('asset/', include('apps.assets.urls')),
-    path('company/', include('apps.organizations.urls')),
-    path('profile/', include('apps.profiles.urls')),
-    path('report/', include('apps.issues.urls')),
-    path('user/', include('apps.users.urls')),
+    path('account/', include('apps.accounts.urls', namespace='accounts')),
+    path('asset/', include('apps.assets.urls', namespace='assets')),
+    path('company/', include('apps.organizations.urls', namespace='organizations')),
+    path('profile/', include('apps.profiles.urls', namespace='profiles')),
+    path('report/', include('apps.issues.urls', namespace='issues')),
+    path('user/', include('apps.users.urls', namespace='users')),
 
 ]

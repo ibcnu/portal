@@ -6,9 +6,9 @@
     <div class="row">
         <div class="col-md-2 px-0">
             <div class="list-group">
-                <a href="{% url  'profiles_profile' %}" class="list-group-item {{ profile_active }}">Profile</a>
-                <a href="{% url  'profiles_settings' %}" class="list-group-item {{ settings_active }}">Account Settings</a>
-                <a href="{% url  'account_password_change' %}" class="list-group-item">Change Password</a>
+                <a href="{% url  'profiles:profile' %}" class="list-group-item {{ profile_active }}">Profile</a>
+                <a href="{% url  'profiles:settings' %}" class="list-group-item {{ settings_active }}">Account Settings</a>
+                <a href="{% url  'accounts:account_password_change' %}" class="list-group-item">Change Password</a>
             </div>
         </div>
 

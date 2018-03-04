@@ -1,39 +1,47 @@
-# from django.views.generic import TemplateView
-from django.views.generic import TemplateView, DetailView, ListView
+from django.db.models import Q
+from django.views.generic import DetailView, ListView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Company
-
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from .forms import CompanyCreateForm
 
 
-@method_decorator(login_required, name='dispatch')
-class CompanyListView(TemplateView):
-    template_name = "organizations/company_list.html"
-    # models = Company
-
-    # def get_template_names(self):
-    #     return "organizations/company_list.html"
+class CompanyListView(LoginRequiredMixin, ListView):
+    # template_name = "organizations/company_list.html"
+    def get_queryset(self):
+        slug = self.kwargs.get('slug')
+        if slug:
+            queryset = Company.objects.fitler(
+                Q(name__iexact=slug) |
+                Q(name__contains=slug)
+            )
+        else:
+            queryset = Company.objects.all()
+        return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context = {
-            'page_title': 'Company List',
-        }
+        context['page_title'] = 'Company List'
         return context
 
 
-# @method_decorator(login_required, name='dispatch')
-# class CompanyDetailView(TemplateView):
-#     template_name = "organizations/company_detail.html"
-#     model = Company
+class CompanyDetailView(LoginRequiredMixin, DetailView):
+    queryset = Company.objects.all()
+    # template_name = "organizations/company_detail.html"
 
-#     def get_template_names(self):
-#         return "organizations/company_detail.html"
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        print(context)
+        context['page_title'] = 'Company Detail'
+        return context
 
-#     def get_context_data(self, *args, **kwargs):
-#         context = super().get_context_data(*args, **kwargs)
-#         context = {
-#             'page_title': 'Company Detail',
-#         }
-#         return context
+    # def get_object(self):
+    #     pk = self.kwargs.get('pk')
+    #     obj = get_object_or_404(Company, pk=pk)
+    #     return obj
+
+
+class CompanyCreateView(LoginRequiredMixin, CreateView):
+    form_class = CompanyCreateForm
+    template_name = 'organizations/company_form.html'
+    success_url = 'organizations/company_list.html'

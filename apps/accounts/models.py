@@ -1,12 +1,20 @@
 from django.db import models
+
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager,
+    AbstractBaseUser,
+    PermissionsMixin,
+    # PermissionManager,
+    # Permission,
+    # GroupManager,
+    # Group,
+    # UserManager,
 )
 
 
 class UserManager(BaseUserManager):
     # def create_user(self, fullname, email, password=None):
-    def create_user(self, email, password=None):
+    def create_user(self, email, fullname, password=None):
         """
         Creates and saves a User with the given email and password.
         """
@@ -17,7 +25,7 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
         )
 
-        # user.fullname = fullname
+        user.fullname = fullname
         user.staff = False
         user.admin = False
         user.set_password(password)
@@ -25,7 +33,7 @@ class UserManager(BaseUserManager):
         return user
 
     # def create_staffuser(self, fullname, email, password):
-    def create_staffuser(self, email, password):
+    def create_staffuser(self, email, fullname, password):
         """
         Creates and saves a staff user with the given email and password.
         """
@@ -39,7 +47,7 @@ class UserManager(BaseUserManager):
         return user
 
     # def create_superuser(self, fullname, email, password):
-    def create_superuser(self, email, password):
+    def create_superuser(self, email, fullname, password):
         """
         Creates and saves a superuser with the given email and password.
         """
@@ -54,7 +62,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     email = models.EmailField(
@@ -62,10 +70,14 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    # fullname = models.CharField(max_length=255, blank=True, null=True)
+    fullname = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)  # a admin user; non super-user
     admin = models.BooleanField(default=False)  # a superuser
+
+    timestamp = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
     # notice the absence of a "Password field", that's built in.
 
     USERNAME_FIELD = 'email'
