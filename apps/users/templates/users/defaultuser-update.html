@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static widget_tweaks %}
+{% block content %}
+
+
+<div class="col-md-10">
+    <div class="card">
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            <div class="card-header bg-light">{{ page_title }}</div>
+
+            <div class="card-body">
+                    <div class="row">
+                            <div class="col-md-6">
+                        {% if page_title == 'User Create' %}
+                            <div class="form-group"><label class="form-control-label">User: </label>
+                                <div>{{ form.fullname | add_class:"form-control" }}</div></div>
+                            <div class="form-group"><label class="form-control-label">Email: </label>
+                                <div>{{ form.email | add_class:"form-control" }}</div></div>
+                            <div class="form-group"><label class="form-control-label">Passord: </label>
+                                <div>{{ form.password | add_class:"form-control" }}</div></div>
+                            <div class="form-group"><label class="form-control-label">Passord: </label>
+                                <div>{{ form.password2 | add_class:"form-control" }}</div></div>
+                        {% else %}
+                            <div class="form-group"><label class="form-control-label">User: {{ user.fullname }}</label> </div>
+                            <div class="form-group"><label class="form-control-label">Email: {{ user.email }}</label></div>
+                        {% endif %}
+                            <div class="form-group"><label class="form-control-label">Phone: </label>
+                                <div>{{ form.phone | add_class:"form-control" }}</div></div>
+                            <div class="form-group"><label class="form-control-label">City: </label>
+                                <div>{{ form.city | add_class:"form-control" }}</div></div>
+                            <div class="form-group"><label class="form-control-label">Country: </label>
+                                <div>{{ form.country | add_class:"form-control" }}</div></div>
+
+                        {% if page_title != 'User Create' %}
+                            <div class="form-group"><label class="form-control-label">Company: </label>
+                                <div>{{ form.organization | add_class:"form-control" }}</div></div>
+                            <div class="form-group"><label class="form-control-label">Role: </label>
+                                <div>{{ form.role | add_class:"form-control" }}</div></div>
+                        {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group"><label class="form-control-label">Bio: </label>
+                                <div>{{ form.bio | add_class:"form-control" }}</div></div>
+                        {% if page_title == 'User Create' %}
+                            <div class="form-group"><label class="form-control-label">Company: </label>
+                                <div>{{ form.organization | add_class:"form-control" }}</div></div>
+                            <div class="form-group"><label class="form-control-label">Role: </label>
+                                <div>{{ form.role | add_class:"form-control" }}</div></div>
+                        {% endif %}
+                            <div class="form-group"><label class="form-control-label">Slug: </label>
+                                <div>{{ form.slug | add_class:"form-control" }}</div></div>
+                        </div>
+                    </div>
+            </div>
+            <div class="card-footer bg-light text-right">
+               <button type="submit" class="btn btn-primary px-5">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

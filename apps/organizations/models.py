@@ -2,8 +2,6 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse
 
-User = settings.AUTH_USER_MODEL
-
 
 class Address(models.Model):
     """docstring for Adress"""
@@ -29,7 +27,7 @@ class Address(models.Model):
 class Company(models.Model):
     """docstring for Company"""
     name = models.CharField(max_length=255, null=False, blank=False,)
-    contact = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,)
+    contact = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True,)
     address = models.ForeignKey(Address, models.SET_NULL, blank=True, null=True,)
     description = models.TextField(null=True, blank=True)
 

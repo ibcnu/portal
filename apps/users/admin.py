@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import DefaultUser, UserRole
 
-# Register your models here.
+
+admin.site.register(DefaultUser)
+admin.site.register(UserRole)

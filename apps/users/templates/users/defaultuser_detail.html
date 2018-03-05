@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>User Detail</h1>
+
+<div class="col-md-10">
+    <div class="card">
+        <div class="card-header bg-light">{{ object.user.fullname }}</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>Email: <span class="text-muted small">{{ object.user.email }}</span></div>
+                    <div>Phone: <span class="text-muted small">{{ object.phone }}</span></div>
+                    <div>City: <span class="text-muted small">{{ object.city }}</span></div>
+                    <div>Country: <span class="text-muted small">{{ object.country }}</span></div>
+                    <div>Company: <span class="text-muted small">{{ object.organization }}</span></div>
+                    <div>Bio: <span class="text-muted small">{{ object.bio }}</span></div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><span class="text-muted small">Last Updated: {{ object.updated }}</span></div>
+        </div>
+
+        <div class="card-footer bg-light text-right">
+            <a href="{% url 'users:user_edit' object.slug %} " class="btn btn-primary">Edit</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

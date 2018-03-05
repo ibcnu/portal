@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import pre_save  # , post_save
+from django.dispatch import receiver
 
 from django.contrib.auth.models import (
     BaseUserManager,
@@ -10,6 +12,8 @@ from django.contrib.auth.models import (
     # Group,
     # UserManager,
 )
+
+from .utils import unique_slug_generator
 
 
 class UserManager(BaseUserManager):
@@ -118,3 +122,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_active(self):
         "Is the user active?"
         return self.active
+
+    @property
+    def title(self):
+        return self.user.fullname
+
+
+@receiver(pre_save, sender=User)
+def default_user_pre_save_reciever(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)

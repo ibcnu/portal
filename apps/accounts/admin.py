@@ -6,12 +6,6 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserAdminCreationForm, UserAdminChangeForm
 from .models import User
 
-# User = get_user_model()
-
-
-# class UserAdmin(admin.ModelAdmin):
-#     pass
-
 
 class UserAdmin(BaseUserAdmin):
     # The forms to add and change user instances
@@ -33,11 +27,11 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = ((
         None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2')}
+            'fields': ('fullname', 'email', 'password1', 'password2')}
     ),)
 
-    search_fields = ('email',)
-    ordering = ('email',)
+    search_fields = ('email', 'fullname', )
+    ordering = ('email', 'fullname', )
     filter_horizontal = ()
 
 

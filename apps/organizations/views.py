@@ -35,11 +35,6 @@ class CompanyDetailView(LoginRequiredMixin, DetailView):
         context['page_title'] = 'Company Detail'
         return context
 
-    # def get_object(self):
-    #     pk = self.kwargs.get('pk')
-    #     obj = get_object_or_404(Company, pk=pk)
-    #     return obj
-
 
 class CompanyCreateView(LoginRequiredMixin, CreateView):
     form_class = CompanyCreateForm
