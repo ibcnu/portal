@@ -1,0 +1,32 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"><a href="#">User Name</a></th>
+      <th scope="col"><a href="#">Company</a></th>
+      <th scope="col"><a href="#">Email</a></th>
+      <th scope="col"><a href="#">Phone</a></th>
+      <th scope="col"><a href="#">Bio</th>
+      <th scope="col"><a href="#">Role</a></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in object_list %}
+    <tr class='clickable-row' data-href='{{ user.get_absolute_url }}'>
+      <th scope="row">{{ user.user.fullname }}</th>
+      <td>{{ user.organization.name }}</td>
+      <td>{{ user.user.email }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.bio }}</td>
+      <td>{{ user.role }}</td>
+    </tr>
+  {% endfor %}
+  <tfoot>
+    <tr>
+      <th scope="col" colspan="6" align="right">
+        <a href="{% url 'users:user_create' %}" class="btn
+            btn-primary">Add User</a>
+      </th>
+    </tr>
+  </tfoot>
+  </tbody>
+</table>

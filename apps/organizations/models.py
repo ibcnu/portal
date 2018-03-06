@@ -33,7 +33,7 @@ class Company(models.Model):
 
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(max_length=50)
+    slug = models.SlugField(max_length=50, blank=True, null=True,)
 
     def get_absolute_url(self):
         return reverse('organizations:company_details', kwargs={'slug': self.slug})

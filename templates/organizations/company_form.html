@@ -1,8 +1,10 @@
-
-{% extends "base.html" %}
-
+{% extends "base-content.html" %}
 {% load static widget_tweaks %}
-{% block content %}
+
+{% block dash_content %}
+{{ block.super }}
+<form method="POST">
+{% csrf_token %}
 <div class="col-md-10">
     <div class="card">
         <div class="card-header bg-light">{{ page_title }}</div>
@@ -18,6 +20,8 @@
                         <div>{{ form.address | add_class:"form-control" }}</div></div>
                     <div class="form-group"><label class="form-control-label">Slug: </label>
                         <div>{{ form.slug | add_class:"form-control" }}</div></div>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group"><label class="form-control-label">Descripton: </label>
                         <div>{{ form.description | add_class:"form-control" }}</div></div>
                 </div>
@@ -28,10 +32,9 @@
         </div>
 
         <div class="card-footer bg-light text-right">
-            <a href='{% url "organizations:company_edit" company.slug %}' class="btn btn-primary">Update</a>
+            <input type="submit" class='btn btn-primary' value="Update">
         </div>
     </div>
 </div>
-
-
+</form>
 {% endblock %}

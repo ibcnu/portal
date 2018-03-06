@@ -40,7 +40,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
 class UserCreateView(LoginRequiredMixin, CreateView):
     form_class = UserCreateForm
-    template_name = 'users/defaultuser-update.html'
+    template_name = 'users/defaultuser_update.html'
     # success_url = reverse_lazy('users/user_list.html')
 
     def form_valid(self, form):
@@ -92,57 +92,18 @@ class UserCreateView(LoginRequiredMixin, CreateView):
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     form_class = UserForm
-    template_name = 'users/defaultuser-update.html'
-    success_url = reverse_lazy('users:user_list')
+    template_name = 'users/defaultuser_update.html'
+    success_url = reverse_lazy('users:user_detail')
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['page_title'] = 'User Update'
-        # context['user'] = self.request.user
-        # context['form2'] = self.form_class2
         print(context)
         return context
 
-    def get_queryset(self):
-        return DefaultUser.objects.filter(user=self.request.user)
-
-
-# def UserNProfileUpdateView(request, slug):
-
-#     if request.method == 'POST':
-#         user_form = UserForm(request.POST, prefix='usr')
-#         profile_form = UserCreateForm(request.POST, prefix='prof')
-
-#         if user_form.is_valid() and profile_form.is_valid():
-#             user = user_form.save()
-#             profile = profile_form.save()
-#             return redirect(user)
-
-#     else:
-#         user_form = UserForm(instance=request.user)
-#         profile_form = UserCreateForm(instance=request.user.profile)
-
-#     return render(request, 'users/defaultuser-update.html', {
-#         'user_form': user_form,
-#         'profile_form': profile_form,
-#     })
-
-
-# class UserNProfileUpdateView2(LoginRequiredMixin, UpdateView):
-#     form_class = UserCreateForm
-#     second_form_class = UserForm
-#     template_name = 'users/defaultuser-update.html'
-#     success_url = 'users/user_list.html'
-
-
-#     def get_context_data(self, *args, **kwargs):
-#         context = super().get_context_data(*args, **kwargs)
-#         context['page_title'] = 'Update User'
-#         print(context)
-#         return context
-
-#     def get_queryset(self):
-#         return DefaultUser.objects.filter(user=self.request.user)
+    def get_queryset(self, *args, **kwargs):
+        # return DefaultUser.objects.filter(user=self.request.user)
+        return DefaultUser.objects.all()
 
 
 class UserRoleListView(LoginRequiredMixin, ListView):
