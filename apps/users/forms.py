@@ -57,6 +57,7 @@ class UserForm(forms.ModelForm):
 class UserRoleCreateForm(forms.ModelForm):
     class Meta:
         model = UserRole
-        fields = [
-            'name',
-        ]
+        fields = ['name', ]
+
+    def clean_name(self):
+        pass

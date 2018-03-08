@@ -1,0 +1,34 @@
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"><a href="#">Name</a></th>
+      <th scope="col"><a href="#">Company</a></th>
+      <th scope="col"><a href="#">Type</a></th>
+      <th scope="col"><a href="#">Product ID</th>
+      <th scope="col"><a href="#">Customer ID</th>
+      <th scope="col"><a href="#">Issues</a></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for asset in object_list %}
+    <tr class='clickable-row' data-href='{{ asset.get_absolute_url }}'>
+      <th scope="row">{{ asset.name }}</th>
+      <td>{{ asset.company }}</td>
+      <td>{{ asset.assettype }}</td>
+      <td>{{asset.pid}}</td>
+      <td>{{asset.customerid}}</td>
+      <td>12</td>
+    </tr>
+
+  {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="col" colspan="6" align="right">
+        <a href="{% url 'assets:asset_create' %}"
+            class="btn  btn-primary">Add Asset</a>
+      </th>
+    </tr>
+  </tfoot>
+</table>

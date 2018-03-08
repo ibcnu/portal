@@ -1,38 +1,23 @@
 
 {% load static %}
 
+
 <nav class="sidebar col-xs-12 sidebar-sticky" id='sidebar'>
     <ul class="nav flex-column list-unstyled components">
 
-        <li class="nav-item active">
-            <a href="/" class="nav-link active">Dashboard</a>
-        </li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'index' %}{% endif %}"><a href="/" class=" active">Dashboard</a></li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'site_settings' %}active{% endif %}"><a href="{% url 'site_settings' %}" class="nav-link ">Site Settings</a></li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'company_list' %}active{% endif %}"><a href="{% url 'organizations:company_list' %}" class="nav-link ">Companies</a></li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'user_list' %}active{% endif %}"><a href="{% url 'users:user_list' %}" class="nav-link">Users</a></li>
 
-        <li class="nav-item">
-            <a href="{% url 'organizations:company_list' %}" class="nav-link ">Companies</a>
-        </li>
+        <li class="nav-title {% if request.resolver_match.url_name == 'asset_list' %}{% endif %}"><a href="{% url 'assets:asset_list' %}" class="nav-link ">Assets</a></li>
+        {# load_asset_menu #}
 
-        <li class="nav-item">
-            <a href="{% url 'users:user_list' %}" class="nav-link">Users</a>
-        </li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'asset_list' %}{% endif %}"><a href="{% url 'assets:asset_list' %}" class="nav-link ">Automated Gates</a></li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'asset_list' %}{% endif %}"><a href="{% url 'assets:asset_list' %}" class="nav-link ">Overhead Doors</a></li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'asset_list' %}{% endif %}"><a href="{% url 'assets:asset_list' %}" class="nav-link ">Access Control</a></li>
 
-        <li class="nav-item">
-            <a href="{% url 'issues:issue_list' %}" class="nav-link ">Reports</a>
-        </li>
-
-        <li class="nav-title">Assets</li>
-
-
-        <li class="nav-item">
-            <a href="{% url 'assets:asset_list' %}" class="nav-link ">Automated Gates</a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{% url 'assets:asset_list' %}" class="nav-link ">Overhead Doors</a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{% url 'assets:asset_list' %}" class="nav-link ">Access Control</a>
-        </li>
+        <li class="nav-title {% if request.resolver_match.url_name == 'issue_list' %}active{% endif %}"><a href="{% url 'issues:issue_list' %}" class=" ">Reports</a></li>
+        <!-- <li class="nav-item"><a href="{% url 'issues:issue_list' %}" class="nav-link ">Reports</a></li> -->
     </ul>
 </nav>

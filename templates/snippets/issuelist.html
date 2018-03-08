@@ -1,0 +1,30 @@
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"><a href="#">Issue</a></th>
+      <th scope="col"><a href="#">Asset</a></th>
+      <th scope="col"><a href="#">Issue Type</a></th>
+      <th scope="col"><a href="#">Issue Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for issue in object_list %}
+    <tr class='clickable-row' data-href='{{ issue.get_absolute_url }}'>
+      <th scope="row">{{ issue.title }}</th>
+      <td>{{ issue.asset }}</td>
+      <td>{{ issue.issuetype }}</td>
+      <td>{{ issue.status }}</td>
+    </tr>
+
+  {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="col" colspan="4" align="right">
+        <a href="{% url 'issues:issue_create' %}"
+            class="btn  btn-primary">Add Issue</a>
+      </th>
+    </tr>
+  </tfoot>
+</table>

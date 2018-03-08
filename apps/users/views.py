@@ -92,8 +92,8 @@ class UserCreateView(LoginRequiredMixin, CreateView):
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     form_class = UserForm
-    template_name = 'users/defaultuser_update.html'
-    success_url = reverse_lazy('users:user_detail')
+    # template_name = 'users/defaultuser_update.html'
+    # success_url = reverse_lazy('users:user_detail')
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

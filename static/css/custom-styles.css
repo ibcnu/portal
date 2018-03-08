@@ -16,6 +16,8 @@ a{color: #555;}
 }
 .sidebar-sticky { position: fixed; }
 
+li.active{background-color: red; width: 100%;}
+
 .main-col{height:2000px}
 
 .bh-top-nav{height: 50px; background-color: white;}

@@ -1,14 +1,13 @@
 from django.db.models import Q
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse, reverse_lazy
+# from django.urls import reverse
 
 from .models import Company
 from .forms import CompanyCreateForm
 
 
 class CompanyListView(LoginRequiredMixin, ListView):
-    # template_name = "organizations/company_list.html"
     def get_queryset(self):
         slug = self.kwargs.get('slug')
         if slug:
@@ -28,7 +27,6 @@ class CompanyListView(LoginRequiredMixin, ListView):
 
 class CompanyDetailView(LoginRequiredMixin, DetailView):
     queryset = Company.objects.all()
-    # template_name = "organizations/company_detail.html"
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

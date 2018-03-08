@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+
+{% load static widget_tweaks %}
+{% block content %}
+<div class="col-md-10">
+    <div class="card">
+        <div class="card-header bg-light">{{ asset.name }}</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>Company: <span class="text-muted small">{{ asset.company }}</span></div>
+                    <div>Descripton:</div>
+                    <div class="text-muted small">{{ asset.description }}</div>
+                </div>
+
+                <div class="col-md-6">
+                    <div>Type: <span class="text-muted small">{{ asset.assettype }}</span></div>
+                    <div>Product ID: <span class="text-muted small">{{ asset.pid }}</span></div>
+                    <div>Customer ID: <span class="text-muted small">{{ asset.coustomerid }}</span></div>
+                    <div>Slug: <span class="text-muted small">{{ asset.slug }}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><span class="text-muted small">Last Updated: {{ asset.updated }}</span></div>
+        </div>
+
+        <div class="card-footer bg-light text-right">
+            <a href='{% url "assets:asset_edit" asset.slug %}' class="btn btn-primary">Edit</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

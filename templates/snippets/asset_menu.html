@@ -1,0 +1,4 @@
+
+        {% for li in menu %}
+        <li class="nav-item"><a href="{% url {{ url }} {{ li.pk }} %}" class="nav-link ">{{ li.name }}</a></li>
+        {% endfor %}

@@ -1,0 +1,45 @@
+{% extends "base-content.html" %}
+{% load static widget_tweaks %}
+
+{% block dash_content %}
+<form method="POST">
+{% csrf_token %}
+<div class="col-md-10">
+    <div class="card">
+        <div class="card-header bg-light">{{ page_title }}</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group"><label class="form-control-label">Name: </label>
+                        <div>{{ form.name | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Descripton:</label>
+                        <div>{{ form.description | add_class:"form-control" }}</div></div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group"><label class="form-control-label">Company: </label>
+                        <div>{{ form.company | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Type: </label>
+                        <div>{{ form.assettype | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Product ID: </label>
+                        <div>{{ form.pid | add_class:"form-control" }}</div></div>
+                    <div class="form-group"<label class="form-control-label">Customer ID: </label>
+                        <div>{{ form.customerid | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Slug: </label>
+                        <div>{{ form.slug | add_class:"form-control" }}</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><span class="text-muted small">Last Updated: {{ asset.updated }}</span></div>
+        </div>
+
+        <div class="card-footer bg-light text-right">
+            <a href="{% url 'assets:asset_list' %}" title="Back" class="btn btn-primary">Back</a>
+            <input type="submit" class='btn btn-primary' value="Update">
+        </div>
+    </div>
+</div>
+</form>
+{% endblock %}

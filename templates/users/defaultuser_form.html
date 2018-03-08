@@ -53,8 +53,12 @@
                                 <div>{{ form.slug | add_class:"form-control" }}</div></div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12"><span class="text-muted small">Last Updated: {{ defaultuser.updated }}</span></div>
+                    </div>
             </div>
             <div class="card-footer bg-light text-right">
+            <a href="{% url 'users:user_list' %}" title="Back" class="btn btn-primary">Back</a>
                <button type="submit" class="btn btn-primary px-5">Save</button>
             </div>
         </form>

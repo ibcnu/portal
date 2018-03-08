@@ -11,9 +11,15 @@ from portal.utils import unique_slug_generator
 class UserRole(models.Model):
     """docstring for UserRole"""
     name = models.CharField(max_length=50, null=False, blank=False, primary_key=True)
+    value = models.CharField(max_length=255, null=True, blank=True, default='',)
 
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    slug = models.SlugField()
+
+    @property
+    def title(self):
+        return self.name
 
     def __str__(self):
         return self.name
@@ -30,7 +36,10 @@ class DefaultUser(models.Model):
     country = models.CharField(max_length=100, default='', blank=True)
     organization = models.ForeignKey(Company, on_delete=models.SET_NULL, blank=True, null=True,)
     role = models.ForeignKey(UserRole, on_delete=models.SET_NULL, blank=True, null=True,)
-    slug = models.SlugField(max_length=50)
+
+    timestamp = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    slug = models.SlugField()
 
     def get_absolute_url(self):
         return reverse('users:user_detail', kwargs={'slug': self.slug})

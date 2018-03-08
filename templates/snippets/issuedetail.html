@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+
+{% load static widget_tweaks %}
+{% block content %}
+<div class="col-md-10">
+    <div class="card">
+        <div class="card-header bg-light">{{ issue.title }}</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>Product: <span class="text-muted small">{{ issue.asset }}</span></div>
+                    <div>Descripton:</div>
+                    <div class="text-muted small">{{ company.description }}</div>
+                </div>
+
+                <div class="col-md-6">
+                    <div>Type: <span class="text_muted small">{{ issue.issuetype }}</span></div>
+                    <div>Status: <span class="text_muted small">{{ issue.status }}</span></div>
+                    <div>Summary:</div>
+                    <div class="text-muted small">{{ issue.summary }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><span class="text-muted small">Last Updated: {{ issue.updated }}</span></div>
+        </div>
+
+        <div class="card-footer bg-light text-right">
+            <a href='{% url "issues:issue_edit" issue.slug %}' class="btn btn-primary">Edit</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

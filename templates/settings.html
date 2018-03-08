@@ -1,0 +1,105 @@
+{% extends "base-dash.html" %}
+{% load static widget_tweaks %}
+
+
+{% block dash_content %}
+{{ block.super }}
+<div class="container-fluid">
+    <div class="row">
+
+<!-- Asset Type -->
+        <div class="col-md-3">
+            <form method="POST" accept-charset="utf-8">{% csrf_token %}
+                <div class="card">
+                    <div class="card-header bg-light">Asset Types</div>
+
+                    <div class="card-body">
+                        <ul class="nav flex-column list-unstyled components">
+                        {% for assettype in assettypes %}
+                            <li class="nav-item">{{ assettype }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-light text-right">
+                        <div>{{ form.name | add_class:"form-control" }}</div>
+                        <input type="submit" class='btn btn-primary' value="add">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+<!-- Issue Type -->
+        <div class="col-md-3">
+            <form method="POST" accept-charset="utf-8">{% csrf_token %}
+                <div class="card">
+                    <div class="card-header bg-light">Issue Types</div>
+
+                    <div class="card-body">
+                        <ul class="nav flex-column list-unstyled components">
+                        {% for issuetype in issuetypes %}
+                            <li class="nav-item">{{ issuetype }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-light text-right">
+                        <div>{{ form.name | add_class:"form-control" }}</div>
+                        <input type="submit" class='btn btn-primary' value="add">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+<!-- Issue Status -->
+        <div class="col-md-3">
+            <form method="POST" accept-charset="utf-8">{% csrf_token %}
+                <div class="card">
+                    <div class="card-header bg-light">Issue Statuses</div>
+
+                    <div class="card-body">
+                        <ul class="nav flex-column list-unstyled components">
+                        {% for status in statuses %}
+                            <li class="nav-item">{{ status }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-light text-right">
+                        <div>{{ form.name | add_class:"form-control" }}</div>
+                        <input type="submit" class='btn btn-primary' value="add">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+<!-- User Role -->
+        <div class="col-md-3">
+            <form method="POST" accept-charset="utf-8">{% csrf_token %}
+                <div class="card">
+                    <div class="card-header bg-light">User Roles</div>
+
+                    <div class="card-body">
+                        <ul class="nav flex-column list-unstyled components">
+                        {% for role in userroles %}
+                                <div style="display: inline-block;">
+                            <li class="nav-item">
+                                    {{ role }}
+                                    <a href="{# url 'users:userrole_delete' role.pk #}" class="nav-link " style="color:red;">x</a>
+                            </li>
+                                </div>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-light text-right">
+                        <div>{{ role_form.name | add_class:"form-control" }}</div>
+                        <input type="submit" class='btn btn-primary' value="add">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
