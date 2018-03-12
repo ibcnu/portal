@@ -17,7 +17,7 @@ urlpatterns = [
     path('user/', UserListView.as_view(), name='account_user'),
 
     path('login/', LoginView.as_view(template_name='accounts/login.html'), name='account_login'),
-    path('logout/', LogoutView.as_view(next_page=reverse_lazy('account_login')), name='account_logout'),
+    path('logout/', LogoutView.as_view(next_page=reverse_lazy('accounts:account_login')), name='account_logout'),
 
 
     path('password_change/',

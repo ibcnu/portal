@@ -22,18 +22,22 @@ class UserRole(models.Model):
         return self.name
 
     def __str__(self):
-        return self.name
+        if self.value:
+            return self.value
+        else:
+            return self.name
 
 
 class DefaultUser(models.Model):
     """docstring for Company"""
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank=False, related_name='profile')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        null=False, blank=False, related_name='profile')
     # photo = FileField(verbose_name =_("Profile Picture"), upload_to=upload_to("main.UserProfile.photo", "profiles"), format="Image", max_length=255, null=True, blank=True)
-    website = models.URLField(default='', blank=True)
-    bio = models.TextField(default='', blank=True)
-    phone = models.CharField(max_length=20, default='', blank=True)
-    city = models.CharField(max_length=100, default='', blank=True)
-    country = models.CharField(max_length=100, default='', blank=True)
+    website = models.URLField(default='', blank=True, null=True,)
+    bio = models.TextField(default='', blank=True, null=True,)
+    phone = models.CharField(max_length=20, default='', blank=True, null=True,)
+    city = models.CharField(max_length=100, default='', blank=True, null=True,)
+    country = models.CharField(max_length=100, default='', blank=True, null=True,)
     organization = models.ForeignKey(Company, on_delete=models.SET_NULL, blank=True, null=True,)
     role = models.ForeignKey(UserRole, on_delete=models.SET_NULL, blank=True, null=True,)
 
@@ -50,10 +54,10 @@ class DefaultUser(models.Model):
 
     def __str__(self):
         #     pass
-        #     if self.user:
-        return self.user.fullname
-    #     else:
-    #         return self.slug
+        if self.user.fullname:
+            return self.user.fullname
+        else:
+            return self.slug
 
 
 class AdminUser(DefaultUser):

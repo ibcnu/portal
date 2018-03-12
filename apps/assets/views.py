@@ -1,5 +1,5 @@
 # from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Asset
@@ -51,3 +51,14 @@ class AssetUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_queryset(self):
         return Asset.objects.all()
+
+
+# class AssetTypeCreateView(LoginRequiredMixin, View):
+#     model = AssetType
+#     template_name = 'assets/asset_form.html'
+
+#     def get_context_data(self, *args, **kwargs):
+#         context = super().get_context_data(*args, **kwargs)
+#         print(context)
+#         context['page_title'] = 'Create Asset'
+#         return context

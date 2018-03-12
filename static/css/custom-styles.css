@@ -3,7 +3,8 @@ html, body, page-wrapper, page-container{height: 100%;}
 
 body{font-size:.9rem;}
 
-body, page-wrapper { width: 100%;}
+body, page-wrapper { width: 100%;
+    line-height:1;}
 
 a{color: #555;}
 
@@ -16,15 +17,15 @@ a{color: #555;}
 }
 .sidebar-sticky { position: fixed; }
 
-li.active{background-color: red; width: 100%;}
+li.active a.active{ color: black !important; width: 100%;}
 
-.main-col{height:2000px}
+.main-col{border-top:0px;}
 
 .bh-top-nav{height: 50px; background-color: white;}
 
 .list-group a.active{ background-color: lightgray; border: grey; }
 
-.main{font-size:.75em ;}
+.main{ border: 0px; padding: 0px;}
 
 .footer2 {
     position: absolute;
@@ -41,9 +42,30 @@ li.active{background-color: red; width: 100%;}
 
 
 
+.form-control{
+    display:block;
+	width:100%;
+	padding:.175rem .25rem;
+	font-size:.875rem !important;
+	line-height:1.25;
+	color:#777;
+	background-color:#fff;
+	background-clip:padding-box;
+	border:1px solid #ced4da;
+	border-radius:10;
+	-webkit-transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+	transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+	transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out
+}
 
-
-
+.form-control-label{
+    padding:.175rem .25rem;
+    font-size:.875rem !important;
+}
+select.form-control{
+    height: 1.55rem !important;
+}
 
 
 

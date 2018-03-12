@@ -7,40 +7,38 @@ from apps.organizations.models import Company
 # User = settings.AUTH_USER_MODEL
 
 
-class UserCreateForm(forms.ModelForm):
-    # fullname = forms.CharField(label='Full Name')
-    # email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+class UserForm(forms.ModelForm):
+    password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
-    # photo = FileField(verbose_name =_("Profile Picture"), upload_to=upload_to("main.UserProfile.photo", "profiles"), format="Image", max_length=255, null=True, blank=True)
-    # website = models.URLField(default='', blank=True)
-    bio = forms.CharField(widget=forms.Textarea())
-    phone = forms.CharField()
-    city = forms.CharField()
-    country = forms.CharField()
-    organization = forms.ModelChoiceField(queryset=Company.objects.all(), empty_label="")
-    role = forms.ModelChoiceField(queryset=UserRole.objects.all(), empty_label='')
-    slug = forms.SlugField()
 
     class Meta:
         model = User
         fields = [
             'fullname',
             'email',
-            'password',
+            'password1',
             'password2',
-            'bio',
-            'phone',
-            'city',
-            'country',
-            'role',
-            'organization',
-            'slug',
+            'active',
         ]
-        # exclude = ('user',)
+
+    # def clean_fullname(self):
+    #     pass
 
 
-class UserForm(forms.ModelForm):
+class CreateProfileForm(forms.Form):
+    # photo = FileField(verbose_name =_("Profile Picture"), upload_to=upload_to("main.UserProfile.photo", "profiles"), format="Image", max_length=255, null=True, blank=True)
+    # website = forms.URLField()
+
+    phone = forms.CharField(max_length=20, required=False)
+    city = forms.CharField(max_length=100, required=False)
+    country = forms.CharField(max_length=100, required=False)
+
+    organization = forms.ModelChoiceField(Company.objects.all(), required=False)
+    role = forms.ModelChoiceField(UserRole.objects.all(), required=False)
+    bio = forms.CharField(widget=forms.Textarea, required=False)
+
+
+class ProfileForm(forms.ModelForm):
     class Meta:
         model = DefaultUser
         fields = [
@@ -50,8 +48,11 @@ class UserForm(forms.ModelForm):
             'country',
             'role',
             'organization',
-            'slug',
+            # 'slug',
         ]
+
+    def clean_bio(self):
+        pass
 
 
 class UserRoleCreateForm(forms.ModelForm):
@@ -60,4 +61,7 @@ class UserRoleCreateForm(forms.ModelForm):
         fields = ['name', ]
 
     def clean_name(self):
-        pass
+        name = self.clean_data.get("name")
+        if name == "hello":
+            raise forms.ValidationError("not a valid name")
+        return name
