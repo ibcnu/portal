@@ -3,14 +3,20 @@ from django.views.generic import View, TemplateView, ListView, DetailView, Creat
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Asset
+from apps.issues.models import Issue
 from .forms import AssetCreateForm
 
 
 class AssetListView(LoginRequiredMixin, ListView):
 
-    def get_queryset(self):
-        # slug = self.kwargs.get('slug')
-        queryset = Asset.objects.all()
+    def get_queryset(self, *args, **kwargs):
+        if self.request.user.user_profile.role.name != 'Admin':
+            print('users: ', self.request.user)
+            queryset = self.request.user.user_profile.assets.all()
+        else:
+            print('admin')
+            queryset = Asset.objects.all()
+
         return queryset
 
     def get_context_data(self, *args, **kwargs):
@@ -24,8 +30,15 @@ class AssetDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        if self.request.user.user_profile.role.name != 'Admin':
+            asset = kwargs.get('object')
+            print('SELF')
+            print(type(asset))
+            queryset = Issue.objects.filter(asset__pk=asset.pk)
+            context['issues'] = queryset
+
         context['page_title'] = 'Asset Detail'
-        print(context)
+        # print(context)
         return context
 
 

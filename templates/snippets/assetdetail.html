@@ -26,10 +26,14 @@
         <div class="row">
             <div class="col-md-12"><span class="text-muted small">Last Updated: {{ asset.updated }}</span></div>
         </div>
-
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
         <div class="card-footer bg-light text-right">
             <a href='{% url "assets:asset_edit" asset.slug %}' class="btn btn-primary">Edit</a>
         </div>
+{% else %}
+{% include 'snippets/issuelist.html' %}
+{% endif %}
     </div>
+
 </div>
 {% endblock %}

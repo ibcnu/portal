@@ -24,9 +24,17 @@
     <tr>
       <th scope="col" colspan="6" align="right">
         <a href="{% url 'users:user_create' %}" class="btn
-            btn-primary">Add User</a>
+            btn-primary" id='adduser'>Add User</a>
       </th>
     </tr>
   </tfoot>
   </tbody>
 </table>
+
+
+
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById("adduser").focus();
+    };
+</script>

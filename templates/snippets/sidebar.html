@@ -2,13 +2,18 @@
 {% load static %}
 
 
-<nav class="sidebar col-xs-12 sidebar-sticky" id='sidebar'>
+<nav class="sidebar col-xs-12 sidebar-sticky " id='sidebar'>
     <ul class="nav flex-column list-unstyled components">
 
         <li class="nav-item {% if request.resolver_match.url_name == 'index' %}{% endif %}"><a href="/" class=" active">Dashboard</a></li>
+        {% if request.user.user_profile.role.pk == 'Admin' %}
         <li class="nav-item {% if request.resolver_match.url_name == 'site_settings' %}active{% endif %}"><a href="{% url 'site_settings' %}" class="nav-link ">Site Settings</a></li>
         <li class="nav-item {% if request.resolver_match.url_name == 'company_list' %}active{% endif %}"><a href="{% url 'organizations:company_list' %}" class="nav-link ">Companies</a></li>
+        {% endif %}
+
+        {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Manager' %}
         <li class="nav-item {% if request.resolver_match.url_name == 'user_list' %}active{% endif %}"><a href="{% url 'users:user_list' %}" class="nav-link">Users</a></li>
+        {% endif %}
 
         <li class="nav-title {% if request.resolver_match.url_name == 'asset_list' %}{% endif %}"><a href="{% url 'assets:asset_list' %}" class="nav-link ">Assets</a></li>
         {# load_asset_menu #}

@@ -10,14 +10,10 @@ from .forms import UserForm, ProfileForm, CreateProfileForm
 
 
 class UserListView(LoginRequiredMixin, ListView):
-    # template_name = "users/users_list.html"
-    def get_queryset(self):
-        slug = self.kwargs.get('slug')
-        if slug:
-            queryset = DefaultUser.objects.fitler(
-                Q(fullname__iexact=slug) |
-                Q(name__contains=slug)
-            )
+
+    def get_queryset(self, *args, **kwargs):
+        if self.request.user.user_profile.role.name != 'Admin':
+            queryset = DefaultUser.objects.filter(organization=self.request.user.user_profile.organization)
         else:
             queryset = DefaultUser.objects.all()
         return queryset
@@ -77,7 +73,7 @@ class UserUpdateView(LoginRequiredMixin, TemplateView):
             u.bio = profile_form.cleaned_data.get('bio') if profile_form.cleaned_data.get('bio') else ''
             u.phone = profile_form.cleaned_data.get('phone') if profile_form.cleaned_data.get('phone') else ''
             u.city = profile_form.cleaned_data.get('city') if profile_form.cleaned_data.get('city') else ''
-            u.country = profile_form.cleaned_data.get('country') if profile_form.cleaned_data.get('bio') else ''
+            u.country = profile_form.cleaned_data.get('country') if profile_form.cleaned_data.get('country') else ''
             u.role = profile_form.cleaned_data.get('role')
             u.organization = profile_form.cleaned_data.get('organization')
             u.save()
@@ -143,7 +139,7 @@ class UserCreateView(LoginRequiredMixin, TemplateView):
             print('user saved')
             print(user)
 
-            newuser = user.defaultuser_set[0]
+            newuser = user.user_profile
             print(type(newuser))
             # newuser.bio = profile_form.cleaned_data.get('bio')
             newuser.phone = profile_form.cleaned_data.get('phone')
@@ -154,7 +150,7 @@ class UserCreateView(LoginRequiredMixin, TemplateView):
             newuser.save()
 
             c = self.get_context_data()
-
+            return redirect('users:user_detail', newuser.slug)
         else:
             print('forms are invalid')
             c = self.get_context_data()

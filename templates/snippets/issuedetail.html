@@ -27,9 +27,11 @@
             <div class="col-md-12"><span class="text-muted small">Last Updated: {{ issue.updated }}</span></div>
         </div>
 
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
         <div class="card-footer bg-light text-right">
             <a href='{% url "issues:issue_edit" issue.slug %}' class="btn btn-primary">Edit</a>
         </div>
+{% endif %}
     </div>
 </div>
 {% endblock %}

@@ -72,6 +72,21 @@ class [model]UpdateView(LoginRequiredMixin, UpdateView):
         return [model].objects.all()
 
 
+
+        kw_args = {}
+        if self.request.user.user_profile.role != 'Admin':
+            kw_args['organization'] = self.request.user.user_profile.organization
+        slug = self.kwargs.get('slug')
+        if slug:
+            kw_args['fullname__iexact'] = slug
+
+        if kw_args:
+            queryset = DefaultUser.objects.filter(**kw_args)
+        else:
+            queryset = DefaultUser.objects.all()
+        return queryset
+
+
 ### MODEL FIELDS
 models.CharField(max_length=255, null=False, blank=False, default=None)
 models.ForeignKey([model], models.[SET_NULL], blank=True, null=True,)
@@ -141,11 +156,12 @@ def address_pre_save_reciever(sender, instance, *args, **kwargs):
 
 
 
+ISSUE STATUS = [Open]
+ISSUE TYPES = [Reports, FieldNote, ]
+ASSET TYPES = [AGA, OD, Access]
+ROLES = [Admin, Tech, Manager, User]
 
-
-
-
-
+    {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Manager' %}
 
 
 

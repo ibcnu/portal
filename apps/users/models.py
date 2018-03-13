@@ -2,10 +2,12 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
-from apps.organizations.models import Company
 from django.urls import reverse
 
 from portal.utils import unique_slug_generator
+from apps.organizations.models import Company
+from apps.accounts.models import User
+from apps.assets.models import Asset
 
 
 class UserRole(models.Model):
@@ -30,8 +32,9 @@ class UserRole(models.Model):
 
 class DefaultUser(models.Model):
     """docstring for Company"""
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-        null=False, blank=False, related_name='profile')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user_profile', on_delete=models.CASCADE)
+    assets = models.ManyToManyField(Asset)
+    # models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank=False, related_name='profile')
     # photo = FileField(verbose_name =_("Profile Picture"), upload_to=upload_to("main.UserProfile.photo", "profiles"), format="Image", max_length=255, null=True, blank=True)
     website = models.URLField(default='', blank=True, null=True,)
     bio = models.TextField(default='', blank=True, null=True,)

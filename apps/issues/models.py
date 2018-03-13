@@ -21,11 +21,10 @@ class IssueType(models.Model):
         return self.name
 
     def __str__(self):
-        return self.name
-
-    # def __init__(self, arg):
-    #     super(IssueType, self).__init__()
-    #     self.arg = arg
+        if self.value:
+            return self.value
+        else:
+            return self.name
 
 
 class IssueStatus(models.Model):
@@ -42,10 +41,10 @@ class IssueStatus(models.Model):
         return self.name
 
     def __str__(self):
-        return self.name
-    # def __init__(self, arg):
-    #     super(IssueStatus, self).__init__()
-    #     self.arg = arg
+        if self.value:
+            return self.value
+        else:
+            return self.name
 
 
 class Issue(models.Model):

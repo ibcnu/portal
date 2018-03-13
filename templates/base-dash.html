@@ -3,14 +3,14 @@
 {% block page_description %}{{ page_description }}{% endblock %}
 
 {% block content %}
-<div class="page-wrapper container-fluid">
+<div class="page-wrapper container-fluid ">
     <div class="row " style="height:50px;">
         <div class="col-12">
 {% block nav %}{% include 'snippets/nav.html' %}{% endblock %}
         </div>
     </div>
-    <div class="row page-container">
-        <div class="collapse navbar-collapse col-md-2 d-none d-md-block sidebar-col border-right">
+    <div class="row page-container  h-100">
+        <div class="collapse navbar-collapse col-md-2 d-none d-md-block sidebar-col  h-100 border-right">
 {% block sidebar %}{% include 'snippets/sidebar.html' %}{% endblock %}
         </div>
         <div class="col-10 main-col">

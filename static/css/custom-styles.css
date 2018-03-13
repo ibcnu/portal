@@ -4,14 +4,16 @@ html, body, page-wrapper, page-container{height: 100%;}
 body{font-size:.9rem;}
 
 body, page-wrapper { width: 100%;
-    line-height:1;}
+    line-height:1; min-height: 100%;}
 
 a{color: #555;}
 
-.sidebar-col2{
-    position: -webkit-sticky;
-    position: fixed;
-    top: 50px;
+/* .sidebar{border-top: 150px;} */
+
+.sidebar-col{
+    /* position: -webkit-sticky; */
+    /* position: fixed; */
+    /* top: 50px; */
     padding-top: 40px;
     min-height: calc(100vh - 50px);
 }
@@ -19,13 +21,12 @@ a{color: #555;}
 
 li.active a.active{ color: black !important; width: 100%;}
 
-.main-col{border-top:0px;}
 
 .bh-top-nav{height: 50px; background-color: white;}
 
 .list-group a.active{ background-color: lightgray; border: grey; }
 
-.main{ border: 0px; padding: 0px;}
+.main{ border: 0px; padding-top: 20px !important;}
 
 .footer2 {
     position: absolute;

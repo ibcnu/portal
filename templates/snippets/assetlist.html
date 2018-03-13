@@ -23,6 +23,7 @@
 
   {% endfor %}
   </tbody>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
   <tfoot>
     <tr>
       <th scope="col" colspan="6" align="right">
@@ -31,4 +32,5 @@
       </th>
     </tr>
   </tfoot>
+{% endif %}
 </table>

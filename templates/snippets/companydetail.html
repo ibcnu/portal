@@ -26,7 +26,15 @@
         </div>
 
         <div class="card-footer bg-light text-right">
-            <a href='{% url "organizations:company_edit" company.slug %}' class="btn btn-primary">Edit</a>
+            <a href="{% url 'organizations:company_list' %}" class="btn  btn-primary">Company List</a>
+            <a href='{% url "organizations:company_edit" company.slug %}' class="btn btn-primary" id='editcompany'>Edit</a>
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById("editcompany").focus();
+    };
+</script>

@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for issue in object_list %}
+  {% for issue in issues %}
     <tr class='clickable-row' data-href='{{ issue.get_absolute_url }}'>
       <th scope="row">{{ issue.title }}</th>
       <td>{{ issue.asset }}</td>
@@ -19,6 +19,7 @@
 
   {% endfor %}
   </tbody>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
   <tfoot>
     <tr>
       <th scope="col" colspan="4" align="right">
@@ -27,4 +28,5 @@
       </th>
     </tr>
   </tfoot>
+{% endif %}
 </table>

@@ -17,6 +17,8 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        print(self.request.user.user_profile.role)
+        print(dir(self.request.user.user_profile))
         context = {
             'page_title': 'Dashboard',
         }
