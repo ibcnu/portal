@@ -10,7 +10,7 @@ from django.urls import reverse, reverse_lazy
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
 
-
+, related_name='company'
 ### VIEWS
 class [model]ListView(LoginRequiredMixin, ListView):
     [template_name = "[app]/[model]_list.html"]

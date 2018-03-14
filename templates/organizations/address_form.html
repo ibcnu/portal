@@ -1,0 +1,50 @@
+{% extends "base-content.html" %}
+{% load static widget_tweaks %}
+
+{% block dash_content %}
+{{ block.super }}
+<form method="POST">
+{% csrf_token %}
+<div class="col-md-10">
+    <div class="card">
+        <div class="card-header bg-light">{{ page_title }}</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group"><label class="form-control-label">Street: </label>
+                        <div id='address'>{{ form.street | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Street: </label>
+                        <div>{{ form.street2 | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">City: </label>
+                        <div>{{ form.city | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Province: </label>
+                        <div>{{ form.province | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Postal Code: </label>
+                        <div>{{ form.postalcode | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Country: </label>
+                        <div>{{ form.country | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Slug: </label>
+                        <div>{{ form.slug | add_class:"form-control" }}</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><span class="text-muted small">Last Updated: {{ address.updated }}</span></div>
+        </div>
+
+        <div class="card-footer bg-light text-right">
+            <!-- <a href="{% url 'organizations:company_list' %}" title="Back" class="btn btn-primary">Back</a> -->
+            <input type="submit" class='btn btn-primary' value="Update">
+        </div>
+    </div>
+</div>
+</form>
+
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById("id_address").focus();
+    };
+</script>
+
+{% endblock %}

@@ -45,7 +45,7 @@ class Asset(models.Model):
     objects = AssetManager
 
     name = models.CharField(max_length=255, null=False, blank=False,)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True, )
+    company = models.ForeignKey(Company, related_name='assets', on_delete=models.CASCADE, null=True, blank=True, )
     assettype = models.ForeignKey(AssetType, on_delete=models.SET_NULL, blank=True, null=True, )
     pid = models.CharField(max_length=255, unique=True, null=True, blank=True)
     customerid = models.CharField(max_length=255, null=True, blank=True, default='',)

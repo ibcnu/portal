@@ -1,5 +1,8 @@
 from django.urls import path
-from .views import CompanyListView, CompanyDetailView, CompanyCreateView, CompanyUpdateView
+from .views import (
+    CompanyListView, CompanyDetailView, CompanyCreateView, CompanyUpdateView,
+    AddressCreateView, AddressUpdateView,
+)
 
 app_name = 'organizations'
 urlpatterns = [
@@ -7,4 +10,6 @@ urlpatterns = [
     path('create/', CompanyCreateView.as_view(), name='company_create'),
     path('edit/<slug:slug>/', CompanyUpdateView.as_view(), name='company_edit'),
     path('<slug:slug>/', CompanyDetailView.as_view(), name='company_details'),
+    path('address/create/', AddressCreateView.as_view(), name='address_create'),
+    path('address/edit/<slug:slug>/', AddressUpdateView.as_view(), name='address_edit'),
 ]

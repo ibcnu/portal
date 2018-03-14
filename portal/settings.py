@@ -34,6 +34,9 @@ INSTALLED_APPS = [
 
     # 'crispy-form-tags',
     'widget_tweaks',
+    # 'django.contrib.sites',
+    # 'django_comments_xtd',
+    # 'django_comments',
 
     'portal',
     'apps.accounts',
@@ -77,6 +80,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'portal.wsgi.application'
+
+# COMMENTS_APP = 'django_comments'
+# COMMENTS_XTD_MAX_THREAD_LEVEL = 3
+# COMMENTS_XTD_CONFIRM_EMAIL = True
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -139,3 +146,9 @@ LOGIN_REDIRECT_URL = '/'
 
 
 EMAIL_BACKEND = 'django.core.backends.console.EmailBackend'
+
+# EMAIL_HOST = "smtp.mail.com"
+# EMAIL_PORT = "587"
+# EMAIL_HOST_USER = "alias@mail.com"
+# EMAIL_HOST_PASSWORD = "yourpassword"
+# DEFAULT_FROM_EMAIL = "Helpdesk <helpdesk@yourdomain>"

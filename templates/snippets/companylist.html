@@ -20,16 +20,36 @@
     </tr>
 
   {% endfor %}
+  {% if is_paginated %}
+    <tr>
+      <td scope="col" colspan="5" align="center" class=''>
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{% url  'organizations:company_list' %}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{% url  'organizations:company_list' %}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+      </td>
+    </tr>
+  {% endif %}
   </tbody>
   <tfoot>
     <tr>
-      <th scope="col" colspan="6" align="right">
+      <th scope="col" colspan="5" align="right">
         <a href="{% url 'organizations:company_create' %}"
             class="btn  btn-primary" id='addcompany'>Add Company</a>
       </th>
     </tr>
   </tfoot>
 </table>
+
 
 
 <script type="text/javascript">

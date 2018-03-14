@@ -28,11 +28,12 @@
         </div>
 {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
         <div class="card-footer bg-light text-right">
+            <a href='{{ request.GET.next }}' class="btn btn-primary">Back</a>
             <a href='{% url "assets:asset_edit" asset.slug %}' class="btn btn-primary">Edit</a>
         </div>
 {% else %}
-{% include 'snippets/issuelist.html' %}
 {% endif %}
+{% include 'snippets/issuelist.html' %}
     </div>
 
 </div>

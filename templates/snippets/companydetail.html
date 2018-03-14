@@ -22,7 +22,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12"><span class="text-muted small">Last Updated: {{ company.updated }}</span></div>
+            <div class="col-md-12">
+                <span class="text-muted small">Last Updated: {{ company.updated }}  </span>
+
+                <span class="text-muted small">Users: {{ users.count }}  </span>
+                <span class="text-muted small">Products: {{ assets.count }}</span>
+            </div>
         </div>
 
         <div class="card-footer bg-light text-right">
@@ -31,7 +36,8 @@
         </div>
     </div>
 </div>
-
+{% include 'snippets/assetlist.html' %}
+{% include 'snippets/userlist.html' %}
 
 <script type="text/javascript">
     window.onload = function() {

@@ -6,7 +6,7 @@ from django.urls import reverse
 
 from portal.utils import unique_slug_generator
 from apps.organizations.models import Company
-from apps.accounts.models import User
+# from apps.accounts.models import User
 from apps.assets.models import Asset
 
 

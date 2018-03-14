@@ -22,6 +22,8 @@ class AssetListView(LoginRequiredMixin, ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(AssetListView, self).get_context_data(*args, **kwargs)
         context['page_title'] = 'Asset List'
+        context['assets'] = context.get('object_list')
+        print(context)
         return context
 
 
@@ -30,15 +32,15 @@ class AssetDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        if self.request.user.user_profile.role.name != 'Admin':
-            asset = kwargs.get('object')
-            print('SELF')
-            print(type(asset))
-            queryset = Issue.objects.filter(asset__pk=asset.pk)
-            context['issues'] = queryset
+        # if self.request.user.user_profile.role.name != 'Admin':
+        asset = kwargs.get('object')
+        print('SELF')
+        print(type(asset))
+        queryset = Issue.objects.filter(asset__pk=asset.pk)
+        context['issues'] = queryset
 
         context['page_title'] = 'Asset Detail'
-        # print(context)
+        print(context)
         return context
 
 

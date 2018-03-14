@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for user in object_list %}
+  {% for user in users %}
     <tr class='clickable-row' data-href='{{ user.get_absolute_url }}'>
       <th scope="row">{{ user.user.fullname }}</th>
       <td>{{ user.organization.name }}</td>

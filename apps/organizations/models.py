@@ -6,19 +6,21 @@ from portal.utils import unique_slug_generator
 from django.db.models.signals import pre_save  # , post_save
 from django.dispatch import receiver
 
+# from apps.users.models import DefaultUser
+
 
 class Address(models.Model):
     """docstring for Adress"""
     street = models.CharField(max_length=255, null=False, blank=False, default=None)
     street2 = models.CharField(max_length=255, null=True, blank=True)
-    city = models.CharField(max_length=255, null=False, blank=False, default=None)
-    province = models.CharField(max_length=2, null=False, blank=False, default=None)
+    city = models.CharField(max_length=255, null=True, blank=True, default='')
+    province = models.CharField(max_length=2, null=True, blank=True, default='')
     postalcode = models.CharField(max_length=10, null=True, blank=True)
-    country = models.CharField(max_length=2, null=False, blank=False, default=None)
+    country = models.CharField(max_length=2, null=True, blank=True, default='')
 
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(max_length=50)
+    slug = models.SlugField(max_length=50, blank=True, null=True,)
 
     @property
     def title(self):
@@ -31,8 +33,8 @@ class Address(models.Model):
 class Company(models.Model):
     """docstring for Company"""
     name = models.CharField(max_length=255, null=False, blank=False,)
-    contact = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True,)
-    address = models.ForeignKey(Address, models.SET_NULL, blank=True, null=True,)
+    contact = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='company', on_delete=models.SET_NULL, blank=True, null=True,)
+    address = models.OneToOneField(Address, related_name='company', on_delete=models.CASCADE, null=True, blank=True, )
     description = models.TextField(null=True, blank=True)
 
     timestamp = models.DateTimeField(auto_now_add=True)

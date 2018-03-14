@@ -8,6 +8,7 @@ from .views import IndexView, SiteSettingsView
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', IndexView.as_view(), name='index'),
+    # path('comments/', include('django_comments_xtd.urls'), name='comments'),
     path('settings', SiteSettingsView.as_view(), name='site_settings'),
 
     path('account/', include('apps.accounts.urls', namespace='accounts')),

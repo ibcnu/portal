@@ -3,6 +3,8 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from portal.utils import unique_slug_generator
 from django.urls import reverse
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 
 from apps.assets.models import Asset
 
@@ -50,12 +52,13 @@ class IssueStatus(models.Model):
 class Issue(models.Model):
     """docstring for Company"""
     title = models.CharField(max_length=255)
-    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
-    issuetype = models.ForeignKey(IssueType, on_delete=models.SET_NULL, blank=True, null=True,)
-    status = models.ForeignKey(IssueStatus, on_delete=models.SET_NULL, blank=True, null=True,)
+    asset = models.ForeignKey(Asset, related_name='issues', on_delete=models.CASCADE)
+    issuetype = models.ForeignKey(IssueType, related_name='issues', on_delete=models.SET_NULL, blank=True, null=True,)
+    status = models.ForeignKey(IssueStatus, related_name='issues', on_delete=models.SET_NULL, blank=True, null=True,)
     description = models.TextField(blank=True, null=True, default='')
     summary = models.TextField(blank=True, null=True, default='')
 
+    createdby = models.ForeignKey(User, related_name='issues', on_delete=SET_NULL,  blank=True, null=True, )
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     slug = models.SlugField()

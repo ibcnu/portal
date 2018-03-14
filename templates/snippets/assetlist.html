@@ -11,8 +11,8 @@
     </tr>
   </thead>
   <tbody>
-  {% for asset in object_list %}
-    <tr class='clickable-row' data-href='{{ asset.get_absolute_url }}'>
+  {% for asset in assets %}
+    <tr class='clickable-row' data-href='{{ asset.get_absolute_url }}?next={{ request.path|urlencode  }}'>
       <th scope="row">{{ asset.name }}</th>
       <td>{{ asset.company }}</td>
       <td>{{ asset.assettype }}</td>
@@ -27,8 +27,7 @@
   <tfoot>
     <tr>
       <th scope="col" colspan="6" align="right">
-        <a href="{% url 'assets:asset_create' %}"
-            class="btn  btn-primary">Add Asset</a>
+        <a href="{% url 'assets:asset_create' %}"class="btn  btn-primary">Add Asset</a>
       </th>
     </tr>
   </tfoot>

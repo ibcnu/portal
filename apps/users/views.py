@@ -10,6 +10,7 @@ from .forms import UserForm, ProfileForm, CreateProfileForm
 
 
 class UserListView(LoginRequiredMixin, ListView):
+    context_object_name = "users"
 
     def get_queryset(self, *args, **kwargs):
         if self.request.user.user_profile.role.name != 'Admin':
