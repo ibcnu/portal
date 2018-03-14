@@ -58,7 +58,7 @@ class Issue(models.Model):
     description = models.TextField(blank=True, null=True, default='')
     summary = models.TextField(blank=True, null=True, default='')
 
-    createdby = models.ForeignKey(User, related_name='issues', on_delete=SET_NULL,  blank=True, null=True, )
+    createdby = models.ForeignKey(User, related_name='issues', on_delete=models.SET_NULL, blank=True, null=True, )
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     slug = models.SlugField()
