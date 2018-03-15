@@ -6,28 +6,32 @@ from django.urls import reverse_lazy
 
 from .models import Company, Address
 from .forms import CompanyCreateForm, AddressCreateForm
-from apps.users.forms import CreateProfileForm
-from apps.assets.models import Asset
-from apps.users.models import DefaultUser
 
 
 class CompanyListView(LoginRequiredMixin, ListView):
+    context_object_name = "companies"
     paginate_by = 10
 
     def get_queryset(self):
         slug = self.kwargs.get('slug')
-        if slug:
-            queryset = Company.objects.fitler(
-                Q(name__iexact=slug) |
-                Q(name__contains=slug)
-            )
+        queryset = None
+        if self.request.user.user_profile.role.name != 'Admin' and self.request.user.user_profile.role.name != 'Tech':
+            queryset = Company.objects.filter(name=self.request.user.user_profile.company.name)
+            # self.request.user.user_profile.assets.all()
         else:
-            queryset = Company.objects.all()
+            if slug:
+                queryset = Company.objects.fitler(slug=slug)
+            else:
+                queryset = Company.objects.all()
+
+        print('CompanyListView:QUERYSET: ', queryset)
         return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['page_title'] = 'Company List'
+        context['companies'] = context['object_list']
+        print('CompanyListView:CONTEXT: ', context)
         return context
 
 
@@ -36,13 +40,13 @@ class CompanyDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        print(context)
-        obj = kwargs.get('object')
-        print(type(obj))
+        company = kwargs.get('object')
         context['page_title'] = 'Company Detail'
-        context['assets'] = Asset.objects.filter(company=obj)
-        context['users'] = DefaultUser.objects.filter(organization=obj)
-        print(DefaultUser.objects.filter(organization=obj).count())
+        # context['assets'] = Asset.objects.filter(company=company)
+        context['assets'] = company.assets.all()
+        # context['users'] = DefaultUser.objects.filter(company=company)
+        context['users'] = company.users.all()
+        print(company.users.count())
         return context
 
 
@@ -173,3 +177,17 @@ class AddressUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_queryset(self):
         return Address.objects.all()
+
+
+class AddressDetailView(LoginRequiredMixin, DetailView):
+    queryset = Address.objects.all()
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        print(context)
+        obj = kwargs.get('object')
+        print(type(obj))
+        context['page_title'] = 'Company Detail'
+        # context['assets'] = Asset.objects.filter(company=obj)
+        # context['users'] = DefaultUser.objects.filter(company=obj)
+        return context

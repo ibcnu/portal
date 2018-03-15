@@ -7,6 +7,9 @@ from .forms import IssueCreateForm
 
 
 class IssueListView(LoginRequiredMixin, ListView):
+    paginate_by = 5
+    context_object_name = "issues"
+
     def get_queryset(self):
         slug = self.kwargs.get('slug')
         if slug:
@@ -21,7 +24,6 @@ class IssueListView(LoginRequiredMixin, ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(IssueListView, self).get_context_data(*args, **kwargs)
         context['page_title'] = 'Issue List'
-        context['issues'] = self.get_queryset()
         return context
 
 
@@ -30,8 +32,10 @@ class IssueDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        print(context)
+        issue = kwargs.get('object')
         context['page_title'] = 'Issue Detail'
+        context['users'] = issue.asset.users.all()
+        print(context)
         return context
 
 

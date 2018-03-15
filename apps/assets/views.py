@@ -2,28 +2,33 @@
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Asset
+from .models import Asset, AssetType
 from apps.issues.models import Issue
 from .forms import AssetCreateForm
 
 
 class AssetListView(LoginRequiredMixin, ListView):
+    paginate_by = 5
+    context_object_name = "assets"
+    atype = ''
 
     def get_queryset(self, *args, **kwargs):
+        queryset = Asset.objects.all()
         if self.request.user.user_profile.role.name != 'Admin':
-            print('users: ', self.request.user)
             queryset = self.request.user.user_profile.assets.all()
-        else:
-            print('admin')
-            queryset = Asset.objects.all()
+
+        self.atype = self.kwargs.get('atype')
+        if self.atype:
+            queryset = queryset.filter(assettype__in=AssetType.objects.filter(name=self.atype))
+        print()
 
         return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super(AssetListView, self).get_context_data(*args, **kwargs)
-        context['page_title'] = 'Asset List'
-        context['assets'] = context.get('object_list')
-        print(context)
+        context['page_title'] = 'Product List'
+        context['atype'] = self.atype
+        # print(context)
         return context
 
 
@@ -34,13 +39,10 @@ class AssetDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(*args, **kwargs)
         # if self.request.user.user_profile.role.name != 'Admin':
         asset = kwargs.get('object')
-        print('SELF')
-        print(type(asset))
-        queryset = Issue.objects.filter(asset__pk=asset.pk)
-        context['issues'] = queryset
-
-        context['page_title'] = 'Asset Detail'
-        print(context)
+        context['page_title'] = 'Product Detail'
+        context['issues'] = asset.issues.all()
+        context['users'] = asset.users.all()
+        print(asset.users)
         return context
 
 
@@ -50,8 +52,11 @@ class AssetCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        print(context)
-        context['page_title'] = 'Create Asset'
+        print('AssetCreateView:GET', self.request.GET['cid'])
+        print('AssetCreateView:kwargs', kwargs)
+        context['page_title'] = 'Create Product'
+        context['cid'] = self.request.GET['cid']
+        print('AssetCreateView:Context', context)
         return context
 
 
@@ -61,7 +66,7 @@ class AssetUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         print(context)
-        context['page_title'] = 'Update Asset'
+        context['page_title'] = 'Update Product'
         return context
 
     def get_queryset(self):

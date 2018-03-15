@@ -9,29 +9,44 @@
 
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
-                    <div>Product: <span class="text-muted small">{{ issue.asset }}</span></div>
+                <div class="col-md-4">
+                    <div>Product: <span class="text-muted ">{{ issue.asset }}</span></div>
                     <div>Descripton:</div>
-                    <div class="text-muted small">{{ company.description }}</div>
+                    <div class="text-muted ">{{ company.description }}</div>
                 </div>
 
-                <div class="col-md-6">
-                    <div>Type: <span class="text_muted small">{{ issue.issuetype }}</span></div>
-                    <div>Status: <span class="text_muted small">{{ issue.status }}</span></div>
+                <div class="col-md-4">
+                    <div>Type: <span class="text_muted ">{{ issue.issuetype }}</span></div>
+                    <div>Status: <span class="text_muted ">{{ issue.status }}</span></div>
                     <div>Summary:</div>
-                    <div class="text-muted small">{{ issue.summary }}</div>
+                    <div class="text-muted ">{{ issue.summary }}</div>
+                </div>
+
+                <div class="col-md-4">
+                    <div>Users</div>
+                    {% for user in users %}
+                    <div class="text-muted ">{{ user }}</div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12"><span class="text-muted small">Last Updated: {{ issue.updated }}</span></div>
+            <div class="col-md-12">
+                <div class="row  justify-content-between">
+                    <div class="text-muted small col-8 align-self-start">Last Updated: {{ issue.updated }}  </div>
+                    <div class="text-muted small col-2 align-self-center">Users: {{ issue.asset.users.count }}  </div>
+                    <div class="text-muted small col-2 align-self-end">Comments: {# issues.comments.count #}</div>
+                </div>
+            </div>
         </div>
 
-{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
         <div class="card-footer bg-light text-right">
+            <a href='javascript:history.back()' class="btn btn-primary">Back</a>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
             <a href='{% url "issues:issue_edit" issue.slug %}' class="btn btn-primary">Edit</a>
-        </div>
 {% endif %}
+        </div>
     </div>
 </div>
+{# include 'snippets/userlist.html' #}
 {% endblock %}

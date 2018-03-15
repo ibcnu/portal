@@ -22,6 +22,9 @@ class Address(models.Model):
     updated = models.DateTimeField(auto_now=True)
     slug = models.SlugField(max_length=50, blank=True, null=True,)
 
+    def get_absolute_url(self):
+        return reverse('organizations:address_details', kwargs={'slug': self.slug})
+
     @property
     def title(self):
         return self.street

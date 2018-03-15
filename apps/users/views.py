@@ -10,11 +10,12 @@ from .forms import UserForm, ProfileForm, CreateProfileForm
 
 
 class UserListView(LoginRequiredMixin, ListView):
+    # paginate_by = 5
     context_object_name = "users"
 
     def get_queryset(self, *args, **kwargs):
         if self.request.user.user_profile.role.name != 'Admin':
-            queryset = DefaultUser.objects.filter(organization=self.request.user.user_profile.organization)
+            queryset = DefaultUser.objects.filter(company=self.request.user.user_profile.companies)
         else:
             queryset = DefaultUser.objects.all()
         return queryset
@@ -76,7 +77,7 @@ class UserUpdateView(LoginRequiredMixin, TemplateView):
             u.city = profile_form.cleaned_data.get('city') if profile_form.cleaned_data.get('city') else ''
             u.country = profile_form.cleaned_data.get('country') if profile_form.cleaned_data.get('country') else ''
             u.role = profile_form.cleaned_data.get('role')
-            u.organization = profile_form.cleaned_data.get('organization')
+            u.company = profile_form.cleaned_data.get('company')
             u.save()
 
             print(u.role)
@@ -113,14 +114,19 @@ class UserUpdateView(LoginRequiredMixin, TemplateView):
             'page_title': 'Edit User',
             'defaultuser': u,
         }
+        context['cid'] = self.request.GET['cid']
         return context
 
 
 class UserCreateView(LoginRequiredMixin, TemplateView):
+    print('UserCreateView:')
     template_name = 'users/defaultuser_form.html'
     msg = ''
+    user_form = UserForm()
+    profile_form = CreateProfileForm()
 
     def post(self, request, *args, **kwargs):
+        print('UserCreateView:post')
         user_form = UserForm(self.request.POST)
         profile_form = CreateProfileForm(self.request.POST)
 
@@ -147,7 +153,7 @@ class UserCreateView(LoginRequiredMixin, TemplateView):
             newuser.city = profile_form.cleaned_data.get('city')
             newuser.country = profile_form.cleaned_data.get('country')
             newuser.role = profile_form.cleaned_data.get('role')
-            newuser.organization = profile_form.cleaned_data.get('organization')
+            newuser.company = profile_form.cleaned_data.get('company')
             newuser.save()
 
             c = self.get_context_data()
@@ -161,18 +167,24 @@ class UserCreateView(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, c)  # get_context_data()
 
     def get_context_data(self, *args, **kwargs):
+        print('UserCreateView:get_context_data')
+        print(self.request.GET)
         context = super().get_context_data(*args, **kwargs)
+        user_form = UserForm
+        profile_form = CreateProfileForm
         user_form = UserForm()
         profile_form = CreateProfileForm()
-        context = {
-            'user_form': user_form,
-            'profile_form': profile_form,
-            'page_title': 'Create User',
-            'err_msg': self.msg,
-        }
+        context = {}
+        context['user_form'] = user_form
+        context['profile_form'] = profile_form
+        context['page_title'] = 'Create User'
+        context['err_msg'] = self.msg
+        context['cid'] = self.request.GET['cid']
+        print('GETCONTEXT: ', context)
         return context
 
     def create_user(self, user, fullname, email, password1, password2):
+        print('UserCreateView:create_user')
         if password1 != password2:
             self.msg = 'Passwords fo not match'
             # messages.error(self.request, self.msg, extra_tags='alert alert-danger')

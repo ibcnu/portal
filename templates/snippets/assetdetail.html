@@ -1,40 +1,58 @@
 
-{% extends "base.html" %}
-
-{% load static widget_tweaks %}
-{% block content %}
 <div class="col-md-10">
     <div class="card">
         <div class="card-header bg-light">{{ asset.name }}</div>
 
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
-                    <div>Company: <span class="text-muted small">{{ asset.company }}</span></div>
+                <div class="col-md-4">
+                    <div>Company: <span class="text-muted ">{{ asset.company }}</span></div>
                     <div>Descripton:</div>
-                    <div class="text-muted small">{{ asset.description }}</div>
+                    <div class="text-muted ">{{ asset.description }}</div>
                 </div>
 
-                <div class="col-md-6">
-                    <div>Type: <span class="text-muted small">{{ asset.assettype }}</span></div>
-                    <div>Product ID: <span class="text-muted small">{{ asset.pid }}</span></div>
-                    <div>Customer ID: <span class="text-muted small">{{ asset.coustomerid }}</span></div>
-                    <div>Slug: <span class="text-muted small">{{ asset.slug }}</span></div>
+                <div class="col-md-4">
+                    <div>Type: <span class="text-muted ">{{ asset.assettype }}</span></div>
+                    <div>Product ID: <span class="text-muted ">{{ asset.pid }}</span></div>
+                    <div>Customer ID: <span class="text-muted ">{{ asset.coustomerid }}</span></div>
+                    <div>Slug: <span class="text-muted ">{{ asset.slug }}</span></div>
                 </div>
+
+                <div class="col-md-4">
+                    <div>Users</div>
+                    {% for user in users %}
+                    <div class="text-muted ">{{ user }}</div>
+                    {% endfor %}
+                </div>
+
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12"><span class="text-muted small">Last Updated: {{ asset.updated }}</span></div>
+            <div class="col-md-12">
+                <div class="row  justify-content-between">
+                    <div class="text-muted small col-8 align-self-start">Last Updated: {{ asset.updated }}  </div>
+                    <div class="text-muted small col-2 align-self-center">Users: {{ asset.users.count }}  </div>
+                    <div class="text-muted small col-2 align-self-end">Issues: {{ asset.issues.count }}</div>
+                </div>
+            </div>
         </div>
-{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
+
+
         <div class="card-footer bg-light text-right">
-            <a href='{{ request.GET.next }}' class="btn btn-primary">Back</a>
-            <a href='{% url "assets:asset_edit" asset.slug %}' class="btn btn-primary">Edit</a>
-        </div>
+            <a href='javascript:history.back()' class="btn btn-primary">Back</a>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
+            <a href='{% url "assets:asset_edit" asset.slug %}' id='editasset' class="btn btn-primary">Edit Product</a>
 {% else %}
 {% endif %}
+        </div>
 {% include 'snippets/issuelist.html' %}
+{# include 'snippets/userlist.html' #}
     </div>
 
 </div>
-{% endblock %}
+
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById("editasset").focus();
+    };
+</script>

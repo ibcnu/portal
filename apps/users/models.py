@@ -33,16 +33,15 @@ class UserRole(models.Model):
 class DefaultUser(models.Model):
     """docstring for Company"""
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user_profile', on_delete=models.CASCADE)
-    assets = models.ManyToManyField(Asset)
-    # models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank=False, related_name='profile')
-    # photo = FileField(verbose_name =_("Profile Picture"), upload_to=upload_to("main.UserProfile.photo", "profiles"), format="Image", max_length=255, null=True, blank=True)
+    assets = models.ManyToManyField(Asset, related_name='users', blank=True, null=True,)
+    photo = modle.FileField(verbose_name=_("Profile Picture"), upload_to=upload_to("main.UserProfile.photo", "profiles"), format="Image", max_length=255, null=True, blank=True)
     website = models.URLField(default='', blank=True, null=True,)
     bio = models.TextField(default='', blank=True, null=True,)
     phone = models.CharField(max_length=20, default='', blank=True, null=True,)
     city = models.CharField(max_length=100, default='', blank=True, null=True,)
     country = models.CharField(max_length=100, default='', blank=True, null=True,)
-    organization = models.ForeignKey(Company, on_delete=models.SET_NULL, blank=True, null=True,)
-    role = models.ForeignKey(UserRole, on_delete=models.SET_NULL, blank=True, null=True,)
+    company = models.ForeignKey(Company, related_name='users', on_delete=models.SET_NULL, blank=True, null=True,)  # organization
+    role = models.ForeignKey(UserRole, related_name='users', on_delete=models.SET_NULL, blank=True, null=True,)
 
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

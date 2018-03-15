@@ -3,11 +3,11 @@ from django.contrib import admin
 from django.urls import path, include
 # from django.views.generic import TemplateView
 
-from .views import IndexView, SiteSettingsView
+from .views import IndexView, SiteSettingsView, CompanyIndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('', IndexView.as_view(), name='index'),
+    path('', CompanyIndexView.as_view(), name='index'),
     # path('comments/', include('django_comments_xtd.urls'), name='comments'),
     path('settings', SiteSettingsView.as_view(), name='site_settings'),
 

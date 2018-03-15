@@ -9,12 +9,9 @@ class CompanyCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         instance = kwargs.get('instance')
+        print('INSTANCE: ', instance)
         if instance:
-            qs = DefaultUser.objects.filter(organization=instance)  # groups__name='foo'
-            qs2 = User.objects.filter(user_profile__in=qs)
-            print('QS: ', qs)
-            print('QS2: ', qs2)
-            self.fields['contact'].queryset = qs2
+            self.fields['contact'].queryset = User.objects.filter(user_profile__in=instance.users.all())
 
     class Meta:
         model = Company

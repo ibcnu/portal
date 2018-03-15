@@ -57,8 +57,11 @@ class Issue(models.Model):
     status = models.ForeignKey(IssueStatus, related_name='issues', on_delete=models.SET_NULL, blank=True, null=True,)
     description = models.TextField(blank=True, null=True, default='')
     summary = models.TextField(blank=True, null=True, default='')
+    currentowner = models.ForeignKey(User, related_name='issues', on_delete=models.SET_NULL, blank=True, null=True, )
 
-    createdby = models.ForeignKey(User, related_name='issues', on_delete=models.SET_NULL, blank=True, null=True, )
+    createdby = models.ForeignKey(User, related_name='created_issues', on_delete=models.SET_NULL, blank=True, null=True, )
+    # attachment
+
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     slug = models.SlugField()

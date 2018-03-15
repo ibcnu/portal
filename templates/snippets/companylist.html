@@ -1,3 +1,6 @@
+<div class='mt-5'>
+   <h6>Company List</h6>
+</div>
 
 <table class="table table-striped">
   <thead>
@@ -10,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for company in object_list %}
+  {% for company in companies %}
     <tr class='clickable-row' data-href='{{ company.get_absolute_url }}'>
       <th scope="row" >{{ company.name }}</th>
       <td>{{ company.contact.fullname }}</td>
@@ -20,6 +23,7 @@
     </tr>
 
   {% endfor %}
+
   {% if is_paginated %}
     <tr>
       <td scope="col" colspan="5" align="center" class=''>
@@ -39,6 +43,8 @@
       </td>
     </tr>
   {% endif %}
+
+
   </tbody>
   <tfoot>
     <tr>

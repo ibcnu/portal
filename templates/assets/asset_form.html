@@ -2,7 +2,7 @@
 {% load static widget_tweaks %}
 
 {% block dash_content %}
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 {% csrf_token %}
 <div class="col-md-10">
     <div class="card">
@@ -36,10 +36,22 @@
         </div>
 
         <div class="card-footer bg-light text-right">
-            <a href="{% url 'assets:asset_list' %}" title="Back" class="btn btn-primary">Back</a>
-            <input type="submit" class='btn btn-primary' value="Update">
+            <a href="javascript:history.back()" title="Back" class="btn btn-primary">Back</a>
+            <input type="submit" class='btn btn-primary' value="Save">
         </div>
     </div>
 </div>
 </form>
+
+
+<script type="text/javascript">
+
+    window.onload = function() {
+{% if cid %}
+        $('#id_company').val('{{ cid }}');
+        $('#id_company').prop("readonly", true);
+{% endif %}
+    };
+
+</script>
 {% endblock %}

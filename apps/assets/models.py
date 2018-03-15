@@ -30,6 +30,19 @@ class AssetType(models.Model):
             return self.name
 
 
+class AssetQueryset(models.query.QuerySet):
+    def issues(self, *args, **kwargs):
+        return self.filter(issues=kwargs.get())
+
+
+class AssetModel(models.Manager):
+    def get_queryset(self):
+        return AssetQueryset(self.model, using=self._db)
+
+    def issues(self, *args, **kwargs):
+        return self.get_queryset.issues(*args, **kwargs)
+
+
 class AssetManager(models.Manager):
     """docstring for AssetManager"""
 

@@ -9,7 +9,7 @@
                     <div>Phone: <span class="text-muted ">{{ object.phone }}</span></div>
                     <div>City: <span class="text-muted ">{{ object.city }}</span></div>
                     <div>Country: <span class="text-muted ">{{ object.country }}</span></div>
-                    <div>Company: <span class="text-muted ">{{ object.organization }}</span></div>
+                    <div>Company: <span class="text-muted ">{{ object.company }}</span></div>
                     <div>Bio: <span class="text-muted ">{{ object.bio }}</span></div>
                 </div>
                 <div class="col-md-6">
@@ -20,15 +20,19 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12"><span class="text-muted small">Last Updated: {{ defaultuser.updated }}</span></div>
-        </div>
+            <div class="row">
+                <div class="col-md-12"><span class="text-muted small">Last Updated: {{ defaultuser.updated }}</span></div>
+            </div>
 
         <div class="card-footer bg-light text-right">
+            <a href='javascript:history.back()' class="btn btn-primary">Back</a>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
             <a href="{% url 'users:user_list' %} " class="btn btn-primary">User List</a>
             <a href="{% url 'users:user_edit' object.slug %} " class="btn btn-primary" id='edituser'>Edit User</a>
+{% endif %}
         </div>
     </div>
+
 </div>
 
 

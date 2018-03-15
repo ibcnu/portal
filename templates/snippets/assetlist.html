@@ -1,9 +1,14 @@
+<div class='mt-5'>
+   <h6>Product List</h6>
+</div>
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col"><a href="#">Name</a></th>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
       <th scope="col"><a href="#">Company</a></th>
+{% endif %}
       <th scope="col"><a href="#">Type</a></th>
       <th scope="col"><a href="#">Product ID</th>
       <th scope="col"><a href="#">Customer ID</th>
@@ -14,22 +19,68 @@
   {% for asset in assets %}
     <tr class='clickable-row' data-href='{{ asset.get_absolute_url }}?next={{ request.path|urlencode  }}'>
       <th scope="row">{{ asset.name }}</th>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
       <td>{{ asset.company }}</td>
+{% endif %}
       <td>{{ asset.assettype }}</td>
       <td>{{asset.pid}}</td>
       <td>{{asset.customerid}}</td>
-      <td>12</td>
+      <td>
+        {% if asset.issues.count == 0 %}
+        -
+        {% else %}
+        {{ asset.issues.count }}
+        {% endif %}
+      </td>
     </tr>
 
   {% endfor %}
   </tbody>
-{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
   <tfoot>
     <tr>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
       <th scope="col" colspan="6" align="right">
-        <a href="{% url 'assets:asset_create' %}"class="btn  btn-primary">Add Asset</a>
+        <a href="{% url 'assets:asset_create' %}?cid={{ company.id }}" id='addasset' class="btn  btn-primary">Add Product</a>
       </th>
+{% else %}
+      <th scope="col" colspan="5" align="right">
+      </th>
+{% endif %}
     </tr>
   </tfoot>
-{% endif %}
 </table>
+
+{% if is_paginated %}
+{# with request.GET.pop('page') as url #}
+  <div class="pagination">
+      <span class="page-links">
+          {% if page_obj.has_previous %}
+            {% if atype == '' %}
+              <a href="{% url  'assets:asset_list'  %}?page={{ page_obj.previous_page_number }}">previous</a>
+            {% else %}
+              <a href="{% url  'assets:asset_list' atype %}?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+          {% endif %}
+          <span class="page-current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+          {% if page_obj.has_next %}
+            {% if atype == '' or not atype  %}
+              <a href="{% url  'assets:asset_list'  %}?page={{ page_obj.next_page_number }}">next</a>
+            {% else %}
+                <a href="{% url  'assets:asset_list' atype %}?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+          {% endif %}
+          {{ url.urlencode }}
+      </span>
+  </div>
+{% endif %}
+
+
+<script type="text/javascript">
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
+    window.onload = function() {
+        document.getElementById("addasset").focus();
+    };
+{% endif %}
+</script>

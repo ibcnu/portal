@@ -10,6 +10,12 @@ from django.urls import reverse, reverse_lazy
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
 
+<input type="hidden" name="next" value="{{ request.path }}">
+next = request.POST.get('next', '/')
+return HttpResponseRedirect(next)
+<a href="{% url 'your_form_view' %}?next={{ request.path|urlencode }}">Go to my form!</a>
+{{ request.GET.next }}
+
 , related_name='company'
 ### VIEWS
 class [model]ListView(LoginRequiredMixin, ListView):

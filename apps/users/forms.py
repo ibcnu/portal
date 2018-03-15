@@ -8,6 +8,15 @@ from apps.organizations.models import Company
 
 
 class UserForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        print('UserForm:KWARGS: ', kwargs)
+        # instance = kwargs.get('instance')
+        # print('UserForm:INSTANCE: ', instance)
+        # if instance:
+        #     self.fields['contact'].queryset = User.objects.filter(user_profile__in=instance.users.all())
+
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
 
@@ -21,9 +30,6 @@ class UserForm(forms.ModelForm):
             'active',
         ]
 
-    # def clean_fullname(self):
-    #     pass
-
 
 class CreateProfileForm(forms.Form):
     # photo = FileField(verbose_name =_("Profile Picture"), upload_to=upload_to("main.UserProfile.photo", "profiles"), format="Image", max_length=255, null=True, blank=True)
@@ -33,7 +39,7 @@ class CreateProfileForm(forms.Form):
     city = forms.CharField(max_length=100, required=False)
     country = forms.CharField(max_length=100, required=False)
 
-    organization = forms.ModelChoiceField(Company.objects.all(), required=False)
+    company = forms.ModelChoiceField(Company.objects.all(), required=False)
     role = forms.ModelChoiceField(UserRole.objects.all(), required=False)
     bio = forms.CharField(widget=forms.Textarea, required=False)
 
@@ -47,7 +53,7 @@ class ProfileForm(forms.ModelForm):
             'city',
             'country',
             'role',
-            'organization',
+            'company',
             # 'slug',
         ]
 

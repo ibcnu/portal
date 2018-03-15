@@ -9,6 +9,17 @@ class AssetTypeCreateForm(forms.ModelForm):
 
 
 class AssetCreateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        print('AssetCreateForm:ARGS: ', args)
+        print('AssetCreateForm:KWARGS: ', kwargs)
+        # print("", self.request)
+        # instance = kwargs.get('instance')
+        # print('UserForm:INSTANCE: ', instance)
+        # if instance:
+        #     self.fields['contact'].queryset = User.objects.filter(user_profile__in=instance.users.all())
+
     class Meta:
         model = Asset
         fields = [

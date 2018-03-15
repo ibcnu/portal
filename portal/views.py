@@ -5,11 +5,31 @@ from apps.issues.models import IssueStatus, IssueType
 from apps.users.forms import UserRoleCreateForm
 from apps.users.models import UserRole
 
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.conf import settings
+
+from apps.organizations.models import Company
+from apps.assets.models import Asset
+from apps.users.models import DefaultUser
+
 User = settings.AUTH_USER_MODEL
+
+
+class CompanyIndexView(LoginRequiredMixin, TemplateView):
+    template_name = "index.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        user = self.request.user.user_profile
+        company = user.company
+        context['company'] = company
+        context['page_title'] = 'Company Detail'
+        context['assets'] = Asset.objects.filter(company=company)
+        context['users'] = DefaultUser.objects.filter(company=company)
+        print(context)
+        return context
 
 
 class IndexView(LoginRequiredMixin, TemplateView):

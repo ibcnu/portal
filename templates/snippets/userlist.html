@@ -1,36 +1,54 @@
+<div class='mt-5'>
+   <h6>User List</h6>
+</div>
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col"><a href="#">User Name</a></th>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
       <th scope="col"><a href="#">Company</a></th>
+{% endif %}
       <th scope="col"><a href="#">Email</a></th>
       <th scope="col"><a href="#">Phone</a></th>
       <th scope="col"><a href="#">Bio</th>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
       <th scope="col"><a href="#">Role</a></th>
+{% endif %}
     </tr>
   </thead>
+
+
   <tbody>
   {% for user in users %}
     <tr class='clickable-row' data-href='{{ user.get_absolute_url }}'>
       <th scope="row">{{ user.user.fullname }}</th>
-      <td>{{ user.organization.name }}</td>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
+      <td>{{ user.company.name }}</td>
+{% endif %}
       <td>{{ user.user.email }}</td>
       <td>{{ user.phone }}</td>
       <td>{{ user.bio }}</td>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
       <td>{{ user.role }}</td>
+{% endif %}
     </tr>
+</tbody>
   {% endfor %}
   <tfoot>
     <tr>
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
       <th scope="col" colspan="6" align="right">
-        <a href="{% url 'users:user_create' %}" class="btn
-            btn-primary" id='adduser'>Add User</a>
+        <a href="{% url 'users:user_create' %}?cid={{company.id}}" class="btn btn-primary" id='adduser'>Add User</a>
       </th>
+{% else %}
+      <th scope="col" colspan="4" align="right">
+
+      </th>
+{% endif %}
     </tr>
   </tfoot>
-  </tbody>
 </table>
-
 
 
 <script type="text/javascript">

@@ -5,7 +5,7 @@
 
 <div class="col-md-10">
     <div class="card">
-        <form method="POST" novalidate>
+        <form method="POST" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
             <div class="card-header bg-light">{{ page_title }}
             {% if user_form.errors %}
@@ -57,7 +57,7 @@
                             <div class="form-group"><label class="form-control-label">Active: {{ user_form.active | add_class:"form-control" }}</label>
                                 <!-- <div></div> --></div>
                             <div class="form-group"><label class="form-control-label">Company: </label>
-                                <div>{{ profile_form.organization | add_class:"form-control" }}</div></div>
+                                <div>{{ profile_form.company | add_class:"form-control" }}</div></div>
                             <div class="form-group"><label class="form-control-label">Role: </label>
                                 <div>{{ profile_form.role | add_class:"form-control" }}</div></div>
                             <div class="form-group"><label class="form-control-label">Bio: </label>
@@ -71,16 +71,20 @@
                         {% endif %}
             </div>
             <div class="card-footer bg-light text-right">
-            <a href="{% url 'users:user_list' %}" title="Back" class="btn btn-primary">Back</a>
+            <a href="javascript:history.back()" title="Back" class="btn btn-primary">Back</a>
                <button type="submit" class="btn btn-primary px-5">Save</button>
             </div>
         </form>
     </div>
 </div>
-
+<!-- CID{{ cid }} -->
 
 <script type="text/javascript">
     window.onload = function() {
+{% if cid %}
+        $('#id_company').val('{{ cid }}');
+        $('#id_company').prop("readonly", true);
+{% endif %}
         document.getElementById("id_fullname").focus();
     };
 </script>

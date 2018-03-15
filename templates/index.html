@@ -2,7 +2,11 @@
 
 
 {% block dash_content %}
-<h1>Dashboard</h1><!--
+{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
+{% else %}
+{% include 'snippets/companydetail.html' %}
+{% endif %}
+<!--
 <div class="content">
     <div class="container-fluid">
         <div class="row">

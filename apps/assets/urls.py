@@ -7,6 +7,7 @@ from .views import (
 app_name = 'assets'
 urlpatterns = [
     path('', AssetListView.as_view(), name='asset_list'),
+    path('<atype>', AssetListView.as_view(), name='asset_list'),
     path('create/', AssetCreateView.as_view(), name='asset_create'),
     path('edit/<slug:slug>/', AssetUpdateView.as_view(), name='asset_edit'),
     path('<slug:slug>/', AssetDetailView.as_view(), name='asset_details'),
