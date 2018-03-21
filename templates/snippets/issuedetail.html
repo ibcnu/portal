@@ -1,7 +1,7 @@
-
 {% extends "base.html" %}
 
 {% load static widget_tweaks %}
+{% load load_comments %}
 {% block content %}
 <div class="col-md-10">
     <div class="card">
@@ -48,5 +48,7 @@
         </div>
     </div>
 </div>
+
+{% load_comments issue %}
 {# include 'snippets/userlist.html' #}
 {% endblock %}

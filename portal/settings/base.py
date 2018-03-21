@@ -14,12 +14,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = os.environ['SECRET_KEY']
 SECRET_KEY = '@eq8lnd)4r3bg_aem9no7qp5x=bt@*5t=5p$(sq!w%g2p0b+j&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['portal.barryhuffman.ca', 'portal.cmssi.com', ]
 
 
 # Application definition
@@ -41,10 +42,12 @@ INSTALLED_APPS = [
     'portal',
     'apps.accounts',
     'apps.assets',
+    'apps.comments',
     'apps.issues',
     'apps.organizations',
     'apps.profiles',
     'apps.users',
+
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -88,13 +91,6 @@ WSGI_APPLICATION = 'portal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -133,12 +129,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATIC_ROOT = '/home/barry/Documents/django/portal/static/'
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/'),
+    os.path.join(BASE_DIR, 'static'),
 )
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = '/home/barry/Documents/django/portal/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'media')
 
 
 LOGIN_URL = '/account/login/'
@@ -149,6 +149,6 @@ EMAIL_BACKEND = 'django.core.backends.console.EmailBackend'
 
 # EMAIL_HOST = "smtp.mail.com"
 # EMAIL_PORT = "587"
-# EMAIL_HOST_USER = "alias@mail.com"
+# EMAIL_HOST_USER = "@cmssi.com"
 # EMAIL_HOST_PASSWORD = "yourpassword"
-# DEFAULT_FROM_EMAIL = "Helpdesk <helpdesk@yourdomain>"
+# DEFAULT_FROM_EMAIL = "Helpdesk <helpdesk@cmssi.com>"

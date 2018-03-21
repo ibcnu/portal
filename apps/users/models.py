@@ -33,7 +33,7 @@ class UserRole(models.Model):
 class DefaultUser(models.Model):
     """docstring for Company"""
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user_profile', on_delete=models.CASCADE)
-    assets = models.ManyToManyField(Asset, related_name='users', blank=True, null=True,)
+    assets = models.ManyToManyField(Asset, related_name='users',)
     # photo = models.FileField(verbose_name=_("Profile Picture"), upload_to=upload_to("main.UserProfile.photo", "profiles"), format="Image", max_length=255, null=True, blank=True)
     website = models.URLField(default='', blank=True, null=True,)
     bio = models.TextField(default='', blank=True, null=True,)
