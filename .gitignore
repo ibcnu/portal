@@ -1,4 +1,5 @@
 env/
+envportal/
 .gitignore.swp
 
 # Byte-compiled / optimized / DLL files
