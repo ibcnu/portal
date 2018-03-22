@@ -1,12 +1,10 @@
-from django.urls import path
-from .views import (
-    CommentListView, CommentCreateView, CommentUpdateView, CommentDetailView,
-)
+from django.conf.urls import url
+from django.views.generic import TemplateView
 
-app_name = 'Comments'
+from .views import CommentListAPIView, CommentCreateAPIView, CommentUpdateAPIView
+
 urlpatterns = [
-    path('', CommentListView.as_view(), name='comment_list'),
-    path('create/', CommentCreateView.as_view(), name='comment_create'),
-    path('edit/<slug:slug>/', CommentUpdateView.as_view(), name='comment_edit'),
-    path('<slug:slug>/', CommentDetailView.as_view(), name='comment_details'),
+    url(r'^$', CommentListAPIView.as_view(), name='list'),
+    url(r'^create/$', CommentCreateAPIView.as_view(), name='create'),
+    url(r'^(?P<pk>\d+)/$', CommentUpdateAPIView.as_view(), name='update'),
 ]

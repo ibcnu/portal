@@ -17,10 +17,10 @@ a{color: #555;}
     padding-top: 40px;
     min-height: calc(100vh - 50px);
 }
+
 .sidebar-sticky { position: fixed; }
 
 li.active a.active{ color: black !important; width: 100%;}
-
 
 .bh-top-nav{height: 50px; background-color: white;}
 
@@ -68,11 +68,15 @@ select.form-control{
     height: 1.55rem !important;
 }
 
+.sidebar .nav .nav-item {}
+
+.nav-link{
+    padding:  0px  !important;
+}
 
 
-
-
-
+.sidebar-nav-item{padding:0px;}
+.sidebar-nav-link{padding: 0px;}
 
 
 

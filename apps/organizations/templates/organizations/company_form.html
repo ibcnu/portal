@@ -1,8 +1,10 @@
-
-{% extends "base.html" %}
-
+{% extends "base-content.html" %}
 {% load static widget_tweaks %}
-{% block content %}
+
+{% block dash_content %}
+{{ block.super }}
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
 <div class="col-md-10">
     <div class="card">
         <div class="card-header bg-light">{{ page_title }}</div>
@@ -11,15 +13,30 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group"><label class="form-control-label">Name: </label>
-                        <div>{{ form.name | add_class:"form-control" }}</div></div>
-                    <div class="form-group"><label class="form-control-label">Contact: </label>
+                        <div id='companyname'>{{ form.name | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">
+                        <a data-toggle="modal" data-target="#modal" href="{% url 'users:user_create' %}">Contact: </a></label>
                         <div>{{ form.contact | add_class:"form-control" }}</div></div>
-                    <div class="form-group"><label class="form-control-label">Address: </label>
-                        <div>{{ form.address | add_class:"form-control" }}</div></div>
-                    <div class="form-group"><label class="form-control-label">Slug: </label>
-                        <div>{{ form.slug | add_class:"form-control" }}</div></div>
                     <div class="form-group"><label class="form-control-label">Descripton: </label>
                         <div>{{ form.description | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Slug: </label>
+                        <div>{{ form.slug | add_class:"form-control" }}</div></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group"><label class="form-control-label">Street: </label>
+                        <div id='address'>{{ address_form.street | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Street: </label>
+                        <div>{{ address_form.street2 | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">City: </label>
+                        <div>{{ address_form.city | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Province: </label>
+                        <div>{{ address_form.province | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Postal Code: </label>
+                        <div>{{ address_form.postalcode | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Country: </label>
+                        <div>{{ address_form.country | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Slug: </label>
+                        <div>{{ address_form.slug | add_class:"form-control" }}</div></div>
                 </div>
             </div>
         </div>
@@ -28,10 +45,64 @@
         </div>
 
         <div class="card-footer bg-light text-right">
-            <a href='{% url "organizations:company_edit" company.slug %}' class="btn btn-primary">Update</a>
+            <a href="javascript:history.back()" title="Back" class="btn btn-primary">Back</a>
+            <input type="submit" class='btn btn-primary' value="Save">
         </div>
     </div>
 </div>
+</form>
 
+
+<div class="modal fade" id="modal">
+
+    <div class="modal-dialog modal-lg" role="document">
+        <form action="{% url 'users:user_create' %}" method="post" id="user-create" class="form">{% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">Add User</h4>
+                </div>
+                <div class="modal-body">
+                    {{ form.media }}
+                    {% for field in form.visible_fields %}
+                        <fieldset class="form-group">
+                            <label for="exampleInputEmail1">
+                            {{ field.label_tag }}
+                        </label>
+                        {{ field|attr:"class:form-control" }}
+                    </fieldset>
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Save changes" />
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+
+</div>
+<script>
+$('#modal').on('show.bs.modal', function (event) {
+    var modal = $(this)
+    $.ajax({
+        url: "{% url 'users:user_create' %}",
+        context: document.body
+    }).done(function(response) {
+        modal.html(response);
+    });
+})
+    var form_options = { target: '#modal', success: function(response) {} };
+    $('#user-create').ajaxForm(form_options);
+</script>
+
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById("id_name").focus();
+    };
+</script>
 
 {% endblock %}

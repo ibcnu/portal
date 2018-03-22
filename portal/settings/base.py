@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.assets',
     'apps.comments',
+    # 'apps.files',
     'apps.issues',
     'apps.organizations',
     'apps.profiles',

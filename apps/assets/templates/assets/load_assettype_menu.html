@@ -1,0 +1,7 @@
+{% for type in assettypes %}
+
+<li class="nav-item {% if request.resolver_match.url_name == 'asset_list'  %}active{% endif %}">
+    <a href="{% url 'assets:asset_list' type.name %} " class="nav-link">{{ type.value }}</a></li>
+
+{% endfor %}
+

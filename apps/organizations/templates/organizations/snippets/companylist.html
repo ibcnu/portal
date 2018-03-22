@@ -1,0 +1,65 @@
+<div class='mt-5'>
+   <h6>Company List</h6>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"><a href="#">Company Name</a></th>
+      <th scope="col"><a href="#">Contact</a></th>
+      <th scope="col"><a href="#">Address</a></th>
+      <th scope="col"><a href="#">Products</th>
+      <th scope="col"><a href="#">Users</a></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for company in companies %}
+    <tr class='clickable-row' data-href='{{ company.get_absolute_url }}'>
+      <th scope="row" >{{ company.name }}</th>
+      <td>{{ company.contact.fullname }}</td>
+      <td>{{ company.address.street }}</td>
+      <td>{{ company.assets.count }}</td>
+      <td>{{ company.users.count }}</td>
+    </tr>
+
+  {% endfor %}
+
+  {% if is_paginated %}
+    <tr>
+      <td scope="col" colspan="5" align="center" class=''>
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{% url  'organizations:company_list' %}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{% url  'organizations:company_list' %}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+      </td>
+    </tr>
+  {% endif %}
+
+
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="col" colspan="5" align="right">
+        <a href="{% url 'organizations:company_create' %}"
+            class="btn  btn-primary" id='addcompany'>Add Company</a>
+      </th>
+    </tr>
+  </tfoot>
+</table>
+
+
+
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById("addcompany").focus();
+    };
+</script>

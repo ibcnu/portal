@@ -1,0 +1,60 @@
+
+
+<div class="col-md-10">
+    <div class="card">
+        <div class="card-header bg-light">{{ company.name }}</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div>Contact: <span class="text-muted ">{{ company.contact.fullname }}</span></div>
+                    <div>Descripton:</div>
+                    <div class="text-muted small">{{ company.description }}</div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class=''>Address</div>
+                    <div>Street: <span class="text_muted ">{{ company.address.street }}</span></div>
+                    <div>Street: <span class="text_muted ">{{ company.address.street2 }}</span></div>
+                    <div>City: <span class="text_muted ">{{ company.address.city }}</span></div>
+                    <div>Province: <span class="text_muted ">{{ company.address.province }}</span></div>
+                    <div>Postal Code: <span class="text_muted ">{{ company.address.postalcode }}</span></div>
+                    <div>Country: <span class="text_muted ">{{ company.address.country }}</span></div>
+                </div>
+
+                <div class="col-md-4">
+                    <div>Users</div>
+                    {% for user in users %}
+                    <div class="text-muted ">{{ user }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row  justify-content-between">
+                    <div class="text-muted small col-8 align-self-start">Last Updated: {{ company.updated }}  </div>
+                    <div class="text-muted small col-2 align-self-center">Users: {{ users.count }}  </div>
+                    <div class="text-muted small col-2 align-self-end">Products: {{ assets.count }}</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-footer bg-light text-right">
+        {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
+            <a href='javascript:history.back()' class="btn btn-primary">Back</a>
+        <a href="{% url 'users:user_create' %}?cid={{company.id}}" class="btn btn-primary" id='adduser'>Add User</a>
+            <a href='{% url "organizations:company_edit" company.slug %}' class="btn btn-primary" id='editcompany'>Edit</a>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% include 'assets/snippets/assetlist.html' %}
+{# include 'users/snippets/userlist.html' #}
+
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById("editcompany").focus();
+    };
+</script>

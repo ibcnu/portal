@@ -1,37 +1,32 @@
-
 {% load static %}
+{% load load_assettype_menu %}
 
 
 <nav class="sidebar col-xs-12 sidebar-sticky " id='sidebar'>
     <ul class="nav flex-column list-unstyled components">
 
-        <li class="nav-item {% if request.resolver_match.url_name == 'index' %}{% endif %}">
-            <a href="/" class=" active">Dashboard</a></li>
+        <li class="nav-item sidebar-nav-item  {% if request.resolver_match.url_name == 'index' %}active{% endif %}">
+            <a href="/" class="nav-link sidebar-nav-link   ">Dashboard</a></li>
+
         {% if request.user.user_profile.role.pk == 'Admin' %}
-        <li class="nav-item {% if request.resolver_match.url_name == 'site_settings' %}active{% endif %}">
-            <a href="{% url 'site_settings' %}" class="nav-link ">Site Settings</a></li>
+        <li class="nav-item sidebar-nav-item  {% if request.resolver_match.url_name == 'site_settings' %}active{% endif %}">
+            <a href="{% url 'site_settings' %}" class="nav-link sidebar-nav-link  ">Site Settings</a></li>
         {% endif %}
 
         {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
-        <li class="nav-item {% if request.resolver_match.url_name == 'company_list' %}active{% endif %}">
-            <a href="{% url 'organizations:company_list' %}" class="nav-link ">Companies</a></li>
-        <li class="nav-item {% if request.resolver_match.url_name == 'user_list' %}active{% endif %}">
-            <a href="{% url 'users:user_list' %}" class="nav-link">Users</a></li>
+        <li class="nav-item sidebar-nav-item  {% if request.resolver_match.url_name == 'company_list' %}active{% endif %}">
+            <a href="{% url 'organizations:company_list' %}" class="nav-link sidebar-nav-link  ">Companies</a></li>
+        <li class="nav-item sidebar-nav-item  {% if request.resolver_match.url_name == 'user_list' %}active{% endif %}">
+            <a href="{% url 'users:user_list' %}" class="nav-link sidebar-nav-link ">Users</a></li>
         {% endif %}
 
-        <li class="nav-title {% if request.resolver_match.url_name == 'asset_list' %}{% endif %}">
-            <a href="{% url 'assets:asset_list' %}" class="nav-link ">All Products</a></li>
-        {# load_asset_menu #}
+        <li class="nav-title {% if request.resolver_match.url_name == 'asset_list' %}active{% endif %}">
+            <a href="{% url 'assets:asset_list' %}" class="nav-link sidebar-nav-link ">All Products</a></li>
 
-        <li class="nav-item {% if request.resolver_match.url_name == 'asset_list'  %}{% endif %}">
-            <a href="{% url 'assets:asset_list' 'AGA' %}" class="nav-link ">Automated Gates</a></li>
-        <li class="nav-item {% if request.resolver_match.url_name == 'asset_list' %}{% endif %}">
-            <a href="{% url 'assets:asset_list' 'OD' %}" class="nav-link ">Overhead Doors</a></li>
-        <li class="nav-item {% if request.resolver_match.url_name == 'asset_list' %}{% endif %}">
-            <a href="{% url 'assets:asset_list' 'Access' %}" class="nav-link ">Access Control</a></li>
+        {% load_assettype_menu request %}
 
         <li class="nav-title {% if request.resolver_match.url_name == 'issue_list' %}active{% endif %}">
-            <a href="{% url 'issues:issue_list' %}" class=" ">Reports</a></li>
-        <!-- <li class="nav-item"><a href="{% url 'issues:issue_list' %}" class="nav-link ">Reports</a></li> -->
+            <a href="{% url 'issues:issue_list' %}" class="nav-link sidebar-nav-link ">Reports</a></li>
+        <!-- <li class="nav-item sidebar-nav-item "><a href="{% url 'issues:issue_list' %}" class="nav-link sidebar-nav-link  ">Reports</a></li> -->
     </ul>
 </nav>

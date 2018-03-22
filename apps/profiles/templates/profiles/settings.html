@@ -1,19 +1,6 @@
-{% extends "base.html" %}
+{% extends "base-profiles.html" %}
 
-{% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2 px-0">
-            <div class="list-group">
-                <a href="{% url  'profiles:profile' %}" class="list-group-item {{ profile_active }}">Profile</a>
-                <a href="{% url  'profiles:settings' %}" class="list-group-item {{ settings_active }}">Account Settings</a>
-                <a href="{% url  'accounts:account_password_change' %}" class="list-group-item">Change Password</a>
-            </div>
-        </div>
-
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header bg-light">{{ page_title }}</div>
+{% block settings_content %}
 
 {% if profile_active == 'active' %}
 <div class="card-body row">
@@ -83,9 +70,5 @@
 <div class="card-footer bg-light text-right"><button type="submit" class="btn btn-primary">Save Changes</button></div>
 {% endif %}
 
-            </div>
-        </div>
-    </div>
-</div>
 
 {% endblock %}
