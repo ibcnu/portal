@@ -2,6 +2,7 @@
 
 {% load static widget_tweaks %}
 {% load load_comments %}
+
 {% block content %}
 <div class="col-md-10">
     <div class="card">
@@ -10,22 +11,22 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <div>Product: <span class="text-muted ">{{ issue.asset }}</span></div>
+                    <div>Product: <span class="text-muted ">{{ issue.asset|default:"" }}</span></div>
                     <div>Descripton:</div>
-                    <div class="text-muted ">{{ company.description }}</div>
+                    <div class="text-muted ">{{ issue.description|default:"" }}</div>
                 </div>
 
                 <div class="col-md-4">
-                    <div>Type: <span class="text_muted ">{{ issue.issuetype }}</span></div>
-                    <div>Status: <span class="text_muted ">{{ issue.status }}</span></div>
+                    <div>Type: <span class="text_muted ">{{ issue.issuetype|default:"" }}</span></div>
+                    <div>Status: <span class="text_muted ">{{ issue.status|default:"" }}</span></div>
                     <div>Summary:</div>
-                    <div class="text-muted ">{{ issue.summary }}</div>
+                    <div class="text-muted ">{{ issue.summary|default:"" }}</div>
                 </div>
 
                 <div class="col-md-4">
                     <div>Users</div>
                     {% for user in users %}
-                    <div class="text-muted ">{{ user }}</div>
+                    <div class="text-muted ">{{ user|default:"" }}</div>
                     {% endfor %}
                 </div>
             </div>
@@ -33,9 +34,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row  justify-content-between">
-                    <div class="text-muted small col-8 align-self-start">Last Updated: {{ issue.updated }}  </div>
+                    <div class="text-muted small col-8 align-self-start">Created by: {{ issue.createdby.fullname }}  | Last Updated: {{ issue.updated }}  </div>
                     <div class="text-muted small col-2 align-self-center">Users: {{ issue.asset.users.count }}  </div>
-                    <div class="text-muted small col-2 align-self-end">Comments: {# issues.comments.count #}</div>
+                    <!-- <div class="text-muted small col-2 align-self-end">Comments: {{ issues.comments.count }}</div> -->
                 </div>
             </div>
         </div>
@@ -48,7 +49,26 @@
         </div>
     </div>
 </div>
+<div class="row b-5">
+    <div class="col-8">
+        <h5>Comments</h5>
+        <form method="POST" action=".">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            {{ form.user | add_class:"form-control" }}
+            <input type="submit" class='btn btn-default' id="submit" value="Comment">
+        </form>
+        <hr>
 
+        {% for comment in issue.comments %}
+        <p>{{ comment }}</p>
+        <div class="text-muted small">
+            {{ comment.user.fullname }} | {{ comment.updated }}
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
 {% load_comments issue %}
-{# include 'snippets/userlist.html' #}
+
 {% endblock %}

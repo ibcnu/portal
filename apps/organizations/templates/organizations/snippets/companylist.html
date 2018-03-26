@@ -16,10 +16,10 @@
   {% for company in companies %}
     <tr class='clickable-row' data-href='{{ company.get_absolute_url }}'>
       <th scope="row" >{{ company.name }}</th>
-      <td>{{ company.contact.fullname }}</td>
-      <td>{{ company.address.street }}</td>
-      <td>{{ company.assets.count }}</td>
-      <td>{{ company.users.count }}</td>
+      <td>{{ company.contact.fullname|default:"" }}</td>
+      <td>{{ company.address.street|default:"" }}</td>
+      <td>{{ company.assets.count|default:"" }}</td>
+      <td>{{ company.users.count|default:"" }}</td>
     </tr>
 
   {% endfor %}

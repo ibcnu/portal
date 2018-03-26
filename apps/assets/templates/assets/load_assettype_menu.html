@@ -1,7 +1,15 @@
+{# for type in assettypes #}
+<!--
+<li class="nav-item {# if request.resolver_match.url_name == 'asset_list'  #}active{# endif #}">
+    <a href="{# url 'assets:asset_list' type.name #} " class="nav-link">{#{ type.value }#}</a></li> -->
+
+{# endfor #}
+
 {% for type in assettypes %}
+{% with ""|add:type.name|add:forloop.counter as name %}
+{% url 'assets:asset_list' type.name  as name  %}
 
-<li class="nav-item {% if request.resolver_match.url_name == 'asset_list'  %}active{% endif %}">
-    <a href="{% url 'assets:asset_list' type.name %} " class="nav-link">{{ type.value }}</a></li>
-
+<li class="nav-item {% if request.path == name %}active{% endif %}">
+    <a href=" {{ name }} " class="nav-link {% if request.path == name %}active{% endif %}">{{ type.value }}</a></li>
+{% endwith %}
 {% endfor %}
-

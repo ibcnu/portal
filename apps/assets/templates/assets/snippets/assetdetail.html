@@ -8,13 +8,13 @@
                 <div class="col-md-4">
                     <div>Company: <span class="text-muted ">{{ asset.company }}</span></div>
                     <div>Descripton:</div>
-                    <div class="text-muted ">{{ asset.description }}</div>
+                    <div class="text-muted ">{{ asset.description|default:"" }}</div>
                 </div>
 
                 <div class="col-md-4">
-                    <div>Type: <span class="text-muted ">{{ asset.assettype }}</span></div>
-                    <div>Product ID: <span class="text-muted ">{{ asset.pid }}</span></div>
-                    <div>Customer ID: <span class="text-muted ">{{ asset.coustomerid }}</span></div>
+                    <div>Type: <span class="text-muted ">{{ asset.assettype|default:"" }}</span></div>
+                    <div>Product ID: <span class="text-muted ">{{ asset.pid|default:"" }}</span></div>
+                    <div>Customer ID: <span class="text-muted ">{{ asset.coustomerid|default:"" }}</span></div>
                     <div>Slug: <span class="text-muted ">{{ asset.slug }}</span></div>
                 </div>
 

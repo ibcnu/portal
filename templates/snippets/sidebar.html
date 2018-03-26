@@ -1,32 +1,38 @@
 {% load static %}
 {% load load_assettype_menu %}
 
+{% url 'index' as index %}
+{% url 'site_settings' as site_settings %}
+{% url 'users:user_list' as user_list %}
+{% url 'organizations:company_list' as company_list %}
+{% url 'assets:asset_list' as asset_list %}
+{% url 'issues:issue_list' as issue_list %}
 
 <nav class="sidebar col-xs-12 sidebar-sticky " id='sidebar'>
     <ul class="nav flex-column list-unstyled components">
 
-        <li class="nav-item sidebar-nav-item  {% if request.resolver_match.url_name == 'index' %}active{% endif %}">
-            <a href="/" class="nav-link sidebar-nav-link   ">Dashboard</a></li>
+        <li class="nav-item sidebar-nav-item  {% if request.path == index %}active{% endif %}">
+            <a href="/" class="nav-link sidebar-nav-link {% if request.path == index %}active{% endif %}">Dashboard</a></li>
 
         {% if request.user.user_profile.role.pk == 'Admin' %}
-        <li class="nav-item sidebar-nav-item  {% if request.resolver_match.url_name == 'site_settings' %}active{% endif %}">
-            <a href="{% url 'site_settings' %}" class="nav-link sidebar-nav-link  ">Site Settings</a></li>
+        <li class="nav-item sidebar-nav-item  {% if request.path == site_settings %}active{% endif %}">
+            <a href="{{ site_settings }}" class="nav-link sidebar-nav-link  {% if request.path == site_settings %}active{% endif %}">Site Settings</a></li>
         {% endif %}
 
         {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
-        <li class="nav-item sidebar-nav-item  {% if request.resolver_match.url_name == 'company_list' %}active{% endif %}">
-            <a href="{% url 'organizations:company_list' %}" class="nav-link sidebar-nav-link  ">Companies</a></li>
-        <li class="nav-item sidebar-nav-item  {% if request.resolver_match.url_name == 'user_list' %}active{% endif %}">
-            <a href="{% url 'users:user_list' %}" class="nav-link sidebar-nav-link ">Users</a></li>
+        <li class="nav-item sidebar-nav-item  {% if request.path == company_list %}active{% endif %}">
+            <a href="{{ company_list }}" class="nav-link sidebar-nav-link {% if request.path == company_list %}active{% endif %}">Companies</a></li>
+        <li class="nav-item sidebar-nav-item  {% if request.path == user_list %}active{% endif %}">
+            <a href="{{ user_list }}" class="nav-link sidebar-nav-link {% if request.path == user_list %}active{% endif %}">Users</a></li>
         {% endif %}
 
-        <li class="nav-title {% if request.resolver_match.url_name == 'asset_list' %}active{% endif %}">
-            <a href="{% url 'assets:asset_list' %}" class="nav-link sidebar-nav-link ">All Products</a></li>
+        <li class="nav-title {% if request.path == asset_list %}active{% endif %}">
+            <a href="{{ asset_list }}" class="nav-link sidebar-nav-link {% if request.path == asset_list %}active{% endif %}">All Products</a></li>
 
         {% load_assettype_menu request %}
 
-        <li class="nav-title {% if request.resolver_match.url_name == 'issue_list' %}active{% endif %}">
-            <a href="{% url 'issues:issue_list' %}" class="nav-link sidebar-nav-link ">Reports</a></li>
+        <li class="nav-title {% if request.path == issue_list %}active{% endif %}">
+            <a href="{{ issue_list }}" class="nav-link sidebar-nav-link {% if request.path == issue_list %}active{% endif %}">Reports</a></li>
         <!-- <li class="nav-item sidebar-nav-item "><a href="{% url 'issues:issue_list' %}" class="nav-link sidebar-nav-link  ">Reports</a></li> -->
     </ul>
 </nav>

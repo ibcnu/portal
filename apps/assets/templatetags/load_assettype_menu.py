@@ -11,5 +11,5 @@ def load_assettype_menu(request):
         print(user.user_profile.company.assets.all().values_list('assettype', flat=True).distinct())
         # print(AssetType.objects.filter(user.company.assets.all()))
         assettypes = AssetType.objects.filter(name__in=user.user_profile.company.assets.all().values_list('assettype', flat=True).distinct())
-    print(assettypes)
+    # print(assettypes)
     return {'assettypes': assettypes}

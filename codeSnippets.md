@@ -17,6 +17,11 @@ return HttpResponseRedirect(next)
 {{ request.GET.next }}
 
 , related_name='company'
+
+
+
+
+============================================================================
 ### VIEWS
 class [model]ListView(LoginRequiredMixin, ListView):
     [template_name = "[app]/[model]_list.html"]
@@ -92,7 +97,7 @@ class [model]UpdateView(LoginRequiredMixin, UpdateView):
             queryset = DefaultUser.objects.all()
         return queryset
 
-
+============================================================================
 ### MODEL FIELDS
 models.CharField(max_length=255, null=False, blank=False, default=None)
 models.ForeignKey([model], models.[SET_NULL], blank=True, null=True,)
@@ -102,6 +107,10 @@ updated = models.DateTimeField(auto_now=True)
 slug = models.SlugField(max_length=50)
 
 
+
+
+
+============================================================================
 ### URLS
 from django.urls import path
 from .views import [model]ListView, [model]DetailView, [model]CreateView, [model]UpdateView
@@ -116,19 +125,41 @@ urlpatterns = [
 
 
 
+============================================================================
 ### FORMS
 class CompanyCreateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        instance = kwargs.get('instance')
+        print('INSTANCE: ', instance)
+        if instance:
+            self.fields['contact'].queryset = User.objects.filter(user_profile__in=instance.users.all())
+
+    def save(self, commit=True, *args, **kwargs):
+        instance = super(IssueCreateForm, self).save(commit=False)
+        print('IssueCreateForm:SAVE(): ')
+        print('IssueCreateForm:INSTANCE:', instance)
+        print('INSTANCE.asset', instance.asset)
+
+        # print('user', instance.user)
+        print('IssueCreateForm:ARGS:', args)
+        print('IssueCreateForm:KWARGS:', kwargs)
+        return super(IssueCreateForm, self).save(commit)
+
     class Meta:
         model = Company
         fields = [ ]
 
 
+============================================================================
 ### ADMIN
 from django.contrib import admin
 from .models import [model]
 admin.site.register([model])
 
 
+============================================================================
 ### TEMPLATES
 {% extends "base.html" %}
 {% load static widget_tweaks %}
@@ -138,6 +169,7 @@ admin.site.register([model])
 {% endblock %}
 {% csrf_token %}
 
+============================================================================
 ### signals
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
@@ -175,6 +207,7 @@ ROLES = [Admin, Tech, Manager, User]
 
 
 
+============================================================================
 ### LIST VIEW
 <table class="table table-striped">
   <thead>
@@ -210,6 +243,7 @@ ROLES = [Admin, Tech, Manager, User]
 
 
 
+============================================================================
 ### DETAIL VIEW
 <div class="col-md-10">
     <div class="card">

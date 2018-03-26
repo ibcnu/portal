@@ -24,14 +24,14 @@ class CompanyListView(LoginRequiredMixin, ListView):
             else:
                 queryset = Company.objects.all()
 
-        print('CompanyListView:QUERYSET: ', queryset)
+        # print('CompanyListView:QUERYSET: ', queryset)
         return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['page_title'] = 'Company List'
         context['companies'] = context['object_list']
-        print('CompanyListView:CONTEXT: ', context)
+        # print('CompanyListView:CONTEXT: ', context)
         return context
 
 
@@ -46,7 +46,7 @@ class CompanyDetailView(LoginRequiredMixin, DetailView):
         context['assets'] = company.assets.all()
         # context['users'] = DefaultUser.objects.filter(company=company)
         context['users'] = company.users.all()
-        print(company.users.count())
+        # print(company.users.count())
         return context
 
 
@@ -82,7 +82,7 @@ class CompanyCreateView(LoginRequiredMixin, TemplateView):
             c = self.get_context_data()
             return redirect('organizations:company_details', company.slug)
         else:
-            print('forms are invalid')
+            # print('forms are invalid')
             c = self.get_context_data()
             c['form'] = form
             c['address_form'] = address_form
@@ -108,15 +108,15 @@ class CompanyUpdateView(LoginRequiredMixin, TemplateView):
 
     def post(self, request, *args, **kwargs):
         slug = self.kwargs.get('slug')
-        print('SLUG: ', slug)
+        # print('SLUG: ', slug)
         company = Company.objects.filter(slug=slug).first()
-        print('COMPANY: ', company)
+        # print('COMPANY: ', company)
 
         form = CompanyCreateForm(self.request.POST)
         address_form = AddressCreateForm(self.request.POST)
 
         if form.is_valid() and address_form.is_valid():
-            print('form and company are valid: ')
+            # print('form and company are valid: ')
             company.name = form.cleaned_data.get('name') if form.cleaned_data.get('name') else ''
             company.contact = form.cleaned_data.get('contact')
             company.description = form.cleaned_data.get('description') if form.cleaned_data.get('description') else ''
@@ -146,7 +146,7 @@ class CompanyUpdateView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(*args, **kwargs)
         company = Company.objects.filter(slug=self.kwargs.get('slug')).first()
 
-        print('GETCONTEXT_COMPANY: ', company)
+        # print('GETCONTEXT_COMPANY: ', company)
         form = CompanyCreateForm(instance=company)
         address_form = AddressCreateForm(instance=company.address)
         context['page_title'] = 'Update Company'
@@ -161,7 +161,7 @@ class AddressCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        print(context)
+        # print(context)
         context['page_title'] = 'Create Address'
         return context
 
@@ -171,7 +171,7 @@ class AddressUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        print(context)
+        # print(context)
         context['page_title'] = 'Update Address'
         return context
 
@@ -184,9 +184,9 @@ class AddressDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        print(context)
+        # print(context)
         obj = kwargs.get('object')
-        print(type(obj))
+        # print(type(obj))
         context['page_title'] = 'Company Detail'
         # context['assets'] = Asset.objects.filter(company=obj)
         # context['users'] = DefaultUser.objects.filter(company=obj)

@@ -5,6 +5,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('comments/load_comments.html')
-def load_comments(url):
-    qs = Comment.objects.filter(url=url)
+def load_comments(instance):
+    print('load_comments: ', instance)
+    qs = Comment.objects.for_instance(instance)
     return {'comments': qs}

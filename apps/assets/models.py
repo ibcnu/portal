@@ -12,7 +12,7 @@ from portal.utils import unique_slug_generator
 
 class AssetType(models.Model):
     """docstring for AssetType"""
-    name = models.CharField(max_length=255, null=False, blank=False, primary_key=True,)
+    name = models.CharField(max_length=255, null=False, blank=False, primary_key=True, default='',)
     value = models.CharField(max_length=255, null=True, blank=True, default='',)
 
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -60,7 +60,7 @@ class Asset(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False,)
     company = models.ForeignKey(Company, related_name='assets', on_delete=models.CASCADE, null=True, blank=True, )
     assettype = models.ForeignKey(AssetType, on_delete=models.SET_NULL, blank=True, null=True, )
-    pid = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    pid = models.CharField(max_length=255, unique=True, null=True, blank=True, default='',)
     customerid = models.CharField(max_length=255, null=True, blank=True, default='',)
     description = models.TextField(null=True, blank=True, default='',)
 

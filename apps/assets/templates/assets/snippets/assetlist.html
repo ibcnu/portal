@@ -1,5 +1,5 @@
 <div class='mt-5'>
-   <h6>Product List</h6>
+   <h6>{{ page_title }}</h6>
 </div>
 
 <table class="table table-striped">
@@ -18,13 +18,13 @@
   <tbody>
   {% for asset in assets %}
     <tr class='clickable-row' data-href='{{ asset.get_absolute_url }}?next={{ request.path|urlencode  }}'>
-      <th scope="row">{{ asset.name }}</th>
+      <th scope="row">{{ asset.name|default:"" }}</th>
 {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
       <td>{{ asset.company }}</td>
 {% endif %}
-      <td>{{ asset.assettype }}</td>
-      <td>{{asset.pid}}</td>
-      <td>{{asset.customerid}}</td>
+      <td>{{ asset.assettype|default:"" }}</td>
+      <td>{{asset.pid|default:""}}</td>
+      <td>{{asset.customerid|default:""}}</td>
       <td>
         {% if asset.issues.count == 0 %}
         -
@@ -40,7 +40,7 @@
     <tr>
 {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
       <th scope="col" colspan="6" align="right">
-        <a href="{% url 'assets:asset_create' %}?cid={{ company.id }}" id='addasset' class="btn  btn-primary">Add Product</a>
+        <a href="{% url 'assets:asset_create' %}?cid={{ company.id }}&atype={{ atype }}" id='addasset' class="btn  btn-primary">Add Product</a>
       </th>
 {% else %}
       <th scope="col" colspan="5" align="right">

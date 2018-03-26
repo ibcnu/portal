@@ -13,10 +13,10 @@
   <tbody>
   {% for issue in issues %}
     <tr class='clickable-row' data-href='{{ issue.get_absolute_url }}'>
-      <th scope="row">{{ issue.title }}</th>
-      <td>{{ issue.asset }}</td>
-      <td>{{ issue.issuetype }}</td>
-      <td>{{ issue.status }}</td>
+      <th scope="row">{{ issue.title|default:"" }}</th>
+      <td>{{ issue.asset|default:"" }}</td>
+      <td>{{ issue.issuetype|default:"" }}</td>
+      <td>{{ issue.status|default:"" }}</td>
     </tr>
 
   {% endfor %}
@@ -25,7 +25,7 @@
   <tfoot>
     <tr>
       <th scope="col" colspan="4" align="right">
-        <a href="{% url 'issues:issue_create' %}"
+        <a href="{% url 'issues:issue_create' %}?pid={{ pid }}"
             class="btn  btn-primary">Add Issue</a>
       </th>
     </tr>

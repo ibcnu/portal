@@ -27,15 +27,43 @@
                         <div>{{ form.status | add_class:"form-control" }}</div></div>
                     <div class="form-group"><label class="form-control-label">Summary:</label>
                         <div>{{ form.summary | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Slug:</label>
+                        <div>{{ form.slug | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Current Owner:</label>
+                        <div>{{ form.currentowner | add_class:"form-control" }}</div></div>
+
                 </div>
             </div>
         </div>
 
         <div class="card-footer bg-light text-right">
+            {{ form.createdby | add_class:"form-control" }}
+            <input type="hidden" id='user' name="user" value="{{ current_user }}">
             <a href="{% url 'issues:issue_list' %}" title="Back" class="btn btn-primary">Back</a>
-            <input type="submit" class='btn btn-primary' value="Update">
+            <input type="submit" class='btn btn-primary' id="submit" value="Update">
         </div>
     </div>
 </div>
 </form>
+
+
+<script type="text/javascript">
+    window.onload = function() {
+        {% if pid %}
+        $('#id_asset').val('{{ pid }}');
+        $('#id_asset').prop("readonly", true);
+        {% endif %}
+
+        {% if current_user %}
+         if( !$('#id_createdby').val() ){
+            $('#id_createdby').val('{{ current_user }}');
+        }
+
+        if( !$('#id_currentowner').val() ){
+            $('#id_currentowner').val('{{ current_user }}');
+        }
+
+        {% endif %}
+    };
+</script>
 {% endblock %}
