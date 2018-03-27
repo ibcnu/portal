@@ -89,20 +89,9 @@ class Issue(models.Model):
     def get_content_type(self):
         return ContentType.objects.get_for_model(self.__class__)
 
-    # def save(self, commit=True):
-    #     instance = super(IssueCreateForm, self).save(commit=False)
-    #     print('IssueCreateForm:SAVE() ', instance)
-    #     # instance.flag1 = 'flag1' in self.cleaned_data['multi_choice'] # etc
-    #     # if commit:
-    #     #     instance.save()
-    #     return instance
-
-    # def __init__(self, arg):
-    #     super(Asset, self).__init__()
-    #     self.arg = arg
-
 
 class UserIssueStatus(models.Model):
+    # issue = models.ForeignKey(Issue, related_name='issues', on_delete=models.CASCADE)
     """docstring for UserIssueStatus"""
 
     # def __init__(self, arg):

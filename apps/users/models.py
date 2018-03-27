@@ -42,6 +42,7 @@ class DefaultUser(models.Model):
     country = models.CharField(max_length=100, default='', blank=True, null=True,)
     company = models.ForeignKey(Company, related_name='users', on_delete=models.SET_NULL, blank=True, null=True,)  # organization
     role = models.ForeignKey(UserRole, related_name='users', on_delete=models.SET_NULL, blank=True, null=True,)
+    receiveemails = models.BooleanField(default=False)
 
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

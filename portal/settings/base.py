@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 'crispy-form-tags',
+    'crispy_forms',
     'widget_tweaks',
     # 'django.contrib.sites',
     # 'django_comments_xtd',

@@ -6,8 +6,6 @@ from django.db.models.signals import pre_save  # , post_save
 from django.dispatch import receiver
 from portal.utils import unique_slug_generator
 
-# comments via urls and users
-
 
 class CommentManager(models.Manager):
     # def all(self):
@@ -29,7 +27,7 @@ class Comment(models.Model):
     short_text = models.CharField(max_length=255, null=False, blank=False, default='',)
     content = models.TextField()
     # image       = models.ImageField()
-    allow_anonymous = models.BooleanField(default=True)
+    allow_anonymous = models.BooleanField(default=False)
 
     # Below the mandatory fields for generic relation
     content_type = models.ForeignKey(ContentType, related_name='comments', on_delete=models.CASCADE)
@@ -43,11 +41,17 @@ class Comment(models.Model):
     objects = CommentManager()
 
     def __str__(self):
-        return self.slug
+        if self.slug:
+            return self.slug
+        return self.content
 
     @property
     def owner(self):
         return self.user
+
+    @property
+    def title(self):
+        return self.short_text
 
 
 @receiver(pre_save, sender=Comment)

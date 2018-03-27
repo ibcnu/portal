@@ -9,8 +9,8 @@ class CommentForm(forms.ModelForm):
         fields = [
             'user',
             'short_text',
+            # 'short_text',
             'content',
-
             'content_type',
             'object_id',
             # 'content_object',
