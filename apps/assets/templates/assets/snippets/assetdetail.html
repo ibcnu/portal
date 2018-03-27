@@ -19,12 +19,20 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div>Users</div>
-                    {% for user in users %}
-                    <div class="text-muted ">{{ user }}</div>
+                    <div class="form-control-label">Company Users:</div>
+                    {% for u in asset.company.users.all %}
+                        {% if not u in asset.users.all %}
+                        <div class="text-muted ">
+                            <span class="text-muted ">{{ u }} <a href="{% url 'assets:asset_change_users' operation='add' pk=u.pk asset_pk=asset.pk %}" class="btn btn-link p-0">add</a></span>
+                        </div>
+                       {% endif %}
                     {% endfor %}
+                    <div class="form-control-label">Product Users:</div>
+                    {% for user in asset.users.all %}
+                    <div class="text-muted "><span class="text-muted ">{{ user }} <a href="{% url 'assets:asset_change_users' operation='remove' pk=user.pk asset_pk=asset.pk %}" class="btn btn-link p-0">remove</a></span></div>
+                    {% endfor %}
+                    </div>
                 </div>
-
             </div>
         </div>
         <div class="row">
@@ -38,12 +46,15 @@
         </div>
 
 
-        <div class="card-footer bg-light text-right">
-            <a href='javascript:history.back()' class="btn btn-primary">Back</a>
-{% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
-            <a href='{% url "assets:asset_edit" asset.slug %}' id='editasset' class="btn btn-primary">Edit Product</a>
-{% else %}
-{% endif %}
+        <div class="card-footer bg-light row">
+            <div class="col"><a href='javascript:history.back()' class="btn btn-primary">Back</a></div>
+            <div class="col ml-auto text-right">
+    {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
+                <!-- <a href='{% url "assets:asset_users" %}?s={{ asset.slug }}' id='addusers' class="btn btn-link">Add Users</a> -->
+                <a href='{% url "assets:asset_edit" asset.slug %}' id='editasset' class="btn btn-primary">Edit Product</a>
+    {% else %}
+    {% endif %}
+            </div>
         </div>
 {% include 'issues/snippets/issuelist.html' %}
 {# include 'users/snippets/userlist.html' #}

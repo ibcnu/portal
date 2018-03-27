@@ -73,11 +73,16 @@ class IssueCreateView(LoginRequiredMixin, CreateView):
 class IssueUpdateView(LoginRequiredMixin, UpdateView):
     form_class = IssueCreateForm
 
-    def post(self, form):
+    def post(self, form, *args, **kwargs):
+        print('==========================================')
+        print('IssueUpdateView:POST')
         form = IssueCreateForm(self.request.POST)
         if not form.is_valid():
+            print('==========================================')
             print('IssueUpdateView:FORM_ERRORS: ', form.errors)
-        pass
+        else:
+            print('IssueUpdateView:FORM_VALID!:')
+        return super(IssueUpdateView, self).post(request, *args, **kwargs)
 
     def form_valid(self, form):
         print('IssueUpdateView:form_valid()')

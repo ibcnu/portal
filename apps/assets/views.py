@@ -1,10 +1,18 @@
-# from django.shortcuts import render
+from django.conf import settings
+from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
-from .forms import AssetCreateForm
-from .models import Asset, AssetType
+from .forms import AssetCreateForm, AssetUserUpdateForm
+from .models import Asset, AssetType  # , AssetUser
 from apps.issues.models import Issue
+from apps.accounts.models import User
+from apps.users.models import DefaultUser
+from .models import Asset
+
+# User = settings.AUTH_USER_MODEL
 
 
 class AssetListView(LoginRequiredMixin, ListView):
@@ -80,6 +88,13 @@ class AssetCreateView(LoginRequiredMixin, CreateView):
 class AssetUpdateView(LoginRequiredMixin, UpdateView):
     form_class = AssetCreateForm
 
+    # def post(self, request, *args, **kwargs):
+    #     form = AssetCreateForm(self.request.POST)
+    #     if not form.is_valid():
+    #         print('==========================================')
+    #         print('AssetUpdateView:FORM_ERRORS: ', form.errors)
+    #     return super(AssetUpdateView, self).post(request, *args, **kwargs)
+
     def form_valid(self, form):
         print('AssetUpdateView:form_valid()')
         return super(AssetUpdateView, self).form_valid(form)
@@ -92,3 +107,78 @@ class AssetUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_queryset(self):
         return Asset.objects.all()
+
+
+class AssetUsersView(LoginRequiredMixin, TemplateView):
+    template_name = 'assets/asset_users.html'
+    form = AssetUserUpdateForm
+
+    # def form_valid(self, form):
+    #     print('AssetUsersView:form_valid()')
+    #     return super(AssetUsersView, self).form_valid(form)
+
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super().get_context_data(*args, **kwargs)
+    #     # print(context)
+    #     context['page_title'] = 'Update Product Users'
+    #     return context
+
+    def post(self, request, *args, **kwargs):
+        form = AssetUserUpdateForm(self.request.POST)
+
+        if form.is_valid():
+            print('Form is valid')
+        else:
+            # print('forms are invalid')
+            c = self.get_context_data()
+            c['form'] = form
+            # c['address_form'] = address_form
+
+        return render(request, self.template_name, c)  # get_context_data()
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        print('ARGS: ', args)
+        print('KWARGS: ', kwargs)
+        print('REQUEST.GET: ', self.request.GET.get('s'))
+        asset = Asset.objects.filter(slug=self.request.GET.get('s'))
+        form = AssetUserUpdateForm(asset=asset.first())
+        context['page_title'] = 'User List'
+        context['form'] = form
+        context['asset'] = asset.first()
+        # context['address_form'] = address_form
+        print(context)
+        return context
+
+    def get_queryset(self):
+        return User.objects.all()
+
+    # def get_queryset(self, *args, **kwargs):
+    #     print('AssetUserUpdateView:GET_QS:WKARGS: ', kwargs)
+    #     return User.objects.all()
+
+
+def asset_users_change_view(request, operation, pk, asset_pk):
+    print('PK: ', pk, ' | assetPK: ', asset_pk, ' | operation: ', operation)
+    user = DefaultUser.objects.get(pk=pk)
+    asset = Asset.objects.get(pk=asset_pk)
+    if operation == 'add':
+        asset.add_user_to_asset(user)
+    elif operation == 'remove':
+        asset.remove_user_from_asset(user)
+
+    print(user)
+    print(asset.slug)
+    # return reverse('assets:asset_details', kwargs={'slug': asset.slug})
+    # return render('index')
+    # return render('assets:asset_details', {'slug': asset.slug})
+    return redirect('assets:asset_details', asset.slug)
+
+
+# class AssetUserUpdateView(LoginRequiredMixin, UpdateView):
+#     pass
+#     form_class = AssetUserUpdateForm
+
+#     def get_queryset(self, *args, **kwargs):
+#         print('AssetUserUpdateView:GET_QS:WKARGS: ', kwargs)
+#         return AssetUser.objects.all()

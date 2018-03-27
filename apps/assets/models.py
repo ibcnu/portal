@@ -1,4 +1,5 @@
 # from django.contrib.admNamein import register
+from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save  # , post_save
 from django.dispatch import receiver
@@ -60,9 +61,15 @@ class Asset(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False,)
     company = models.ForeignKey(Company, related_name='assets', on_delete=models.CASCADE, null=True, blank=True, )
     assettype = models.ForeignKey(AssetType, on_delete=models.SET_NULL, blank=True, null=True, )
-    pid = models.CharField(max_length=255, unique=True, null=True, blank=True, default='',)
+    pid = models.CharField(max_length=255, null=True, blank=True, default='',)
     customerid = models.CharField(max_length=255, null=True, blank=True, default='',)
     description = models.TextField(null=True, blank=True, default='',)
+    # assetusers = models.ManyToManyField(
+    #     settings.AUTH_USER_MODEL,
+    #     through='AssetUser',
+    #     through_fields=('asset', 'user'),
+    #     blank=True,
+    # )
 
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -77,6 +84,41 @@ class Asset(models.Model):
 
     def __str__(self):
         return self.name
+
+    # @classmethod
+    def add_user_to_asset(self, user):
+        self.users.add(user)
+
+    # @classmethod
+    def remove_user_from_asset(self, user):
+        self.users.remove(user)
+
+
+# class AssetUser(models.Model):
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='assets', on_delete=models.CASCADE)
+#     asset = models.ForeignKey(Asset, related_name='assets', on_delete=models.CASCADE)
+#     read = models.BooleanField(default=False)
+
+#     @classmethod
+#     def add_user_to_asset(cls, asset, user):
+#         assetusers, created = cls.objects.get_or_create(
+#             asset=asset
+#         )
+#         assetusers.user.add(user)
+
+#     @classmethod
+#     def remove_user_from_asset(cls, asset, user):
+#         assetusers, created = cls.objects.get_or_create(
+#             asset=asset
+#         )
+#         assetusers.user.remove(user)
+
+#     @classmethod
+#     def list_users_to_asset(cls, asset, user):
+#         assetusers, created = cls.objects.get_or_create(
+#             asset=asset
+#         )
+#         return assetusers.user.all()
 
 
 @receiver(pre_save, sender=AssetType)

@@ -1,0 +1,56 @@
+{% extends "base-content.html" %}
+{% load static widget_tweaks %}
+
+{% block dash_content %}
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="col-md-10">
+    <div class="card">
+        <div class="card-header bg-light">{{ page_title }} for {{ asset }}</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Users: </label>
+                    {% for user in asset.users.all %}
+                    <div>{{ user }} <a href="{% url 'assets:asset_change_users' operation='remove' pk=user.pk %}" class="btn btn-link ">remove </a></div>
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Company Users: </label>
+                    {% for u in asset.company.users.all %}
+                        {% if not u in asset.users.all %}
+                        <div>{{ u }} <a href="{% url 'assets:asset_change_users' operation='add' pk=u.pk %}" class="btn btn-link ">add</a></div>
+                       {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer bg-light text-right">
+            <a href="{% url 'assets:asset_details' asset.slug %}" title="Back" class="btn btn-primary">Back</a>
+        </div>
+    </div>
+</div>
+</form>
+
+
+<script type="text/javascript">
+
+    window.onload = function() {
+{% if cid %}
+        $('#id_company').val('{{ cid }}');
+        $('#id_company').prop("readonly", true);
+
+{% endif %}
+{% if atype %}
+        $('#id_assettype').val('{{ atype }}');
+{% endif %}
+    };
+
+</script>
+{% endblock %}

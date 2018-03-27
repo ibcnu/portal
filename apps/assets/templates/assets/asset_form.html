@@ -25,13 +25,14 @@
                     <div class="form-group"><label class="form-control-label">Product ID: </label>
                         <div>{{ form.pid | add_class:"form-control" }}</div></div>
                     <div class="form-group"<label class="form-control-label">Customer ID: </label>
-                        <div>{{ form.customerid | add_class:"form-control" }}</div></div>
-                    <div class="form-group"><label class="form-control-label">Slug: </label>
-                        <div>{{ form.slug | add_class:"form-control" }}</div></div>
+                        <div>{{ form.customerid | add_class:"form-control" }}</div></div><!--
+                    <div class="form-group"><label class="form-control-label">Users: </label>
+                        <div>{{ form.assetusers | add_class:"form-control" }}</div></div> -->
                 </div>
             </div>
         </div>
         <div class="row">
+        <div>{{ form.slug | add_class:"form-control" }}</div>
             <div class="col-md-12"><span class="text-muted small">Last Updated: {{ asset.updated }}</span></div>
         </div>
 
