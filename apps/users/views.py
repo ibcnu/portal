@@ -105,6 +105,7 @@ class UserUpdateView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        print('UserUpdateView:get_context_data:context ', context)
         u = DefaultUser.objects.filter(slug=self.kwargs.get('slug')).first()
         user_form = UserForm(instance=u.user)
         profile_form = ProfileForm(instance=u)
@@ -114,7 +115,7 @@ class UserUpdateView(LoginRequiredMixin, TemplateView):
             'page_title': 'Edit User',
             'defaultuser': u,
         }
-        context['cid'] = self.request.GET['cid']
+        # context['cid'] = self.request.GET['cid']
         return context
 
 

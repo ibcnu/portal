@@ -49,9 +49,6 @@ class File(models.Model):
 
     objects = FileManager()
 
-    def get_absolute_url(self):
-        return reverse('comments:comment_details', kwargs={'slug': self.slug})
-
     def __str__(self):
         return self.title
 

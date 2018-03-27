@@ -1,5 +1,5 @@
 <div class='mt-5'>
-   <h6>{{ page_title }}</h6>
+   <h6>{{ Product_page_title }}</h6>
 </div>
 
 <table class="table table-striped">
@@ -55,7 +55,8 @@
   <div class="pagination">
       <span class="page-links">
           {% if page_obj.has_previous %}
-            {% if atype == '' %}
+            {% if not  atype  %}
+
               <a href="{% url  'assets:asset_list'  %}?page={{ page_obj.previous_page_number }}">previous</a>
             {% else %}
               <a href="{% url  'assets:asset_list' atype %}?page={{ page_obj.previous_page_number }}">previous</a>

@@ -22,6 +22,8 @@ class AssetListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self, *args, **kwargs):
         queryset = Asset.objects.all()
+        print()
+        print('AssetListView:get_queryset: ', queryset)
         if self.request.user.user_profile.role.name != 'Admin':
             queryset = self.request.user.user_profile.assets.all()
 
@@ -29,25 +31,23 @@ class AssetListView(LoginRequiredMixin, ListView):
         if self.atype:
             queryset = queryset.filter(assettype__in=AssetType.objects.filter(name=self.atype))
 
+        print()
+        print('AssetListView:get_queryset: ', queryset)
         return queryset
 
     def get_page_title(self, type_name, *args, **kwargs):
         pgtitle = 'Product'
-        # page_title = 'Product List'
-        print(type_name)
         if type_name:
             assettype = AssetType.objects.get(name=type_name)
             pgtitle = assettype.value
         pgtitle = pgtitle + ' List'
-        print(pgtitle)
         return pgtitle
 
     def get_context_data(self, *args, **kwargs):
         context = super(AssetListView, self).get_context_data(*args, **kwargs)
-        print(self.get_page_title(self.atype))
-        context['page_title'] = self.get_page_title(self.atype)
+        context['Product_page_title'] = self.get_page_title(self.atype)
         context['atype'] = self.atype
-        # print(context)
+        print(context)
         return context
 
 
