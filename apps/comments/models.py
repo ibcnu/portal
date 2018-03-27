@@ -7,18 +7,19 @@ from django.dispatch import receiver
 from portal.utils import unique_slug_generator
 
 
+class CommentQueryset(models.query.QuerySet):
+    def for_instance(self, instance, *args, **kwargs):
+        content_type = ContentType.objects.get_for_model(instance.__class__)
+        object_id = instance.id
+        return self.filter(content_type=content_type, object_id=object_id)
+
+
 class CommentManager(models.Manager):
-    # def all(self):
-    #     qs = super(CommentManager, self).filter(parent=None)
-    #     return qs
+    def get_queryset(self):
+        return CommentQueryset(self.model, using=self._db)
 
     def for_instance(self, instance):
-        content_type = ContentType.objects.get_for_model(instance.__class__)
-        obj_id = instance.id
-        print('content_type: ', content_type, ' | obj_id: ', obj_id)
-        qs = super(CommentManager, self).filter(content_type=content_type, object_id=obj_id)
-        print('QS: ', qs)
-        return qs
+        return self.for_instance(instance)
 
 
 class Comment(models.Model):

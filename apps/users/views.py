@@ -29,6 +29,7 @@ class UserListView(LoginRequiredMixin, ListView):
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     queryset = DefaultUser.objects.all()
+    context_object_name = "defaultuser"
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

@@ -5,7 +5,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col"><a href="#">Name</a></th>
+      <th scope="col"><a href="#">Product</a></th>
 {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
       <th scope="col"><a href="#">Company</a></th>
 {% endif %}

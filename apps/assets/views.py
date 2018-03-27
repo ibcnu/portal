@@ -159,7 +159,7 @@ class AssetUsersView(LoginRequiredMixin, TemplateView):
 
 
 def asset_users_change_view(request, operation, pk, asset_pk):
-    print('PK: ', pk, ' | assetPK: ', asset_pk, ' | operation: ', operation)
+    print('PK: ', pk, ' | assetPK: ', asset_pk, ' | operation: ', operation, '| Path: ', request.GET.get('next'))
     user = DefaultUser.objects.get(pk=pk)
     asset = Asset.objects.get(pk=asset_pk)
     if operation == 'add':
@@ -169,10 +169,13 @@ def asset_users_change_view(request, operation, pk, asset_pk):
 
     print(user)
     print(asset.slug)
+    if request.GET.get('next'):
+        return redirect(request.GET.get('next'))
     # return reverse('assets:asset_details', kwargs={'slug': asset.slug})
     # return render('index')
     # return render('assets:asset_details', {'slug': asset.slug})
     return redirect('assets:asset_details', asset.slug)
+    # return redirect(path)
 
 
 # class AssetUserUpdateView(LoginRequiredMixin, UpdateView):

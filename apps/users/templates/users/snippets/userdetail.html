@@ -13,9 +13,19 @@
                     <div>Bio: <span class="text-muted ">{{ object.bio }}</span></div>
                 </div>
                 <div class="col-md-6">
-                    <div>Following Products:</div>
+                    <div>Products Following:</div>
                     {% for item in object.assets.all %}
-                        <div><span class="text-muted ">{{ item.name }}</span></div>
+                        <div><span class="text-muted ">{{ item.name }} <a
+                                    href="{% url 'assets:asset_change_users' operation='remove' pk=object.pk asset_pk=item.pk %}?next={{ request.path }}"
+                                    class="btn btn-link p-0"><small>remove</small></a></span></div>
+                    {% endfor %}
+                    <div>All Products:</div>
+                    {% for i in defaultuser.company.assets.all %}
+                    {% if i not in object.assets.all %}
+                        <div><span class="text-muted ">{{ i.name }} <a
+                                    href="{% url 'assets:asset_change_users' operation='add' pk=object.pk asset_pk=i.pk %}?next={{ request.path }}"
+                                    class="btn btn-link p-0"><small>add</small></a></span></div>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>

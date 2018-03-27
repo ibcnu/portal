@@ -15,6 +15,7 @@ urlpatterns = [
     path('<slug:slug>/', AssetDetailView.as_view(), name='asset_details'),
     path('users/', AssetUsersView.as_view(), name='asset_users'),
     path('users/<str:operation>/<int:pk>/<int:asset_pk>/', asset_users_change_view, name='asset_change_users'),
+    path('users/<str:operation>/<int:pk>/<int:asset_pk>/<str:return>/', asset_users_change_view, name='asset_change_users'),
     # path('type/', AssetTypeCreateView.as_view(), name='assettype_create'),
 
     # path('gates', AssetListView.as_view(), name='gate'),

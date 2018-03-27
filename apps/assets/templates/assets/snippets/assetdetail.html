@@ -19,18 +19,27 @@
                 </div>
 
                 <div class="col-md-4">
+            {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
                     <div class="form-control-label">Company Users:</div>
-                    {% for u in asset.company.users.all %}
-                        {% if not u in asset.users.all %}
-                        <div class="text-muted ">
-                            <span class="text-muted ">{{ u }} <a href="{% url 'assets:asset_change_users' operation='add' pk=u.pk asset_pk=asset.pk %}" class="btn btn-link p-0">add</a></span>
-                        </div>
-                       {% endif %}
-                    {% endfor %}
+                {% for u in asset.company.users.all %}
+                    {% if not u in asset.users.all %}
+                    <div class="text-muted ">
+                        <span class="text-muted ">{{ u }}
+                            <a href="{% url 'assets:asset_change_users' operation='add' pk=u.pk asset_pk=asset.pk %}"
+                            class="btn btn-link p-0"><small>add</small></a></span>
+                    </div>
+                   {% endif %}
+                {% endfor %}
+            {% endif %}
                     <div class="form-control-label">Product Users:</div>
-                    {% for user in asset.users.all %}
-                    <div class="text-muted "><span class="text-muted ">{{ user }} <a href="{% url 'assets:asset_change_users' operation='remove' pk=user.pk asset_pk=asset.pk %}" class="btn btn-link p-0">remove</a></span></div>
-                    {% endfor %}
+            {% for user in asset.users.all %}
+                    <div class="text-muted "><span class="text-muted ">{{ user }}
+                {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
+                        <a href="{% url 'assets:asset_change_users' operation='remove' pk=user.pk asset_pk=asset.pk %}"
+                        class="btn btn-link p-0"><small>remove</small></a>
+                {% endif %}
+                        </span></div>
+            {% endfor %}
                     </div>
                 </div>
             </div>
