@@ -11,8 +11,10 @@
 <nav class="sidebar col-xs-12 sidebar-sticky " id='sidebar'>
     <ul class="nav flex-column list-unstyled components">
 
+        {% if request.user.user_profile.role.pk != 'Admin' and request.user.user_profile.role.pk != 'Tech' %}
         <li class="nav-item sidebar-nav-item  {% if request.path == index %}active{% endif %}">
             <a href="/" class="nav-link sidebar-nav-link {% if request.path == index %}active{% endif %}">Dashboard</a></li>
+        {% endif %}
 
         {% if request.user.user_profile.role.pk == 'Admin' %}
         <li class="nav-item sidebar-nav-item  {% if request.path == site_settings %}active{% endif %}">
