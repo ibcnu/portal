@@ -1,6 +1,7 @@
 env/
 envportal/
 .gitignore.swp
+static_cdn/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -24,7 +24,7 @@ class AssetListView(LoginRequiredMixin, ListView):
         queryset = Asset.objects.all()
         print()
         print('AssetListView:get_queryset: ', queryset)
-        if self.request.user.user_profile.role.name != 'Admin':
+        if self.request.user.user_profile.role.name != 'Admin' and self.request.user.user_profile.role.name != 'Tech':
             queryset = self.request.user.user_profile.assets.all()
 
         self.atype = self.kwargs.get('atype')
@@ -56,7 +56,7 @@ class AssetDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        # if self.request.user.user_profile.role.name != 'Admin':
+        # if self.request.user.user_profile.role.name != 'Admin' and self.request.user.user_profile.role.name != 'Tech':
         asset = kwargs.get('object')
         context['page_title'] = 'Product Detail'
         context['issues'] = asset.issues.all()

@@ -1,6 +1,6 @@
 from apps.assets.models import Asset
 from apps.comments.models import Comment
-from apps.files.models import File
+from apps.files.models import File, Image
 # from .forms import IssueCreateForm
 
 from django.conf import settings
@@ -8,8 +8,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-from portal.utils import unique_slug_generator
 from django.urls import reverse
+
+from portal.utils import unique_slug_generator
 
 User = settings.AUTH_USER_MODEL
 
@@ -80,6 +81,10 @@ class Issue(models.Model):
     @property
     def files(self):
         return File.objects.for_instance(self)
+
+    @property
+    def images(self):
+        return Image.objects.for_instance(self)
 
     @property
     def comments(self):

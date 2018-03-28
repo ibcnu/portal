@@ -29,6 +29,13 @@
                     {% for user in issue.asset.users.all %}
                     <div class="text-muted ">{{ user|default:"" }}</div>
                     {% endfor %}
+                    <div>Files</div>
+                    {% for file in issue.files %}
+                    <div class="text-muted "><a href="/media/{{ file.attachment }}">{{ file }}</a></div>
+                        {% for f in file.attachments.all %}
+                    <div class="text-muted "><a href="/media/{{ f.attachment }}">{{ f }}</a></div>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -45,6 +52,7 @@
         <div class="card-footer bg-light text-right">
             <a href='javascript:history.back()' class="btn btn-primary">Back</a>
 {% if request.user.user_profile.role.pk == 'Admin' or request.user.user_profile.role.pk == 'Tech' %}
+            <a href='{% url "issues:file_add" issue.pk %}' class="btn btn-primary">Add File</a>
             <a href='{% url "issues:issue_edit" issue.slug %}' class="btn btn-primary">Edit</a>
 {% endif %}
         </div>

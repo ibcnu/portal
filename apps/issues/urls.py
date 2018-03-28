@@ -1,5 +1,8 @@
 from django.urls import path
-from .views import IssueListView, IssueDetailView, IssueCreateView, IssueUpdateView
+from .views import (
+    IssueListView, IssueDetailView, IssueCreateView, IssueUpdateView,
+    AddFileView,
+)
 
 app_name = 'issues'
 urlpatterns = [
@@ -8,4 +11,5 @@ urlpatterns = [
     path('edit/<slug:slug>/', IssueUpdateView.as_view(), name='issue_edit'),
     path('<slug:slug>/', IssueDetailView, name='issue_details'),
     # path('<slug:slug>/', IssueDetailView.as_view(), name='issue_details'),
+    path('add-file/<int:issue_pk>/', AddFileView, name='file_add'),
 ]

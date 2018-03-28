@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models.signals import pre_save  # , post_save
 from django.dispatch import receiver
+
 from portal.utils import unique_slug_generator
 
 
@@ -19,7 +20,7 @@ class CommentManager(models.Manager):
         return CommentQueryset(self.model, using=self._db)
 
     def for_instance(self, instance):
-        return self.for_instance(instance)
+        return self.get_queryset().for_instance(instance)
 
 
 class Comment(models.Model):

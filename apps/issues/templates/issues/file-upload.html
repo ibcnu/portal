@@ -1,0 +1,37 @@
+{% extends "base-content.html" %}
+{% load static widget_tweaks %}
+{% load crispy_forms_tags %}
+
+{% block dash_content %}
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+    <div class="card">
+        <div class="card-header bg-light">{{ page_title }}</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="form-group"><label class="form-control-label">Title: </label>
+                        <div>{{ form.title | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Description: </label>
+                        <div>{{ form.description | add_class:"form-control" }}</div></div>
+                    <div class="form-group"><label class="form-control-label">Attachment:</label>
+                        <div><input type="file" name="myfiles" multiple>
+                        {{ form.attachment | add_class:"form-control" }}</div></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer bg-light text-right">
+            {{ form.user }}
+            {{ form.content_type }}
+            {{ form.object_id }}
+            <input type="submit" class='btn btn-primary' id="submit" value="Update">
+
+        </div>
+    </div>
+</form>
+
+{% endblock %}

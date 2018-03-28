@@ -14,8 +14,8 @@ class UserListView(LoginRequiredMixin, ListView):
     context_object_name = "users"
 
     def get_queryset(self, *args, **kwargs):
-        if self.request.user.user_profile.role.name != 'Admin':
-            queryset = DefaultUser.objects.filter(company=self.request.user.user_profile.companies)
+        if self.request.user.user_profile.role.name != 'Admin' and self.request.user.user_profile.role.name != 'Tech':
+            queryset = DefaultUser.objects.filter(company=self.request.user.user_profile.company)
         else:
             queryset = DefaultUser.objects.all()
         return queryset
