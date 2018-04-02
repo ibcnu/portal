@@ -4,9 +4,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['portal.barryhuffman.ca', 'portal.cmssi.com', ]
-
-# INSTALLED_APPS += ('debug_toolbar', )
+ALLOWED_HOSTS = ['portal.barryhuffman.ca', 'portal.cmssi.com', '165.227.184.224']
 
 AUTH_USER_MODEL = 'accounts.User'
 
@@ -34,3 +32,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'media')
 
 
 EMAIL_BACKEND = 'django.core.backends.console.EmailBackend'
+
+# EMAIL_HOST = "smtp.mail.com"
+# EMAIL_PORT = "587"
+# EMAIL_HOST_USER = "@cmssi.com"
+# EMAIL_HOST_PASSWORD = "yourpassword"
+# DEFAULT_FROM_EMAIL = "Helpdesk <helpdesk@cmssi.com>"
+
+try:
+    from portal.settings.local import *
+except:
+    pass
