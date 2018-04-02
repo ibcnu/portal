@@ -8,8 +8,6 @@ ALLOWED_HOSTS = []
 
 # INSTALLED_APPS += ('debug_toolbar', )
 
-AUTH_USER_MODEL = 'accounts.User'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
