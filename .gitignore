@@ -2,6 +2,8 @@ env/
 envportal/
 .gitignore.swp
 static_cdn/
+*.swp
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

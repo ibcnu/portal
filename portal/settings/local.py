@@ -4,7 +4,7 @@ SECRET_KEY = '@eq8lnd)4r3bg_aem9no7qp5x=bt@*5t=5p$(sq!w%g2p0b+j&'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 # INSTALLED_APPS += ('debug_toolbar', )
 
