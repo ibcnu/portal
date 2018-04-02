@@ -18,14 +18,21 @@ class IssueListView(LoginRequiredMixin, ListView):
     context_object_name = "issues"
 
     def get_queryset(self):
+        queryset = Issue.objects.all()
+        print('QS: ', queryset)
         slug = self.kwargs.get('slug')
-        if slug:
-            queryset = Issue.objects.fitler(
-                Q(title__iexact=slug) |
-                Q(title__contains=slug)
-            )
-        else:
-            queryset = Issue.objects.all()
+        if self.request.user.user_profile.role.name != 'Admin' and self.request.user.user_profile.role.name != 'Tech':
+            qs = self.request.user.user_profile.assets.all()
+            print('QS: ', qs)
+            queryset = queryset.filter(asset__in=qs)
+
+        # if slug:
+        #     queryset = Issue.objects.fitler(
+        #         Q(title__iexact=slug) |
+        #         Q(title__contains=slug)
+        #     )
+        # else:
+        #     queryset = Issue.objects.all()
         return queryset
 
     def get_context_data(self, *args, **kwargs):
