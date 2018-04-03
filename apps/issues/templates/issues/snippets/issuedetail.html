@@ -31,9 +31,17 @@
                     {% endfor %}
                     <div>Files</div>
                     {% for file in issue.files %}
-                    <div class="text-muted "><a href="/media/{{ file.attachment }}">{{ file }}</a></div>
+                    <div class="text-muted img_display_p">
+                        <a href="/media/{{ file.attachment }}" target="_blank">{{ file }}
+                            <p>{{ file.description }}</p>
+                        </a>
+                    </div>
                         {% for f in file.attachments.all %}
-                    <div class="text-muted "><a href="/media/{{ f.attachment }}">{{ f }}</a></div>
+                    <div class="text-muted img_display_p">
+                        <a href="/media/{{ f.attachment }}" target="_blank">{{ f }}
+                            <p>{{  f.file.description  }}</p>
+                        </a>
+                    </div>
                         {% endfor %}
                     {% endfor %}
                 </div>

@@ -79,6 +79,10 @@ select.form-control{
     cursor: pointer;
 }
 
+.img_display_p a p {display:none;}
+.img_display_p a:hover p {display:block;}
+.img_display_p a:hover {display:block;}
+
 /*
 .sidebar-nav-item{padding:0px;}
 .sidebar-nav-link{padding: 0px;}
