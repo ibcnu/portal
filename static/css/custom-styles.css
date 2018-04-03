@@ -74,6 +74,11 @@ select.form-control{
     padding:  10px 0px  !important;
 }
 
+.clickable-row{
+
+    cursor: pointer;
+}
+
 /*
 .sidebar-nav-item{padding:0px;}
 .sidebar-nav-link{padding: 0px;}
