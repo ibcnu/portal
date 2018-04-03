@@ -27,7 +27,7 @@ class UserForm(forms.ModelForm):
             'email',
             'password1',
             'password2',
-            'active',
+            'is_active',
         ]
 
 

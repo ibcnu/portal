@@ -75,7 +75,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         unique=True,
     )
     fullname = models.CharField(max_length=255, blank=True, null=True)
-    active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)  # a admin user; non super-user
     admin = models.BooleanField(default=False)  # a superuser
 
@@ -118,10 +118,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         "Is the user a admin member?"
         return self.admin
 
-    @property
-    def is_active(self):
-        "Is the user active?"
-        return self.active
+    # @property
+    # def is_active(self):
+    #     "Is the user active?"
+    #     return self.active
 
     @property
     def title(self):
