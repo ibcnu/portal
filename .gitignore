@@ -3,7 +3,7 @@ envportal/
 .gitignore.swp
 static_cdn/
 *.swp
-*.sqlite3
+*.sqlite3*
 
 
 # Byte-compiled / optimized / DLL files
