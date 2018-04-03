@@ -12,7 +12,8 @@ urlpatterns = [
     # path('comments/', include('django_comments_xtd.urls'), name='comments'),
     path('settings', SiteSettingsView.as_view(), name='site_settings'),
 
-    path('account/', include('apps.accounts.urls', namespace='accounts')),
+    # path('account/', include('apps.accounts.urls', namespace='accounts')),
+    path('account/', include('apps.accounts.urls')),
     path('asset/', include('apps.assets.urls', namespace='assets')),
     path('company/', include('apps.organizations.urls', namespace='organizations')),
     path('profile/', include('apps.profiles.urls', namespace='profiles')),

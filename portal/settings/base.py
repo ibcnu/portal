@@ -20,7 +20,7 @@ SECRET_KEY = '@eq8lnd)4r3bg_aem9no7qp5x=bt@*5t=5p$(sq!w%g2p0b+j&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['portal.barryhuffman.ca', 'portal.cmssi.com','165.227.184.224' ]
+ALLOWED_HOSTS = ['portal.barryhuffman.ca', 'portal.cmssi.com', '165.227.184.224', '127.0.0.1']
 
 
 # Application definition
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django.core.backends',
 
     'crispy_forms',
     'widget_tweaks',
@@ -92,6 +93,13 @@ WSGI_APPLICATION = 'portal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'portal.sqlite3'),
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -146,10 +154,23 @@ LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = '/'
 
 
-EMAIL_BACKEND = 'django.core.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.backends.dummy.EmailBackend'
+# if EMAIL_BACKEND is not None:
+#     # If the server admin specified a custom email backend, use that.
+#     pass
+# elif not EMAIL_HOST and PRODUCTION:
+#     # If an email host is not specified, fail silently and gracefully
+#     EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+# elif DEVELOPMENT:
+#     # In the dev environment, emails are printed to the run-dev.py console.
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# else:
 
-# EMAIL_HOST = "smtp.mail.com"
-# EMAIL_PORT = "587"
-# EMAIL_HOST_USER = "@cmssi.com"
-# EMAIL_HOST_PASSWORD = "yourpassword"
-# DEFAULT_FROM_EMAIL = "Helpdesk <helpdesk@cmssi.com>"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# EMAIL_HOST = "smtp-relay.gmail.com"
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = "barry.huffman@cmssi.com"
+# EMAIL_HOST_PASSWORD = "H@rr!3bm"
+# DEFAULT_FROM_EMAIL = "Info <info@cmssi.com>"
