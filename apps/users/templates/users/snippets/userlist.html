@@ -50,6 +50,33 @@
   </tfoot>
 </table>
 
+{% if is_paginated %}
+{# with request.GET.pop('page') as url #}
+  <div class="pagination">
+      <span class="page-links center">
+          {% if page_obj.has_previous %}
+            {% if not  atype  %}
+
+              <a href="{% url  'users:user_list'  %}?page={{ page_obj.previous_page_number }}">previous</a>
+            {% else %}
+              <a href="{% url  'users:user_list' atype %}?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+          {% endif %}
+          <span class="page-current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+          {% if page_obj.has_next %}
+            {% if atype == '' or not atype  %}
+              <a href="{% url  'users:user_list'  %}?page={{ page_obj.next_page_number }}">next</a>
+            {% else %}
+                <a href="{% url  'users:user_list' atype %}?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+          {% endif %}
+          {{ url.urlencode }}
+      </span>
+  </div>
+{% endif %}
+
 
 <script type="text/javascript">
     window.onload = function() {

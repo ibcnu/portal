@@ -10,7 +10,7 @@ from .forms import UserForm, ProfileForm, CreateProfileForm
 
 
 class UserListView(LoginRequiredMixin, ListView):
-    # paginate_by = 5
+    paginate_by = 10
     context_object_name = "users"
 
     def get_queryset(self, *args, **kwargs):

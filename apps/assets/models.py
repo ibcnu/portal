@@ -15,6 +15,7 @@ class AssetType(models.Model):
     """docstring for AssetType"""
     name = models.CharField(max_length=255, null=False, blank=False, primary_key=True, default='',)
     value = models.CharField(max_length=255, null=True, blank=True, default='',)
+    verbosevalue = models.CharField(max_length=255, null=True, blank=True, default='',)
 
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

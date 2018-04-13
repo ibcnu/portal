@@ -12,32 +12,32 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <div>Product: <span class="text-muted ">{{ issue.asset|default:"" }}</span></div>
-                    <div>Descripton:</div>
+                    <div class="bh_detail_view">Product: <span class="text-muted ">{{ issue.asset|default:"" }}</span></div>
+                    <div class="bh_detail_view">Descripton:</div>
                     <div class="text-muted ">{{ issue.description|default:"" }}</div>
                 </div>
 
                 <div class="col-md-4">
-                    <div>Type: <span class="text_muted ">{{ issue.issuetype|default:"" }}</span></div>
-                    <div>Status: <span class="text_muted ">{{ issue.status|default:"" }}</span></div>
-                    <div>Summary:</div>
+                    <div class="bh_detail_view">Type: <span class="text_muted ">{{ issue.issuetype|default:"" }}</span></div>
+                    <div class="bh_detail_view">Status: <span class="text_muted ">{{ issue.status|default:"" }}</span></div>
+                    <div class="bh_detail_view">Summary:</div>
                     <div class="text-muted ">{{ issue.summary|default:"" }}</div>
                 </div>
 
                 <div class="col-md-4">
-                    <div>Users</div>
+                    <div class="bh_detail_view">Users</div>
                     {% for user in issue.asset.users.all %}
-                    <div class="text-muted ">{{ user|default:"" }}</div>
+                    <div class="text-muted bh_detail_view_list">{{ user|default:"" }}</div>
                     {% endfor %}
-                    <div>Files</div>
+                    <div class="bh_detail_view">Files</div>
                     {% for file in issue.files %}
-                    <div class="text-muted img_display_p">
+                    <div class="text-muted img_display_p bh_detail_view_list">
                         <a href="/media/{{ file.attachment }}" target="_blank">{{ file }}
                             <p>{{ file.description }}</p>
                         </a>
                     </div>
                         {% for f in file.attachments.all %}
-                    <div class="text-muted img_display_p">
+                    <div class="text-muted img_display_p bh_detail_view_list">
                         <a href="/media/{{ f.attachment }}" target="_blank">{{ f }}
                             <p>{{  f.file.description  }}</p>
                         </a>

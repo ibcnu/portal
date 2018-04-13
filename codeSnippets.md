@@ -2,7 +2,9 @@
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.views.generic import TemplateView, DetailView, ListView, CreateView, UpdateView
+from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import TemplateView, DetailView, ListView, CreateView, UpdateView, FormView
 from django.urls import reverse, reverse_lazy
 
 
@@ -23,6 +25,30 @@ return HttpResponseRedirect(next)
 
 ============================================================================
 ### VIEWS
+
+def index(request[, slug]):
+    template = ''
+    context = {}
+
+    [objects = MyModel.objects.all()]
+    [obj = MyModel.objects.get(sllug=slug)]
+
+    # form = DemoForm(request.POST or None)
+
+    if form.is_valid():
+        # o = MyModel.objects.create(field = form.cleaned_data.get('field'))  # for Form.Form
+        form.save() #  for Form.ModelForm
+        return HttpResponseRedirect('function')
+        return redirect('function')
+    else:
+        return HttpResponse('Error!')
+
+    context['form'] = form
+    return render(request, template, context)
+
+
+
+
 class [model]ListView(LoginRequiredMixin, ListView):
     [template_name = "[app]/[model]_list.html"]
     def get_queryset(self):

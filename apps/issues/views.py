@@ -14,7 +14,7 @@ from apps.files.models import File, FileAttachment
 
 
 class IssueListView(LoginRequiredMixin, ListView):
-    paginate_by = 5
+    paginate_by = 10
     context_object_name = "issues"
 
     def get_queryset(self):

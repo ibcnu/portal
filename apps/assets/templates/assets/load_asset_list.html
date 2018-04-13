@@ -1,0 +1,47 @@
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"><a href="#">Product</a></th>
+      <th scope="col"><a href="#"># Issues</a></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for asset in asset_list %}
+    <tr class='clickable-row' data-href='{{ asset.get_absolute_url }}?next={{ request.path|urlencode  }}'>
+      <th scope="row">{{ asset.name|default:"" }}</th>
+      <td>{% if asset.issues.count == 0 %}-{% else %}{{ asset.issues.count }}{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="col" colspan="2" align="center">
+      {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links center">
+                {% if page_obj.has_previous %}
+                  {% if not  atype  %}
+                    <a href="{% url  'assets:asset_list'  %}?page={{ page_obj.previous_page_number }}">previous</a>
+                  {% else %}
+                    <a href="{% url  'assets:asset_list' atype %}?page={{ page_obj.previous_page_number }}">previous</a>
+                  {% endif %}
+                {% endif %}
+                <span class="page-current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                {% if page_obj.has_next %}
+                  {% if atype == '' or not atype  %}
+                    <a href="{% url  'assets:asset_list'  %}?page={{ page_obj.next_page_number }}">next</a>
+                  {% else %}
+                    <a href="{% url  'assets:asset_list' atype %}?page={{ page_obj.next_page_number }}">next</a>
+                  {% endif %}
+                {% endif %}
+                {{ url.urlencode }}
+            </span>
+        </div>
+      {% endif %}
+      </th>
+    </tr>
+  </tfoot>
+</table>
+

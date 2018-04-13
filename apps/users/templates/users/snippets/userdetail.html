@@ -5,24 +5,24 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <div>Email: <span class="text-muted ">{{ object.user.email }}</span></div>
-                    <div>Phone: <span class="text-muted ">{{ object.phone }}</span></div>
-                    <div>City: <span class="text-muted ">{{ object.city }}</span></div>
-                    <div>Country: <span class="text-muted ">{{ object.country }}</span></div>
-                    <div>Company: <span class="text-muted ">{{ object.company }}</span></div>
-                    <div>Bio: <span class="text-muted ">{{ object.bio }}</span></div>
+                    <div class="bh_detail_view">Email: <span class="text-muted ">{{ object.user.email }}</span></div>
+                    <div class="bh_detail_view">Phone: <span class="text-muted ">{{ object.phone }}</span></div>
+                    <div class="bh_detail_view">City: <span class="text-muted ">{{ object.city }}</span></div>
+                    <div class="bh_detail_view">Country: <span class="text-muted ">{{ object.country }}</span></div>
+                    <div class="bh_detail_view">Company: <span class="text-muted ">{{ object.company }}</span></div>
+                    <div class="bh_detail_view">Bio: <span class="text-muted ">{{ object.bio }}</span></div>
                 </div>
                 <div class="col-md-6">
-                    <div>Products Following:</div>
+                    <div class="bh_detail_view">Products Following:</div>
                     {% for item in object.assets.all %}
-                        <div><span class="text-muted ">{{ item.name }} <a
+                        <div class="bh_detail_view_list"><span class="text-muted ">{{ item.name }} <a
                                     href="{% url 'assets:asset_change_users' operation='remove' pk=object.pk asset_pk=item.pk %}?next={{ request.path }}"
                                     class="btn btn-link p-0"><small>remove</small></a></span></div>
                     {% endfor %}
-                    <div>All Products:</div>
+                    <div class="bh_detail_view">All Products:</div>
                     {% for i in defaultuser.company.assets.all %}
                     {% if i not in object.assets.all %}
-                        <div><span class="text-muted ">{{ i.name }} <a
+                        <div class="bh_detail_view_list"><span class="text-muted ">{{ i.name }} <a
                                     href="{% url 'assets:asset_change_users' operation='add' pk=object.pk asset_pk=i.pk %}?next={{ request.path }}"
                                     class="btn btn-link p-0"><small>add</small></a></span></div>
                     {% endif %}

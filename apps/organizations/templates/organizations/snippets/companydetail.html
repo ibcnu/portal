@@ -7,21 +7,21 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <div>Contact: <span class="text-muted ">{{ company.contact.fullname }}</span></div>
-                    <div>Descripton:</div>
+                    <div class="bh_detail_view">Contact: <span class="text-muted ">{{ company.contact.fullname }}</span></div>
+                    <div class="bh_detail_view">Descripton:</div>
                     <div class="text-muted">{{ company.description }}</div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class=''>Address</div>
-                    <div><span class="text_muted ">{{ company.address.street }}</span></div>
-                    <div><span class="text_muted ">{{ company.address.street2 }}</span></div>
-                    <div><span class="text_muted ">{{ company.address.city }} {{ company.address.province }} {{ company.address.postalcode }}</span></div>
-                    <div><span class="text_muted ">{{ company.address.country }}</span></div>
+                    <div class="bh_detail_view">Address</div>
+                    <div class=""><span class="text_muted ">{{ company.address.street }}</span></div>
+                    <div class=""><span class="text_muted ">{{ company.address.street2 }}</span></div>
+                    <div class=""><span class="text_muted ">{{ company.address.city }} {{ company.address.province }} {{ company.address.postalcode }}</span></div>
+                    <div class=""><span class="text_muted ">{{ company.address.country }}</span></div>
                 </div>
 
                 <div class="col-md-4">
-                    <div>Users</div>
+                    <div class="bh_detail_view">Users:</div>
                     {% for user in users %}
                     <div class="text-muted ">{{ user }}</div>
                     {% endfor %}

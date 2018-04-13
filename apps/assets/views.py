@@ -1,22 +1,22 @@
-from django.conf import settings
-from django.shortcuts import render, redirect
-from django.shortcuts import render
-from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
+# from django.conf import settings
+# User = settings.AUTH_USER_MODEL
+
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, redirect
+# from django.urls import reverse
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView  # , View
 
 from .forms import AssetCreateForm, AssetUserUpdateForm
 from .models import Asset, AssetType  # , AssetUser
-from apps.issues.models import Issue
-from apps.accounts.models import User
-from apps.users.models import DefaultUser
-from .models import Asset
 
-# User = settings.AUTH_USER_MODEL
+from apps.accounts.models import User
+# from apps.issues.models import Issue
+from apps.users.models import DefaultUser
 
 
 class AssetListView(LoginRequiredMixin, ListView):
-    paginate_by = 5
+    paginate_by = 10
     context_object_name = "assets"
     atype = ''
 
@@ -47,6 +47,9 @@ class AssetListView(LoginRequiredMixin, ListView):
         context = super(AssetListView, self).get_context_data(*args, **kwargs)
         context['Product_page_title'] = self.get_page_title(self.atype)
         context['atype'] = self.atype
+
+        paginator = Paginator(contact_list, paginate_by)
+
         print(context)
         return context
 
